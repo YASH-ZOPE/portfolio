@@ -5442,15 +5442,14 @@ button,
 
   /* Opened skills book translation resets */
   .vintage-book.open {
-    position: fixed;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) scale(1.8) !important;
     z-index: 10000;
   }
 
   #book-fe.open, #book-be.open, #book-cd.open, #book-db.open, #book-tl.open, #book-cp.open {
-    transform: translate(-50%, -50%) scale(1.8) !important;
+    transform: scale(1.15) !important;
+  }
+  #book-fe.open:hover, #book-be.open:hover, #book-cd.open:hover, #book-db.open:hover, #book-tl.open:hover, #book-cp.open:hover {
+    transform: scale(1.15) !important;
   }
 
   /* Projects Page updates */
@@ -5561,30 +5560,320 @@ button,
 }
 
 @media (max-width: 480px) {
-  /* Skills Page stack to 1 column on small phones */
-  .notebook-archive-grid {
-    grid-template-columns: 1fr !important;
+  /* Remove outer wooden desk padding and leather frames to let paper fill screen width */
+  .desk {
+    padding: 0 !important;
+  }
+  .notebook-wrapper {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+  .notebook {
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: none !important;
+  }
+  .notebook::after {
+    display: none !important;
+  }
+  .notebook-inner-pages {
+    padding: 0 !important;
+    background: none !important;
+  }
+  .sheet-paper {
+    padding: 15px 10px 30px 10px !important;
+  }
+  
+  /* Hide the red vertical margin line on mobile since we are centering all text */
+  .sheet-paper::before,
+  .grid-paper::before,
+  .lined-paper::before {
+    display: none !important;
   }
 
-  .vintage-book.open {
-    transform: translate(-50%, -50%) scale(1.3) !important;
+  /* Center all headings, subheadings, and body texts on mobile */
+  .notebook-header-line {
+    justify-content: center !important;
+  }
+  .skills-header-block,
+  .projects-title-container,
+  .journey-header-block,
+  .contact-title-block,
+  .about-title {
+    text-align: center !important;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .skills-main-title,
+  .projects-main-title,
+  .journey-main-title,
+  .contact-main-title,
+  .about-title {
+    text-align: center !important;
+    font-size: 2.6rem !important;
+  }
+  .skills-main-title,
+  .contact-main-title {
+    margin-top: 0 !important;
+    margin-bottom: 5px !important;
+  }
+  .skills-sub,
+  .projects-sub,
+  .journey-sub,
+  .contact-sub {
+    text-align: center !important;
+    width: 100%;
+  }
+  .skills-sub,
+  .contact-sub {
+    margin: 0 auto 0 auto !important;
+  }
+  .skills-header-block,
+  .contact-title-block {
+    margin-bottom: 0px !important;
+  }
+
+  /* Center sticky notes, chits, and polaroids */
+  .sticky-learning-note,
+  .sticky-ideas-note,
+  .pinned-note,
+  .postit,
+  .postit-wrapper,
+  .taped-journey,
+  .taped-about,
+  .sketch-card-taped {
+    margin: 15px auto !important;
+    float: none !important;
+    display: block !important;
+  }
+  .sticky-learning-note {
+    margin: 0px auto 10px auto !important;
+  }
+
+  .sticky-collage {
+    gap: 8px !important;
+  }
+  .sticky-collage .postit,
+  .sticky-collage .postit-wrapper {
+    margin: 4px auto !important;
+  }
+
+  /* Center Skills book shelf grid and alignment */
+  .notebook-archive-grid {
+    grid-template-columns: 1fr !important;
+    justify-items: center !important;
+  }
+  .vintage-book {
+    margin: 10px auto !important;
+    max-width: 280px;
+  }
+  .book-shelf-row {
+    justify-content: center !important;
   }
 
   #book-fe.open, #book-be.open, #book-cd.open, #book-db.open, #book-tl.open, #book-cp.open {
-    transform: translate(-50%, -50%) scale(1.3) !important;
+    transform: scale(1.05) !important;
+    margin: 15px auto !important;
+  }
+  #book-fe.open:hover, #book-be.open:hover, #book-cd.open:hover, #book-db.open:hover, #book-tl.open:hover, #book-cp.open:hover {
+    transform: scale(1.05) !important;
   }
 
+  /* Center Project Cards and layout */
+  .projects-list-side {
+    align-items: center !important;
+  }
+  .project-container-wrapper {
+    width: 100%;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .project-paper-card {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto !important;
+    text-align: center !important;
+  }
+  .project-header {
+    justify-content: center !important;
+  }
+  .project-tags {
+    justify-content: center !important;
+  }
+  .project-actions {
+    justify-content: center !important;
+  }
+  .project-desc {
+    border-left: none !important;
+    padding-left: 0 !important;
+    text-align: center !important;
+  }
+  .tech-stack-row {
+    justify-content: center !important;
+  }
+
+  /* Center Journey Milestone Cards */
+  .milestones-wrapper {
+    align-items: center !important;
+  }
+  .milestone-card {
+    max-width: 300px;
+    margin: 10px auto !important;
+    text-align: center !important;
+  }
+  .milestone-sketch-icon {
+    margin: 5px auto !important;
+  }
+
+  /* Center Contact page envelopes and items with dynamic adjust */
+  .sticky-ideas-note {
+    position: relative !important;
+    bottom: auto !important;
+    right: auto !important;
+    margin: 0px auto 10px auto !important;
+  }
+  .envelope-outer-container {
+    width: 100% !important;
+    max-width: 320px !important;
+    height: 200px !important;
+    margin: 0 auto !important;
+    position: relative !important;
+    transition: height 0.5s ease-in-out !important;
+  }
+  .envelope-outer-container:has(.envelope-open) {
+    height: 280px !important;
+  }
+  .envelope {
+    width: 280px !important;
+    height: 180px !important;
+    margin: 10px auto 0 auto !important;
+    transition: margin-top 0.5s ease-in-out, transform 0.5s ease-in-out !important;
+  }
+  .envelope.envelope-open {
+    margin-top: 80px !important;
+  }
+  .coffee-cup-container {
+    width: 85px !important;
+    height: 85px !important;
+    margin: 25px auto 0 auto !important;
+  }
+  .contact-sketch-container {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    height: 40px !important;
+  }
+  .doodle-contact-svg {
+    display: block !important;
+    margin: 0 auto !important;
+    width: 80px !important;
+    height: 40px !important;
+  }
+  .gear-doodle-container {
+    display: block !important;
+    margin: 0 auto !important;
+    width: 80px !important;
+    height: 60px !important;
+    margin-bottom: 5px !important;
+  }
+  .doodle-gear-1 {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  .doodle-gear-2 {
+    top: 25px !important;
+    left: 30px !important;
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .cfs-content {
+    left: 32px !important;
+    right: 38px !important;
+  }
+  .cfs-content .cover-exterior {
+    padding: 2vh 6vw 2vh 1vw !important;
+  }
+  .cover-content {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+  .cover-right {
+    display: contents !important;
+  }
+  .personal-archive-header {
+    order: 1 !important;
+    text-align: center !important;
+    width: 100% !important;
+    margin-bottom: 2px !important;
+  }
   .cover-right .main-title {
+    order: 2 !important;
     font-size: 2.8rem !important;
+    text-align: center !important;
+    width: 100% !important;
+    margin-top: 0 !important;
+    margin-bottom: 5px !important;
   }
-
+  .sub-title-badge {
+    order: 3 !important;
+    text-align: center !important;
+    margin: 0 auto 10px auto !important;
+    display: block !important;
+    width: max-content !important;
+    max-width: 100% !important;
+  }
+  .cover-left {
+    order: 4 !important;
+    display: flex !important;
+    justify-content: center !important;
+    margin-bottom: 10px !important;
+    width: 100% !important;
+  }
+  .polaroid {
+    padding: 10px !important;
+  }
   .polaroid .photo-container {
     width: 200px !important;
-    height: 200px !important;
+    height: calc(200px - 5mm) !important;
   }
-  
   .taped-cover .photo-container {
     width: 180px !important;
-    height: 180px !important;
+    height: calc(180px - 5mm) !important;
+  }
+  .interests-section {
+    order: 5 !important;
+    width: 100% !important;
+    text-align: center !important;
+  }
+  .interests-section .section-label {
+    margin-bottom: 5px !important;
+  }
+  .interests-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 15px 10px !important;
+    justify-items: center !important;
+    width: 100% !important;
+    padding: 10px 0 !important;
+    margin-bottom: 10px !important;
+  }
+  .stamp-choice {
+    order: 6 !important;
+    margin: 10px auto 0 auto !important;
+    width: 100% !important;
+    text-align: center !important;
+  }
+  .volume-text {
+    order: 7 !important;
+    text-align: center !important;
+    margin-top: 5px !important;
+    width: 100% !important;
   }
 }
