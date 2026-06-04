@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yash Zope | Handcrafted Vintage Engineering Notebook & Scrapbook Portfolio</title>
+  <meta name="description"
+    content="The personal interactive archive of Yash Zope - Cloud & Full Stack Developer. Explore skills, projects, and journey in a realistic vintage engineering notebook.">
+  <link rel="stylesheet" href="style.css?v=11.11.3">
+</head>
+
+<body>
+
+  <!-- ============================================================
+       FULL-SCREEN COVER OVERLAY
+       Fills the entire viewport on first load.
+       Clicking it reveals the notebook behind.
+       ============================================================ -->
+  <div id="cover-fullscreen" class="cover-fullscreen">
+    <!-- Spiral binding on left -->
+    <div class="cfs-spine"></div>
+    <!-- Elastic band on right -->
+    <div class="cfs-band"></div>
+    <!-- Cover content injected here by JS after cover.html loads -->
+    <div id="cfs-content" class="cfs-content"></div>
+    <!-- Click-to-open hint -->
+    <div class="cfs-hint font-mono">CLICK TO OPEN</div>
+  </div>
+
+  <!-- Cinematic Wooden Desk Background -->
+  <div class="desk" id="desk-wrapper" style="opacity:0; pointer-events:none;">
+    <!-- Warm lighting filter overlay -->
+    <div class="lighting-glow"></div>
+    <div class="vignette"></div>
+
+    <!-- Premium vintage fountain pen desk prop -->
+    <div class="desk-prop fountain-pen">
+      <svg viewBox="0 0 30 350" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <defs>
+          <linearGradient id="gold-nib" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ffe066" />
+            <stop offset="70%" stop-color="#cca300" />
+            <stop offset="100%" stop-color="#806600" />
+          </linearGradient>
+          <linearGradient id="nib-tip" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#ffffff" />
+            <stop offset="50%" stop-color="#cccccc" />
+            <stop offset="100%" stop-color="#999999" />
+          </linearGradient>
+          <linearGradient id="pen-body" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#2a1a10" />
+            <stop offset="30%" stop-color="#140c07" />
+            <stop offset="70%" stop-color="#2a1a10" />
+            <stop offset="100%" stop-color="#3d2617" />
+          </linearGradient>
+        </defs>
+
+        <!-- Pen Body (lower section) -->
+        <rect x="8" y="100" width="14" height="230" rx="4" fill="url(#pen-body)" stroke="#110702" stroke-width="0.8" />
+
+        <!-- Pen Band (Gold accent) -->
+        <rect x="7" y="94" width="16" height="6" rx="1" fill="url(#gold-nib)" />
+
+        <!-- Pen Grip -->
+        <rect x="9" y="40" width="12" height="54" rx="1" fill="#140c07" />
+
+        <!-- Thread / Gold joint -->
+        <rect x="8" y="36" width="14" height="4" fill="url(#gold-nib)" />
+
+        <!-- Pen Nib collar (gold) -->
+        <path d="M9,36 L15,18 L21,36 Z" fill="url(#gold-nib)" stroke="#4d3d00" stroke-width="0.4" />
+
+        <!-- Steel Nib Tip -->
+        <path d="M12,18 L15,2 L18,18 Z" fill="url(#nib-tip)" stroke="#444" stroke-width="0.3" />
+        <line x1="15" y1="2" x2="15" y2="14" stroke="#222" stroke-width="0.5" />
+        <circle cx="15" cy="14" r="1" fill="#222" />
+
+        <!-- Gold Pen Clip -->
+        <path d="M15,110 L15,220" stroke="url(#gold-nib)" stroke-width="2.5" stroke-linecap="round" />
+        <circle cx="15" cy="220" r="2.5" fill="url(#gold-nib)" />
+      </svg>
+    </div>
+
+    <!-- Premium vintage ink bottle desk prop (left side of desk) -->
+    <div class="desk-prop ink-bottle">
+      <svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="glass-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="rgba(255,255,255,0.18)" />
+            <stop offset="30%" stop-color="rgba(255,255,255,0.08)" />
+            <stop offset="70%" stop-color="rgba(0,0,0,0.4)" />
+            <stop offset="100%" stop-color="rgba(0,0,0,0.6)" />
+          </linearGradient>
+          <linearGradient id="ink-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#140f0c" />
+            <stop offset="100%" stop-color="#050302" />
+          </linearGradient>
+          <linearGradient id="brass-lid" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#ffe680" />
+            <stop offset="50%" stop-color="#b38600" />
+            <stop offset="100%" stop-color="#664d00" />
+          </linearGradient>
+        </defs>
+
+        <!-- Bottle Neck & Opening -->
+        <rect x="38" y="15" width="24" height="20" rx="2" fill="url(#glass-grad)" stroke="#110803" stroke-width="0.8" />
+
+        <!-- Brass Cap / Cork -->
+        <path d="M35,15 L65,15 L62,5 L38,5 Z" fill="url(#brass-lid)" stroke="#3d2a00" stroke-width="0.8" />
+
+        <!-- Glass Body -->
+        <rect x="15" y="35" width="70" height="75" rx="8" fill="url(#glass-grad)" stroke="#110803" stroke-width="0.8" />
+
+        <!-- Ink Liquid level inside -->
+        <path d="M17,65 Q50,67 83,65 L83,103 Q50,105 17,103 Z" fill="url(#ink-grad)" opacity="0.95" />
+
+        <!-- Weathered Archival paper label -->
+        <rect x="25" y="70" width="50" height="28" rx="2" fill="#ebd2b9" stroke="#997858" stroke-width="0.5"
+          transform="rotate(-3 50 84)" />
+        <!-- Micro Text lines on label -->
+        <line x1="30" y1="76" x2="70" y2="76" stroke="#5c442f" stroke-width="1.2" transform="rotate(-3 50 84)" />
+        <line x1="30" y1="84" x2="60" y2="84" stroke="#5c442f" stroke-width="1" transform="rotate(-3 50 84)"
+          stroke-dasharray="2 1" />
+
+        <!-- Specular Highlight reflection -->
+        <path d="M22,42 L22,100" stroke="rgba(255,255,255,0.15)" stroke-width="3" stroke-linecap="round" />
+      </svg>
+    </div>
+
+    <!-- CORS File Protocol Helper Warning Overlay (Hidden by default, shown by JS if local fetch fails) -->
+    <div class="local-cors-warning" id="cors-warning">
+      <div class="warning-card font-mono">
+        <h4 class="warning-title font-stamp">⚠️ LOCAL FILESYSTEM SECURITY NOTICE</h4>
+        <p class="warning-desc">
+          Modern browsers block loading modular files directly from the filesystem (CORS security policies).
+        </p>
+        <div class="warning-instructions">
+          <strong>To view this masterpiece in full interactive glory:</strong>
+          <ol>
+            <li>Open a terminal in the folder: <code>c:\Users\HP\OneDrive\Desktop\portfolio</code></li>
+            <li>Run: <code>npm run dev</code></li>
+            <li>Open the browser at: <code>http://localhost:3000</code></li>
+          </ol>
+        </div>
+        <p class="warning-note">
+          * Activating fallback: The site is attempting to load local inline pre-baked data so you can browse, but some
+          advanced mechanics may be restricted. Run the server for the ultimate premium cinematic layout.
+        </p>
+        <button class="warning-dismiss-btn" onclick="dismissWarning()">DISMISS WARNING & BROWSE FALLBACK</button>
+      </div>
+    </div>
+
+    <!-- Main Notebook Wrapper with 3D Perspective -->
+    <div class="notebook-wrapper">
+
+      <!-- The physical notebook -->
+      <!-- The physical notebook -->
+      <div class="notebook open" id="notebook">
+
+        <!-- ==========================================
+             NOTEBOOK INNER PAGES CONTAINER
+             ========================================== -->
+        <div class="notebook-inner-pages" id="notebook-pages">
+
+          <!-- Spiral Spine Rings Overlay (Left side of all inner pages) -->
+          <div class="notebook-spine-spiral"></div>
+
+          <!-- ==========================================
+               TABS NAVIGATION
+               ========================================== -->
+          <div class="notebook-tabs" id="notebook-tabs">
+            <button class="nav-tab" data-target="intro" id="tab-intro">
+              <span class="tab-paper">
+                <svg viewBox="0 0 24 24" class="tab-icon">
+                  <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+                </svg>
+                INTRO
+              </span>
+            </button>
+            <button class="nav-tab" data-target="skills" id="tab-skills">
+              <span class="tab-paper">
+                <svg viewBox="0 0 24 24" class="tab-icon">
+                  <path
+                    d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" />
+                </svg>
+                SKILLS
+              </span>
+            </button>
+            <button class="nav-tab" data-target="projects" id="tab-projects">
+              <span class="tab-paper">
+                <svg viewBox="0 0 24 24" class="tab-icon">
+                  <path
+                    d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V6h5.17l2 2H20v10z" />
+                </svg>
+                PROJECTS
+              </span>
+            </button>
+            <button class="nav-tab" data-target="journey" id="tab-journey">
+              <span class="tab-paper">
+                <svg viewBox="0 0 24 24" class="tab-icon">
+                  <path
+                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                </svg>
+                JOURNEY
+              </span>
+            </button>
+            <button class="nav-tab" data-target="about" id="tab-about">
+              <span class="tab-paper">
+                <svg viewBox="0 0 24 24" class="tab-icon">
+                  <path
+                    d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                </svg>
+                ABOUT
+              </span>
+            </button>
+            <button class="nav-tab" data-target="contact" id="tab-contact">
+              <span class="tab-paper">
+                <svg viewBox="0 0 24 24" class="tab-icon">
+                  <path
+                    d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                </svg>
+                CONTACT
+              </span>
+            </button>
+          </div>
+
+          <!-- ==========================================
+               PAGES SLOTS (Loaded dynamically from pages/*.html)
+               ========================================== -->
+          <div class="page-sheet active" id="page-cover">
+            <div class="sheet-paper grid-paper">
+              <div class="loading-sheet font-hand">Unfolding Cover Page...</div>
+            </div>
+          </div>
+
+          <div class="page-sheet" id="page-intro">
+            <div class="sheet-paper grid-paper">
+              <div class="loading-sheet font-hand">Unfolding Introduction...</div>
+            </div>
+          </div>
+
+          <div class="page-sheet" id="page-skills">
+            <div class="sheet-paper grid-paper">
+              <div class="loading-sheet font-hand">Assembling Skills Archive...</div>
+            </div>
+          </div>
+
+          <div class="page-sheet" id="page-projects">
+            <div class="sheet-paper grid-paper">
+              <div class="loading-sheet font-hand">Unrolling Project Blueprints...</div>
+            </div>
+          </div>
+
+          <div class="page-sheet" id="page-journey">
+            <div class="sheet-paper grid-paper">
+              <div class="loading-sheet font-hand">Charting Milestone Trails...</div>
+            </div>
+          </div>
+
+          <div class="page-sheet" id="page-about">
+            <div class="sheet-paper grid-paper">
+              <div class="loading-sheet font-hand">Collaging Sticky Notes...</div>
+            </div>
+          </div>
+
+          <div class="page-sheet" id="page-contact">
+            <div class="sheet-paper grid-paper">
+              <div class="loading-sheet font-hand">Writing Wax Seal Envelopes...</div>
+            </div>
+          </div>
+
+        </div> <!-- End Inner Pages Container -->
+
+      </div> <!-- End Notebook -->
+
+      <!-- Lightbox modal for system architecture drawing zoomed view -->
+      <div class="lightbox-modal" id="blueprint-lightbox" onclick="closeLightbox()">
+        <div class="lightbox-content-card grid-paper">
+          <button class="lightbox-close font-mono">✕ CLOSE</button>
+          <h3 class="lightbox-title font-stamp" id="lightbox-title">BLUEPRINT ZOOM SPECIFICATION</h3>
+          <div class="lightbox-blueprint-body" id="lightbox-blueprint-body">
+            <!-- Dynamically cloned svg will be placed here -->
+          </div>
+          <p class="lightbox-caption font-mono">Drawn by Yash Zope. System architecture specifications, Vol. III.</p>
+        </div>
+      </div>
+
+    </div> <!-- End Notebook Wrapper -->
+
+  </div> <!-- End Desk -->
+
+  <!-- ============================================================
+       SVG GRAPHICS & REALISM FILTERS FOR VINTAGE EFFECTS
+       ============================================================ -->
+  <svg style="position: absolute; width: 0; height: 0; pointer-events: none;" width="0" height="0">
+    <defs>
+      <!-- Stamp Ink Erosion & Bleed distress filter -->
+      <filter id="stamp-distress" x="-10%" y="-10%" width="120%" height="120%">
+        <!-- Coarse turbulence to erode letter margins slightly -->
+        <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="3" result="coarseNoise" />
+        <feDisplacementMap in="SourceGraphic" in2="coarseNoise" scale="1.6" xChannelSelector="R" yChannelSelector="G" result="erodedText" />
+        
+        <!-- High-frequency fine micro-erosion for ink grain -->
+        <feTurbulence type="turbulence" baseFrequency="0.22" numOctaves="2" result="fineNoise" />
+        <feDisplacementMap in="erodedText" in2="fineNoise" scale="0.8" xChannelSelector="R" yChannelSelector="G" result="grainyText" />
+
+        <!-- Soft ink bleed and absorption into paper fibers (extremely subtle) -->
+        <feGaussianBlur in="SourceGraphic" stdDeviation="0.18" result="inkBleed" />
+        
+        <feMerge>
+          <!-- Layer bleed below and displacement on top -->
+          <feMergeNode in="inkBleed" />
+          <feMergeNode in="grainyText" />
+        </feMerge>
+        
+        <!-- Slightly mute opacity to simulate natural dry stamp ink variation -->
+        <feColorMatrix type="matrix" values="
+          1 0 0 0 0
+          0 1 0 0 0
+          0 0 1 0 0
+          0 0 0 0.98 0
+        " />
+      </filter>
+      
+      <!-- Faint paper fiber overlay specifically for stamp bleed merging -->
+      <filter id="fiber-bleed" x="0%" y="0%" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.45" numOctaves="4" result="noise" />
+        <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.28 0" result="coloredNoise" />
+        <feBlend mode="multiply" in="SourceGraphic" in2="coloredNoise" />
+      </filter>
+
+      <!-- Soft, fibrous, pressure-worn paper edge distress displacement filter -->
+      <filter id="paper-edge-distress" x="-2%" y="-2%" width="104%" height="104%">
+        <!-- Pass 1: Low-frequency turbulence for organic page edge warping, rounded bumps, and thumb-worn dents -->
+        <feTurbulence type="fractalNoise" baseFrequency="0.025" numOctaves="3" seed="19" result="waveNoise" />
+        <feDisplacementMap in="SourceGraphic" in2="waveNoise" scale="5" xChannelSelector="R" yChannelSelector="G" result="softWarp" />
+        
+        <!-- Pass 2: High-frequency turbulence for paper fiber fraying and microscopic wood/cotton cellulose protrusions -->
+        <feTurbulence type="fractalNoise" baseFrequency="0.42" numOctaves="4" seed="42" result="fiberNoise" />
+        <feDisplacementMap in="softWarp" in2="fiberNoise" scale="1.4" xChannelSelector="R" yChannelSelector="G" result="erodedEdge" />
+      </filter>
+
+      <!-- Premium Pebbled Leather Texture Filter -->
+      <filter id="pebbled-leather" x="0%" y="0%" width="100%" height="100%">
+        <!-- Coarse turbulence to generate leather cell boundaries -->
+        <feTurbulence type="fractalNoise" baseFrequency="0.32" numOctaves="3" result="roughNoise" />
+        <!-- Emboss the cells to create a realistic 3D grain texture catching lights and shadows -->
+        <feDiffuseLighting in="roughNoise" lighting-color="#ffffff" surfaceScale="1.4" diffuseConstant="1.2" result="pebbleLight">
+          <feDistantLight azimuth="135" elevation="55" />
+        </feDiffuseLighting>
+        <!-- Blend it cleanly -->
+        <feBlend mode="multiply" in="SourceGraphic" in2="pebbleLight" result="blend1" />
+        
+        <!-- Faint high-frequency noise for microscopic pore details -->
+        <feTurbulence type="turbulence" baseFrequency="0.8" numOctaves="2" result="microNoise" />
+        <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.12 0" result="coloredMicro" />
+        <feBlend mode="multiply" in="blend1" in2="coloredMicro" />
+      </filter>
+    </defs>
+  </svg>
+
+  <script src="script.js?v=11.11.3"></script>
+</body>
+
+</html>

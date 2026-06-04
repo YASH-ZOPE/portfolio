@@ -1,0 +1,120 @@
+<div class="sheet-paper grid-paper">
+  <div class="page-body-spread">
+    <!-- Left Side: Title & Polaroid -->
+    <div class="page-side left-side-journey">
+      <div class="notebook-header-line">
+        <span class="header-vintage font-mono text-faded">MILESTONE GRAPH & LOG // VOL. 03</span>
+      </div>
+
+      <div class="journey-header-block">
+        <h2 class="journey-main-title font-hand">MY JOURNEY</h2>
+        <p class="journey-sub font-book">A timeline of learning, building and growing.</p>
+      </div>
+
+      <!-- Polaroid from the reference image -->
+      <div class="polaroid taped-journey">
+        <div class="tape tape-top-left"></div>
+        <div class="photo-container">
+          <svg viewBox="0 0 100 80" class="journey-polaroid-sketch">
+            <!-- Hand-drawn mountains landscape -->
+            <path d="M10 70l20-40 15 25 10-15 35 30z" fill="none" stroke="#6b5847" stroke-width="1"/>
+            <path d="M35 70l15-20 20 20z" fill="none" stroke="#6b5847" stroke-width="0.8"/>
+            <circle cx="75" cy="25" r="8" fill="none" stroke="#6b5847" stroke-width="1"/>
+            <!-- water lines -->
+            <line x1="5" y1="73" x2="95" y2="73" stroke="#6b5847" stroke-width="0.8" stroke-dasharray="2 2"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Pinned dry leaf stems -->
+      <div class="botanical-decoration botanical-journey-left"></div>
+    </div>
+
+    <!-- Right Side: Milestones connected by flight paths -->
+    <div class="page-side right-side-journey milestone-timeline-side">
+      
+      <!-- Milestones list with SVG embedded inside so they share coordinate systems 1:1 -->
+      <div class="milestones-wrapper">
+        
+        <!-- SVG for Flight Trails and planes -->
+        <div class="flight-paths-svg-container">
+          <svg class="flight-paths-svg" id="journey-svg" viewBox="0 0 650 420">
+            <!-- Vintage Red Thumbtack Map Pin marking start at 2024 -->
+            <g class="map-pin" transform="translate(-5, 229)" style="filter: drop-shadow(1px 2px 2.5px rgba(0, 0, 0, 0.45));">
+              <!-- Pin needle -->
+              <line x1="0" y1="0" x2="0" y2="-12" stroke="#4a3728" stroke-width="2"/>
+              <!-- Red plastic head with highlights -->
+              <ellipse cx="0" cy="-17" rx="6" ry="5" fill="#8B2A22" stroke="#2B180E" stroke-width="1.2"/>
+              <ellipse cx="0" cy="-21" rx="4" ry="2.5" fill="#a83a30" stroke="none"/>
+              <circle cx="-2" cy="-18" r="1.5" fill="#ffffff" opacity="0.6"/>
+            </g>
+
+            <!-- Hand-drawn thin dashed trail 1: 2024 to 2025 - Large Sweeping Valley-Peak Wave (100% Off Cards) -->
+            <path class="flight-trail" id="trail-1" d="M -5,229 C 20,229 60,280 90,280 C 130,280 185,70 235,70" fill="none" stroke="#402715" stroke-width="2.2" stroke-dasharray="5 5" />
+            
+            <!-- Hand-drawn thin dashed trail 2: 2025 to 2026 - Large Sweeping Peak-Valley Wave (100% Off Cards) -->
+            <path class="flight-trail" id="trail-2" d="M 235,70 C 285,70 330,320 380,320 C 420,320 460,80 500,80" fill="none" stroke="#402715" stroke-width="2.2" stroke-dasharray="5 5" />
+
+            <!-- Hand-drawn thin dashed trail 3: 2026 to 2027 - Large Rollercoaster Sweeping Exit (100% Loop-Free, Off Cards) -->
+            <path class="flight-trail" id="trail-3" d="M 500,80 C 560,80 525,285 635,175" fill="none" stroke="#402715" stroke-width="2.2" stroke-dasharray="5 5" />
+
+            <!-- Paper airplane SVG marker gliding along trail -->
+            <g class="paper-airplane" id="plane-1">
+              <polygon points="4,0 -8,-8 -4,0 -8,8" fill="none" stroke="#6b533f" stroke-width="1"/>
+              <line x1="4" y1="0" x2="-4" y2="0" stroke="#6b533f" stroke-width="1"/>
+            </g>
+          </svg>
+        </div>
+
+        <!-- 2024 Milestone (Top Left) -->
+        <div class="milestone-card" id="milestone-2024" style="top: 15px; left: 10px;">
+          <div class="thumbtack red-thumbtack"></div>
+          <div class="milestone-year font-mono">2024</div>
+          <p class="milestone-text font-hand">Dove into cloud technologies & systems architecture.</p>
+          <div class="milestone-sketch-icon">
+            <svg viewBox="0 0 24 24" class="inline-sketch-icon"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
+          </div>
+        </div>
+
+        <!-- 2025 Milestone (Bottom Middle-Left) -->
+        <div class="milestone-card" id="milestone-2025" style="top: 245px; left: 165px;">
+          <div class="thumbtack red-thumbtack"></div>
+          <div class="milestone-year font-mono">2025</div>
+          <p class="milestone-text font-hand">Built scalable systems & shipped high impact value.</p>
+          <div class="milestone-sketch-icon">
+            <svg viewBox="0 0 24 24" class="inline-sketch-icon"><path d="M12 2L2 22h20L12 2zm0 3.99L19.53 19H4.47L12 5.99z"/></svg>
+          </div>
+        </div>
+
+        <!-- 2026 Milestone (Top Middle-Right) -->
+        <div class="milestone-card" id="milestone-2026" style="top: 15px; left: 320px;">
+          <div class="thumbtack red-thumbtack"></div>
+          <div class="milestone-year font-mono">2026</div>
+          <p class="milestone-text font-hand">Innovating with AI agents and next-gen frameworks.</p>
+          <div class="milestone-sketch-icon">
+            <svg viewBox="0 0 24 24" class="inline-sketch-icon">
+              <!-- custom stars/sparkle drawing icon -->
+              <path d="M12 2l2.4 7.4h7.6l-6.2 4.5 2.4 7.4-6.2-4.5-6.2 4.5 2.4-7.4-6.2-4.5h7.6z"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- 2027 Milestone (Bottom Right) -->
+        <div class="milestone-card" id="milestone-2027" style="top: 245px; left: 475px;">
+          <div class="thumbtack red-thumbtack"></div>
+          <div class="milestone-year font-mono">2027</div>
+          <p class="milestone-text font-hand">Scaling new heights & exploring next frontiers.</p>
+          <div class="milestone-sketch-icon">
+            <svg viewBox="0 0 24 24" class="inline-sketch-icon">
+              <!-- Hand-drawn destination flag sketch -->
+              <path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6h-5.6z"/>
+            </svg>
+          </div>
+        </div>
+
+      </div> <!-- End Milestones wrapper -->
+      
+      <div class="journey-footer font-hand">The journey continues... v3.1</div>
+    </div>
+  </div>
+</div>

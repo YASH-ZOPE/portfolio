@@ -1,0 +1,5590 @@
+/* ==========================================================================
+   VINTAGE SCRAPBOOK & ENGINEERING NOTEBOOK DESIGN SYSTEM
+   Yash Zope - Vol. III
+   ========================================================================== */
+
+/* 1. Google Fonts Imports */
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Caveat:wght@400;700&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Special+Elite&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* 2. Global Variables & Color Palette */
+:root {
+  /* Vintage Harmony Palette — aged, warm, heavily worn */
+  --desk-bg: #120b06;
+  --cream-paper: #CEB594;
+  /* Warm sepia Kraft base */
+  --faded-white: #DFCEB6;
+  /* Warm parchment highlights */
+  --kraft-brown: #B98A5A;
+  /* Aged brown shadows */
+  --dark-ink: #1B120D;
+  /* Main Ink Black */
+  --light-ink: #3A2A1F;
+  /* Faded Ink Regions */
+  --faded-graphite: #8E755F;
+  /* Main Sketch Color */
+  --vintage-gold: #C39B72;
+  /* Main Tab Color */
+  --stamp-red: #8B2A22;
+  /* Main Stamp Red */
+
+  /* Highlighter colors */
+  --highlight-yellow: rgba(210, 175, 70, 0.5);
+  --highlight-blue: rgba(120, 165, 190, 0.42);
+
+  /* Fonts */
+  --font-hand: 'Caveat', cursive;
+  --font-stamp: 'Special Elite', cursive;
+  --font-mono: 'Courier Prime', monospace;
+  --font-book: 'Crimson Pro', serif;
+  --font-ui: 'Inter', sans-serif;
+
+  /* Shadows for physical depth */
+  --shadow-flat: 0 1px 3px rgba(0, 0, 0, 0.15);
+  --shadow-paper: 2px 4px 10px rgba(30, 20, 12, 0.22);
+  --shadow-thick: 6px 12px 28px rgba(20, 10, 4, 0.45);
+  --shadow-tack: 3px 5px 6px rgba(0, 0, 0, 0.35);
+  --shadow-stamp: inset 0 0 2px rgba(0, 0, 0, 0.25);
+}
+
+/* 3. Core resets & Scrollbars */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--desk-bg);
+  font-family: var(--font-ui);
+  color: var(--dark-ink);
+}
+
+a,
+button,
+[onclick] {
+  cursor: pointer;
+}
+
+/* Custom Vintage Scrollbar for inside sheets */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(43, 33, 26, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--kraft-brown);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--dark-ink);
+}
+
+/* ==========================================================================
+   DESK BACKDROP & CINEMATIC LIGHTING
+   ========================================================================== */
+.desk {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: url('assets/desk_bg.png') no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  perspective: 1500px;
+}
+
+/* Top-right warm amber lighting flare overlay */
+.lighting-glow {
+  position: absolute;
+  top: -20%;
+  right: -20%;
+  width: 80%;
+  height: 80%;
+  background: radial-gradient(circle, rgba(197, 146, 99, 0.22) 0%, rgba(197, 146, 99, 0) 70%);
+  /* #C59263 Warm Glow */
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Dark organic vignetting for framing focus */
+.vignette {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0) 40%, rgba(42, 26, 18, 0.78) 100%);
+  /* #2A1A12 Global Shadow Tint */
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Local CORS security warning styles */
+.local-cors-warning {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(19, 10, 5, 0.82);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.local-cors-warning.visible {
+  display: flex;
+}
+
+.warning-card {
+  width: 580px;
+  background: #faf4e9;
+  border-radius: 6px;
+  padding: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+  color: var(--dark-ink);
+}
+
+.warning-title {
+  font-size: 1.1rem;
+  color: var(--stamp-red);
+  margin-bottom: 15px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  padding-bottom: 8px;
+}
+
+.warning-desc {
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--light-ink);
+  margin-bottom: 20px;
+}
+
+.warning-instructions {
+  background: #eae2d5;
+  padding: 15px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  margin-bottom: 20px;
+  border-left: 4px solid var(--vintage-gold);
+}
+
+.warning-instructions ol {
+  margin-left: 20px;
+  margin-top: 8px;
+}
+
+.warning-instructions li {
+  margin-bottom: 4px;
+}
+
+.warning-note {
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--faded-graphite);
+  margin-bottom: 25px;
+}
+
+.warning-dismiss-btn {
+  background: var(--dark-ink);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: bold;
+  border-radius: 2px;
+  width: 100%;
+}
+
+.warning-dismiss-btn:hover {
+  background: var(--stamp-red);
+}
+
+/* ==========================================================================
+   NOTEBOOK WRAPPER & CONTAINER PHYSICS
+   ========================================================================== */
+.notebook-wrapper {
+  position: relative;
+  width: 1200px;
+  height: 750px;
+  z-index: 5;
+  transition: transform 0.6s ease;
+}
+
+/* The notebook casing — aged dark leather with visible grain */
+.notebook {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+  background-color: #3d2314;
+  background-image:
+    repeating-linear-gradient(-40deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(255, 200, 120, 0.03) 2px,
+      rgba(255, 200, 120, 0.03) 3px),
+    repeating-linear-gradient(40deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(0, 0, 0, 0.06) 2px,
+      rgba(0, 0, 0, 0.06) 3px),
+    radial-gradient(ellipse at 65% 25%, #6a4025 0%, #3d2314 60%, #221107 100%);
+  border: 1px solid #1a0b04;
+  border-radius: 8px 16px 16px 8px;
+  box-shadow: 22px 28px 50px rgba(10, 5, 2, 0.78);
+}
+
+/* Stitched thread detailing on leather binder */
+.notebook::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 6px;
+  right: 6px;
+  border: 1px dashed rgba(235, 209, 189, 0.15);
+  border-radius: 6px 14px 14px 6px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.notebook.closed {
+  transform: translateX(180px);
+}
+
+.notebook.closed .notebook-inner-pages {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.notebook.open {
+  transform: translateX(0px);
+}
+
+.notebook.open .notebook-inner-pages {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.5s ease 0.6s, visibility 0.5s ease 0.6s;
+}
+
+
+/* ==========================================================================
+   NOTEBOOK COVER (FRONT HARDFOLDER)
+   ========================================================================== */
+.notebook-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+  transform-origin: left center;
+  transition: transform 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.5);
+  border-radius: 8px 16px 16px 8px;
+}
+
+/* Open swing rotation */
+.notebook.open .notebook-cover {
+  transform: rotateY(-130deg);
+  box-shadow: -15px 15px 30px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+
+/* Loading display cover */
+.loading-notebook-text {
+  margin: auto;
+  font-size: 2rem;
+  color: #ebd1bd;
+  letter-spacing: 2px;
+}
+
+/* Rigid exterior cover — deeply aged, heavily textured kraft cardboard */
+.cover-exterior {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /* Hardcover deep distressed leather base color */
+  background-color: #B87A4D;
+  background-image:
+    /* Cinematic top-left lighting spotlight using Warm Highlight Brown */
+    radial-gradient(circle at 15% 15%, rgba(106, 67, 39, 0.40) 0%, transparent 55%),
+    /* Double coffee cup ring stain bottom left - blended with cover texture */
+    radial-gradient(circle at 14% 88%, rgba(36, 20, 12, 0.20) 0%, transparent 60%),
+    /* Water/ink stain splotch top-right using Dark Shadow Brown */
+    radial-gradient(circle at 82% 22%, rgba(36, 20, 12, 0.22) 0%, transparent 35%),
+    /* Organic grease stain splotch center-left */
+    radial-gradient(circle at 35% 65%, rgba(36, 20, 12, 0.18) 0%, transparent 45%),
+    /* Edge vignette for photography depth and burnt look using Dark Shadow Brown */
+    radial-gradient(circle at center, transparent 30%, rgba(36, 20, 12, 0.42) 100%),
+    /* The high-fidelity scanned vintage paper texture, transformed into a thick rigid cardboard cover */
+    url('assets/vintage_paper.png');
+  background-blend-mode: normal, multiply, multiply, multiply, multiply, multiply;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  border: 1.5px solid rgba(36, 20, 12, 0.5);
+  backface-visibility: hidden;
+  border-radius: 8px 16px 16px 8px;
+  padding: 40px;
+  display: flex;
+  overflow: hidden;
+  /* Cardboard edge wear and corner clipping path to simulate a banged-up, hand-handled scrapbook */
+  clip-path: polygon(0% 2px, 3px 0%, 97.8% 0%, 100% 3px, 100% 97.8%, 97.8% 100%, 2px 100%, 0% 97.8%,
+      0.5% 85%, 0% 70%, 0.8% 50%, 0% 30%, 0.5% 15%);
+  box-shadow:
+    inset 0 0 110px rgba(36, 20, 12, 0.42),
+    inset 50px 0 75px rgba(36, 20, 12, 0.35),
+    inset -25px 0 50px rgba(255, 210, 140, 0.15),
+    20px 20px 50px rgba(0, 0, 0, 0.85);
+}
+
+/* Layered 3D beveled cardboard edge and compressed paper core */
+.cover-exterior::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 23;
+  border-radius: inherit;
+  /* Subtly highlights edges and adds shadow on bottom-right for thickness */
+  box-shadow:
+    inset 2.5px 2.5px 0.5px rgba(255, 235, 190, 0.16),
+    inset -2.5px -2.5px 0.5px rgba(0, 0, 0, 0.85),
+    inset 0 0 25px rgba(36, 20, 12, 0.45);
+}
+
+/* Premium embossed pebbled leather texture matching user image */
+.cover-exterior::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  background-color: #808080;
+  /* Neutral gray for overlay highlights & shadows */
+  filter: url(#pebbled-leather);
+  mix-blend-mode: overlay;
+  opacity: 0.82;
+  /* Balanced cell grain definition */
+}
+
+/* Book rings spiralling inside left margin of Cover */
+.cover-spine-spiral {
+  position: absolute;
+  left: -4px;
+  top: 25px;
+  width: 32px;
+  height: calc(100% - 50px);
+  z-index: 11;
+  pointer-events: none;
+  /* Cylindrical metal wire with main spiral #1D140F and metallic highlights #4A3A31 */
+  background-image: repeating-linear-gradient(to bottom,
+      transparent 0px,
+      transparent 11px,
+      #050302 11px,
+      /* Dark wire shadow underneath */
+      #1D140F 12.5px,
+      /* Main Spiral Color: Oxidized Black Metal */
+      #4A3A31 14px,
+      /* Highlight Reflection: Rough Metallic */
+      #ffffff 15px,
+      /* Specular highlight (light catching metal) */
+      #4A3A31 15.8px,
+      /* Highlight Reflection */
+      #1D140F 17px,
+      /* Main Spiral Color */
+      #050302 18.5px,
+      /* Deep wire bottom shadow */
+      transparent 18.5px,
+      transparent 36px);
+  filter: drop-shadow(5px 5px 4px rgba(10, 4, 1, 0.72));
+}
+
+/* 3D Binder Holes punched along the cover's left edge */
+.cover-punched-holes {
+  position: absolute;
+  left: 17px;
+  top: 25px;
+  width: 14px;
+  height: calc(100% - 50px);
+  z-index: 10;
+  pointer-events: none;
+  /* Deep hollow black center, card thickness bevel highlight, and shadow */
+  background-image: repeating-radial-gradient(circle at 7px 7px,
+      #040201 0px,
+      #040201 3.8px,
+      /* Deep void cavity */
+      #1c1008 4.6px,
+      /* Shadow under cut board */
+      #a88c6b 5.4px,
+      /* Cardboard inner fiber bevel catching light */
+      transparent 6.2px,
+      transparent 18px);
+  background-size: 14px 36px;
+  filter: drop-shadow(1px 1px 0.5px rgba(255, 255, 255, 0.22));
+}
+
+.cover-background-sketches {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sketch-doodle {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  opacity: 0.45;
+  /* Slightly increased to compensate for stamp distress softening */
+  filter: url(#stamp-distress);
+}
+
+.sketch-star {
+  top: 135px;
+  right: 175px;
+  transform: rotate(15deg);
+}
+
+.sketch-diagram {
+  position: absolute;
+  bottom: 25px;
+  left: 330px;
+  width: 250px;
+  height: 100px;
+  opacity: 0.38;
+  /* Slightly increased to mimic real faded ink bleed */
+  filter: url(#stamp-distress);
+}
+
+.cover-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  gap: 40px;
+  color: var(--dark-ink);
+  z-index: 2;
+}
+
+.cover-left {
+  flex: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Polaroid mockup */
+.polaroid {
+  /* Matte photo paper — subtly smoother and lighter than notebook page */
+  background-color: #D5C0A7;
+  /* Main Border color */
+  background-image:
+    /* Fine matte photo paper grain */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='pFiber'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85 0.62' numOctaves='4' seed='17' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.16'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23pFiber)'/%3E%3C/svg%3E"),
+    /* Dusty Edge Tint & slight print aging */
+    radial-gradient(ellipse 90px 70px at 0% 0%, rgba(142, 113, 88, 0.45) 0%, transparent 100%),
+    radial-gradient(ellipse 80px 65px at 100% 100%, rgba(142, 113, 88, 0.35) 0%, transparent 100%),
+    /* Base photo paper warmth gradient (Main Border to Shadowed Border) */
+    radial-gradient(ellipse at center, #D5C0A7 0%, #A88A69 100%);
+  background-blend-mode: overlay, multiply, multiply, normal;
+  background-size: 200px 200px, 100% 100%, 100% 100%, 100% 100%;
+  background-repeat: repeat, no-repeat, no-repeat, no-repeat;
+  padding: 16px 16px 28px 16px;
+  border: 1px solid rgba(168, 138, 105, 0.45);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 5;
+  border-radius: 2px;
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
+  /* AO contact shadow: photo frame sitting on paper surface */
+  box-shadow:
+    /* Physical lift from paper surface */
+    2px 4px 8px rgba(90, 74, 62, 0.35),
+    4px 8px 20px rgba(90, 74, 62, 0.28),
+    /* AO under frame edge — soft contact shadow */
+    0 1px 3px rgba(90, 74, 62, 0.45),
+    /* Inset depth — matte paper highlight/shadow */
+    inset 1px 1px 2px rgba(255, 255, 255, 0.45),
+    inset -1px -1px 1px rgba(0, 0, 0, 0.10);
+}
+
+/* Curled paper 3D shadow loop trick: bends bottom corners off page physically */
+/* Completely disable polaroid pseudo-element stacked backings globally */
+.polaroid::before,
+.polaroid::after {
+  display: none !important;
+}
+
+.polaroid:hover {
+  transform: translateY(-8px) rotate(0.5deg) scale(1.02);
+}
+
+.polaroid .photo-container {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  overflow: hidden;
+  background: #1F1613;
+  /* Dark Jacket Black-Brown */
+  border: 1px solid rgba(168, 138, 105, 0.45);
+  margin-bottom: 12px;
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* Warm Sunset LUT and Matte Contrast Compression color grade */
+.polaroid .photo-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background:
+    linear-gradient(to top, #1F1613 0%, rgba(156, 125, 102, 0.2) 50%, rgba(209, 154, 107, 0.35) 100%),
+    radial-gradient(circle at 80% 20%, rgba(215, 154, 99, 0.3) 0%, transparent 70%);
+  mix-blend-mode: overlay;
+  z-index: 1;
+  opacity: 0.82;
+}
+
+/* Subtle corner light lift — no hard-stop bar */
+.polaroid .photo-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 15% 15%, rgba(255, 255, 255, 0.10) 0%, transparent 55%);
+  z-index: 2;
+}
+
+.polaroid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: sepia(0.25) contrast(1.15) brightness(0.92) grayscale(0.08);
+}
+
+.polaroid-caption {
+  font-family: var(--font-hand);
+  font-size: 1.7rem;
+  color: #3e3028;
+  text-align: center;
+  line-height: 1.35;
+  /* No ruled-line gradient — was creating visible horizontal bars */
+  padding-bottom: 5px;
+  width: 90%;
+  margin-top: 5px;
+}
+
+/* Symmetrical larger cover polaroid photo with scaled padding and tapes */
+.taped-cover {
+  transform: rotate(-3deg);
+  padding: 20px 20px 40px 20px !important;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.taped-cover .photo-container {
+  width: 220px !important;
+  height: 220px !important;
+}
+
+.taped-cover .tape {
+  width: 95px !important;
+  height: 25px !important;
+}
+
+.taped-cover .tape-top-left {
+  top: -12px !important;
+  left: -20px !important;
+  transform: rotate(-35deg) !important;
+}
+
+.taped-cover .tape-bottom-right {
+  bottom: -20px !important;
+  right: -35px !important;
+  transform: rotate(-35deg) !important;
+}
+
+.taped-intro {
+  transform: rotate(2deg) scale(1.05);
+}
+
+.taped-journey {
+  transform: rotate(-1.5deg) scale(0.9);
+}
+
+.taped-about {
+  transform: rotate(-2.5deg) scale(0.95);
+}
+
+/* ── TAPE: Semi-transparent masking tape with fiber direction + adhesive aging ── */
+.tape {
+  position: absolute;
+  width: 105px;
+  height: 28px;
+
+  /* Base translucent tape tone */
+  background-color: rgba(205, 169, 122, 0.45);
+  /* #CDA97A with 0.45 opacity */
+  background-image:
+    /* Fiber direction: horizontal woven threads across tape width using Highlight Fiber Areas #DFC299 */
+    repeating-linear-gradient(90deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(223, 194, 153, 0.18) 2px,
+      rgba(223, 194, 153, 0.18) 3px),
+    /* Cross-thread: faint vertical weave */
+    repeating-linear-gradient(0deg,
+      transparent 0px,
+      transparent 5px,
+      rgba(160, 123, 85, 0.08) 5px,
+      rgba(160, 123, 85, 0.08) 6px),
+    /* Adhesive darkening at tape ends using Dark Adhesive Areas #A07B55 */
+    linear-gradient(to right,
+      rgba(160, 123, 85, 0.32) 0%,
+      rgba(160, 123, 85, 0.08) 15%,
+      transparent 30%,
+      transparent 70%,
+      rgba(160, 123, 85, 0.10) 85%,
+      rgba(160, 123, 85, 0.35) 100%),
+    /* Tape surface highlight — central specular from room light */
+    linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.22) 0%,
+      rgba(255, 255, 255, 0.08) 35%,
+      transparent 50%,
+      rgba(160, 123, 85, 0.08) 100%),
+    /* SVG noise: tape grain and aging opacity variation */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 30'%3E%3Cfilter id='tapeG'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95 0.6' numOctaves='3' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.40'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23tapeG)'/%3E%3C/svg%3E");
+
+  background-blend-mode: normal, normal, normal, normal, multiply;
+  background-size: auto, auto, 100% 100%, 100% 100%, 120px 30px;
+  background-repeat: repeat, repeat, no-repeat, no-repeat, repeat;
+
+  /* AO contact shadow: tape pressed onto paper */
+  box-shadow:
+    0.5px 1.5px 3px rgba(20, 10, 5, 0.32),
+    0 2px 6px rgba(20, 10, 5, 0.18),
+    inset 0 1px 1px rgba(255, 255, 255, 0.40),
+    inset 0 -1px 1px rgba(80, 50, 15, 0.20);
+
+  backdrop-filter: blur(1px) brightness(1.04);
+  transform-origin: center;
+  z-index: 10;
+
+  /* Rough torn tape ends */
+  clip-path: polygon(0% 12%, 5% 0%, 11% 9%, 17% 1%, 23% 8%, 29% 0%, 35% 9%, 41% 2%, 47% 8%, 53% 0%, 59% 9%, 65% 1%, 71% 9%, 77% 0%, 83% 8%, 89% 1%, 94% 9%, 100% 0%,
+      99% 42%, 100% 88%, 95% 100%, 89% 91%, 83% 100%, 77% 90%, 71% 100%, 65% 91%, 59% 100%, 53% 90%, 47% 100%, 41% 91%, 35% 100%, 29% 90%, 23% 100%, 17% 91%, 11% 100%, 5% 90%, 0% 100%,
+      1% 50%);
+  filter: drop-shadow(1px 2px 3px rgba(20, 10, 5, 0.38));
+}
+
+.tape::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("data:image/svg+xml;utf8,%3Csvg viewBox=%270 0 100 25%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cfilter id=%27tapeNoise%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.9%27 numOctaves=%273%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23tapeNoise)%27 opacity=%270.36%27/%3E%3C/svg%3E");
+  opacity: 0.85;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+.tape::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  /* Procedural wrinkles inside tape */
+  background: linear-gradient(115deg, transparent 0%, transparent 45%, rgba(255, 255, 255, 0.22) 48%, rgba(255, 255, 255, 0.45) 50%, rgba(90, 60, 30, 0.15) 52%, transparent 55%);
+  opacity: 0.72;
+}
+
+.tape-top-left {
+  top: -15px;
+  left: -25px;
+  transform: rotate(-35deg);
+}
+
+.tape-top-right {
+  top: -15px;
+  right: -25px;
+  transform: rotate(35deg);
+}
+
+.tape-bottom-left {
+  bottom: -15px;
+  left: -25px;
+  transform: rotate(35deg);
+}
+
+.tape-bottom-right {
+  bottom: -15px;
+  right: -25px;
+  transform: rotate(-35deg);
+}
+
+/* Diagonally securing the inner photo itself instead of the outer polaroid frame */
+.tape-photo-diagonal-top-left {
+  top: 3px;
+  left: 3px;
+  transform: rotate(-32deg);
+  z-index: 15;
+}
+
+.tape-photo-diagonal-bottom-right {
+  top: 236px;
+  right: 3px;
+  transform: rotate(-32deg);
+  z-index: 15;
+}
+
+.cover-right {
+  flex: 6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.personal-archive-header {
+  font-size: 1.8rem;
+  color: var(--dark-ink);
+  margin-bottom: 5px;
+}
+
+.cover-right .main-title {
+  font-size: 5.2rem;
+  line-height: 0.85;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+  font-family: var(--font-stamp);
+  font-weight: 900;
+
+  /* Rich dry stamped ink color */
+  color: #1a0a04;
+
+  /* Apply dynamic SVG stamp distress erosion filter and bleed shadow */
+  filter: url(#stamp-distress) drop-shadow(1px 1px 0.5px rgba(255, 255, 255, 0.12));
+  opacity: 0.95;
+}
+
+.sub-title-badge {
+  display: inline-block;
+  background-color: rgba(220, 172, 63, 0.85);
+  background-image: linear-gradient(95deg, rgba(255, 235, 150, 0.45) 0%, rgba(220, 172, 63, 0.15) 90%);
+  color: #1e1208;
+  font-family: var(--font-mono);
+  padding: 5px 18px;
+  font-size: 0.92rem;
+  font-weight: bold;
+  margin-bottom: 25px;
+  transform: rotate(-1.5deg);
+  border-radius: 3px 60px 4px 45px / 10px 4px 18px 5px;
+  box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.4), inset -1px -1px 2px rgba(0, 0, 0, 0.06);
+
+  /* Distort badge outline using the distress filter to mimic rough highlighted paper strip edges */
+  filter: url(#stamp-distress) drop-shadow(1px 2px 2px rgba(20, 10, 5, 0.15));
+}
+
+.interests-section .section-label {
+  font-size: 0.85rem;
+  color: var(--dark-ink);
+  font-family: var(--font-mono);
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.interests-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-top: 1px solid rgba(43, 33, 26, 0.15);
+  border-bottom: 1px solid rgba(43, 33, 26, 0.15);
+  padding: 18px 0;
+  margin-bottom: 30px;
+  gap: 10px;
+}
+
+.interest-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.interest-icon {
+  width: 28px;
+  height: 28px;
+  stroke: var(--dark-ink);
+  stroke-width: 1.2;
+}
+
+.interest-item span {
+  font-family: var(--font-hand);
+  font-size: 1.25rem;
+  line-height: 1.15;
+  color: var(--dark-ink);
+}
+
+/* Vintage Fountain Pen Desk Prop Styling */
+.desk-prop.fountain-pen {
+  position: absolute;
+  right: 4%;
+  top: 15%;
+  width: 25px;
+  height: 350px;
+  transform: rotate(18deg);
+  opacity: 0.88;
+  pointer-events: none;
+  z-index: 8;
+  filter: drop-shadow(10px 15px 12px rgba(10, 5, 2, 0.6));
+}
+
+/* Ink bottle prop on left side of the desk */
+.desk-prop.ink-bottle {
+  position: absolute;
+  left: 3%;
+  bottom: 8%;
+  width: 75px;
+  height: 90px;
+  transform: rotate(-8deg);
+  opacity: 0.85;
+  pointer-events: none;
+  z-index: 8;
+  filter: drop-shadow(15px 18px 12px rgba(10, 5, 2, 0.65));
+}
+
+.stamp-choice {
+  position: absolute;
+  bottom: 20px;
+  right: 50px;
+  border: 3px double var(--stamp-red);
+  color: var(--stamp-red);
+  font-size: 1.2rem;
+  padding: 6px 14px;
+  transform: rotate(-12deg);
+  font-weight: bold;
+  opacity: 0.9;
+  border-radius: 4px;
+  box-shadow: var(--shadow-stamp);
+
+  /* Apply stamp distress filter for eroded boundaries and realistic rubber stamp ink bleeding */
+  filter: url(#stamp-distress) drop-shadow(1px 2px 2px rgba(20, 10, 5, 0.18));
+}
+
+.stamp-inner {
+  border: 1px solid var(--stamp-red);
+  padding: 4px 8px;
+}
+
+.volume-text {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  font-size: 1.1rem;
+  color: #5A3E2A;
+}
+
+.coffee-stain-large {
+  position: absolute;
+  bottom: -30px;
+  left: -30px;
+  width: 230px;
+  height: 230px;
+  background: url('data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Cpath d=%22M50,15 C65,15 78,25 82,40 C85,55 78,72 65,80 C50,88 28,85 18,70 C8,55 12,30 25,20 C32,15 42,14 50,15 Z M48,20 C38,19 28,24 22,32 C15,42 16,60 25,70 C35,80 52,82 62,74 C72,66 76,50 72,38 C68,26 58,21 48,20 Z%22 fill=%22%2340240f%22 opacity=%220.55%22/%3E%3Ccircle cx=%2235%22 cy=%2222%22 r=%221.5%22 fill=%22%2340240f%22 opacity=%220.45%22/%3E%3Ccircle cx=%2274%22 cy=%2265%22 r=%221%22 fill=%22%2340240f%22 opacity=%220.35%22/%3E%3Cpath d=%22M76,55 Q80,57 82,53%22 fill=%22none%22 stroke=%22%2340240f%22 stroke-width=%220.8%22 opacity=%220.35%22/%3E%3C/svg%3E') no-repeat center center/contain;
+  pointer-events: none;
+  opacity: 0.92;
+  filter: blur(0.3px);
+  mix-blend-mode: multiply;
+  /* Crucial for realistic integration with underlying paper grain and shadows */
+  z-index: 1;
+}
+
+.notebook-elastic-band {
+  position: absolute;
+  right: 30px;
+  top: 0;
+  width: 15px;
+  height: 100%;
+  background-color: #1a1a1a;
+  /* Premium vertical-ribbed elastic fabric weave and volumetric lighting gradient */
+  background-image:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0px, rgba(255, 255, 255, 0.03) 1px, transparent 1px, transparent 3px),
+    repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.18) 0px, rgba(0, 0, 0, 0.18) 1.5px, transparent 1.5px, transparent 3px),
+    repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.02) 0px, rgba(255, 255, 255, 0.02) 1.5px, transparent 1.5px, transparent 3px),
+    linear-gradient(to right, #080808 0%, #2b2b2b 25%, #404040 50%, #1e1e1e 75%, #050505 100%);
+  background-blend-mode: normal, overlay, overlay, normal;
+  /* Strong bilateral contact shadows to ground the strap in 3D space */
+  box-shadow:
+    6px 0 18px rgba(10, 4, 1, 0.72),
+    -4px 0 10px rgba(0, 0, 0, 0.7) inset,
+    2.5px 0 3px rgba(255, 255, 255, 0.05) inset;
+  z-index: 25;
+  border-radius: 0 0 1px 1px;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+}
+
+/* Indentation compression shadow marks where band wraps cover tightly at top and bottom */
+.notebook-elastic-band::before,
+.notebook-elastic-band::after {
+  content: '';
+  position: absolute;
+  left: -4px;
+  width: 23px;
+  height: 8px;
+  background: rgba(10, 4, 1, 0.9);
+  filter: blur(1.8px);
+  z-index: -1;
+}
+
+.notebook-elastic-band::before {
+  top: 0;
+}
+
+.notebook-elastic-band::after {
+  bottom: 0;
+}
+
+/* ==========================================================================
+   NOTEBOOK INNER PAGES SHEETS CONTAINER
+   ========================================================================== */
+.notebook-inner-pages {
+  position: absolute;
+  top: 36px;
+  bottom: 36px;
+  left: 50px;
+  right: 36px;
+  /* Aged kraft paper edge colour — matches sheet-paper tone */
+  background: #c9b48a;
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.45), inset 0 0 30px rgba(30, 15, 5, 0.15);
+  border-radius: 4px 12px 12px 4px;
+  z-index: 10;
+  overflow: visible;
+}
+
+/* Punched spiral-bound holes along the left margins of all inner pages */
+.notebook-inner-pages::before {
+  content: '';
+  position: absolute;
+  left: 9px;
+  top: 25px;
+  width: 14px;
+  height: calc(100% - 50px);
+  z-index: 45;
+  pointer-events: none;
+  background-image: repeating-radial-gradient(circle at 7px 7px,
+      #050302 0px,
+      #050302 3.8px,
+      #21150e 4.6px,
+      #bfab99 5.4px,
+      transparent 6.2px,
+      transparent 18px);
+  background-size: 14px 36px;
+  filter: drop-shadow(1px 1px 0.5px rgba(255, 255, 255, 0.45));
+}
+
+/* Central Book Binding Spiral wire rings */
+.notebook-spine-spiral {
+  position: absolute;
+  left: -18px;
+  top: 25px;
+  width: 35px;
+  height: calc(100% - 50px);
+  z-index: 50;
+  pointer-events: none;
+  /* Oxidized metal spiral with main color #1D140F and highlight reflections #4A3A31 */
+  background-image: repeating-linear-gradient(to bottom,
+      transparent 0px,
+      transparent 11px,
+      #050302 11px,
+      /* Shadow underneath wire */
+      #1D140F 12.5px,
+      /* Main Spiral Color: Oxidized Black Metal */
+      #4A3A31 14.3px,
+      /* Highlight Reflection: Rough Metallic */
+      #ffffff 15px,
+      /* Specular highlight line */
+      #4A3A31 15.8px,
+      /* Highlight Reflection */
+      #1D140F 17px,
+      /* Main Spiral Color */
+      #050302 18.5px,
+      /* Wire occlusion shadow */
+      transparent 18.5px,
+      transparent 36px);
+  filter: drop-shadow(5px 5px 4px rgba(10, 4, 1, 0.55));
+}
+
+.notebook-spine-spiral::before {
+  display: none;
+  /* Specular highlight is now directly baked into the photorealistic main-gradient */
+}
+
+/* ==========================================================================
+   NAVIGATION BOOKMARK TABS (TOP EDGE)
+   ========================================================================== */
+.notebook-tabs {
+  position: absolute;
+  top: -51px;
+  /* Positioned slightly higher to accommodate taller divider tabs */
+  left: 60px;
+  width: calc(100% - 120px);
+  display: flex;
+  justify-content: flex-start;
+  gap: 12px;
+  z-index: 99;
+  /* Hidden by default — shown after cover is clicked */
+  opacity: 0;
+  transform: translateY(-12px);
+  pointer-events: none;
+  transition: opacity 0.55s ease 0.3s, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+}
+
+/* Tabs revealed once notebook is opened */
+.notebook-tabs.tabs-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.nav-tab {
+  background: none;
+  border: none;
+  padding: 0;
+  position: relative;
+  outline: none;
+  transition: transform 0.25s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.25s ease;
+  /* Drop shadow overlay on parent so shadow outline automatically captures paper V-notches */
+  filter: drop-shadow(0 -1.5px 2px rgba(43, 22, 10, 0.22)) drop-shadow(2px -2px 5px rgba(43, 22, 10, 0.25));
+}
+
+.tab-paper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #BFA37E;
+  /* Rich light brown cardboard base */
+  background-image:
+    /* Scorched burnt brown vignette edge darkening (strong edge burn) */
+    radial-gradient(ellipse at center, transparent 20%, rgba(53, 32, 18, 0.72) 100%),
+    /* Microscopic paper pulp noise */
+    url("data:image/svg+xml;utf8,%3Csvg viewBox=%270 0 100 100%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cfilter id=%27tabNoise%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.80%27 numOctaves=%273%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23tabNoise)%27 opacity=%270.24%27/%3E%3C/svg%3E");
+  background-blend-mode: multiply;
+  color: #231209;
+  /* Deep carbon black ink */
+  padding: 12px 28px 16px 28px;
+  /* Slightly larger size */
+  font-family: var(--font-stamp);
+  font-size: 0.90rem;
+  /* Slightly larger text */
+  font-weight: bold;
+  z-index: 1;
+  top: 8px;
+  /* Nestled inside slot */
+
+  /* Rigid index cardboard bevel outline */
+  clip-path: polygon(0% 100%, 0% 4px, 4px 0%, 96% 0%, 100% 4px, 100% 100%);
+
+  /* Burnt paper outline */
+  border: 2px solid #2B180E;
+  border-bottom: none;
+
+  /* Bevel edge highlights and scorched edge shadows */
+  box-shadow:
+    /* Tiny top bevel highlight */
+    inset 0 2px 0px rgba(255, 255, 255, 0.22),
+    /* Scorched edge shadow fading inwards */
+    inset 0 4px 8px rgba(43, 22, 10, 0.45),
+    inset 4px 0 8px rgba(43, 22, 10, 0.35),
+    inset -4px 0 8px rgba(43, 22, 10, 0.35),
+    /* Soft lower slot insertion crease shadow */
+    inset 0 -8px 12px rgba(25, 12, 5, 0.65);
+
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease, top 0.25s ease, clip-path 0.25s ease;
+  position: relative;
+}
+
+/* Cardboard aging individual brown coloring and rotations */
+#tab-intro .tab-paper {
+  background-color: #BCA185;
+  transform: rotate(-0.5deg);
+}
+
+#tab-skills .tab-paper {
+  background-color: #C2A78C;
+  transform: rotate(0.4deg);
+}
+
+#tab-projects .tab-paper {
+  background-color: #B89C7E;
+  transform: rotate(-0.4deg);
+}
+
+#tab-journey .tab-paper {
+  background-color: #C0A486;
+  transform: rotate(0.3deg);
+}
+
+#tab-about .tab-paper {
+  background-color: #B99D80;
+  transform: rotate(-0.3deg);
+}
+
+#tab-contact .tab-paper {
+  background-color: #C5A98D;
+  transform: rotate(0.5deg);
+}
+
+/* Random valley-like V-notch cuts on exactly three navigation tabs (Skills, Journey, Contact) */
+#tab-skills .tab-paper {
+  clip-path: polygon(0% 100%,
+      0% 4px, 4px 0%,
+      22% 0%, 23.5% 5%, 25% 28%, 26.5% 8%, 28% 0%,
+      96% 0%, 100% 4px, 100% 100%);
+}
+
+#tab-journey .tab-paper {
+  clip-path: polygon(0% 100%,
+      0% 4px, 4px 0%,
+      65% 0%, 66.5% 6%, 68% 35%, 69.5% 9%, 71% 0%,
+      96% 0%, 100% 4px, 100% 100%);
+}
+
+#tab-contact .tab-paper {
+  clip-path: polygon(0% 100%,
+      0% 4px, 4px 0%,
+      42% 0%, 43.5% 4%, 45% 24%, 46.5% 6%, 48% 0%,
+      96% 0%, 100% 4px, 100% 100%);
+}
+
+.nav-tab:hover {
+  transform: translateY(-3px);
+  /* Slightly more vertical lift */
+}
+
+.nav-tab:hover .tab-paper {
+  filter: brightness(1.04);
+}
+
+.nav-tab.active {
+  z-index: 15;
+  filter: drop-shadow(0 -1.5px 2px rgba(43, 22, 10, 0.28)) drop-shadow(3px -3px 8px rgba(43, 22, 10, 0.35));
+}
+
+.nav-tab.active .tab-paper {
+  background-color: #D4BEA1 !important;
+  /* Lighter vintage cardboard brown matching active page sheet sepia */
+  background-image:
+    /* Scorched vignette active edge darkening */
+    radial-gradient(ellipse at center, transparent 30%, rgba(53, 32, 18, 0.62) 100%),
+    url("data:image/svg+xml;utf8,%3Csvg viewBox=%270 0 100 100%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cfilter id=%27tabNoiseActive%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.80%27 numOctaves=%273%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23tabNoiseActive)%27 opacity=%270.20%27/%3E%3C/svg%3E") !important;
+  background-blend-mode: multiply !important;
+  color: #1B120D !important;
+  /* Bold stamped ink black */
+  top: 1px;
+  /* Rises to merge seamlessly into active page sheet border */
+  border: 2.5px solid #2B180E !important;
+  /* Stronger burnt outline */
+  border-bottom: none !important;
+
+  box-shadow:
+    /* Brighter active paper top bevel edge highlight */
+    inset 0 2.5px 0px rgba(255, 255, 255, 0.40),
+    /* Scorched edge glow active */
+    inset 0 4px 10px rgba(43, 22, 10, 0.35),
+    inset 4px 0 8px rgba(43, 22, 10, 0.25),
+    inset -4px 0 8px rgba(43, 22, 10, 0.25),
+    /* Faint slot insertion crease active */
+    inset 0 -10px 12px rgba(25, 12, 5, 0.45) !important;
+}
+
+.tab-icon {
+  width: 15px;
+  /* Slightly larger icon size */
+  height: 15px;
+  fill: currentColor;
+  opacity: 0.82;
+  filter: drop-shadow(0.5px 0.5px 0px rgba(255, 255, 255, 0.15));
+}
+
+/* ==========================================================================
+   INNER PAGE PAPER SHEETS
+   ========================================================================== */
+.page-sheet {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1;
+  pointer-events: none;
+  transform: translateX(100px) rotate(2deg);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.5s;
+  /* Cinematic unified shadow that traces the organic torn borders of the entire 3D page block */
+  filter: drop-shadow(5px 8px 24px rgba(10, 5, 2, 0.45));
+}
+
+.page-sheet.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 10;
+  pointer-events: auto;
+  transform: translateX(0) rotate(0deg);
+}
+
+/* Volumetric stacked page layers completely disabled globally per user aesthetic request */
+.page-sheet::before,
+.page-sheet::after {
+  display: none !important;
+}
+
+.page-slide-out {
+  opacity: 0;
+  transform: translateX(-120px) rotate(-3deg) !important;
+  pointer-events: none;
+}
+
+.page-slide-in {
+  animation: pageSlideSettle 0.55s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards;
+}
+
+@keyframes pageSlideSettle {
+  0% {
+    opacity: 0;
+    transform: translateX(150px) rotate(4deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0) rotate(0deg);
+  }
+}
+
+.sheet-paper {
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+
+  /* ── LAYER SYSTEM (bottom → top) ────────────────────────────────────────────
+     1. Base parchment color
+     2. Page lighting: expanded central warm light focus, fading to clean beige and thin burned edges
+     3. Pulp variations: large-scale broad cloudy pulp variation and cellulose compression (cloud-like breakup)
+     4. Paper fiber overlay: dense, horizontally stretched wood & cotton fibers (handmade pressed aligned fibers)
+     5. Ghost technical/drafting geometry & graphite residue: extremely faint erased traces
+     6. Corner grunge & dirt stains: extremely soft atmospheric shading
+     7. Edge wear: dark scorched linear margins
+  ──────────────────────────────────────────────────────────────────────────── */
+  background-color: #A77C54;
+  background-image:
+    /* Ghost technical drafting geometry */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Ccircle cx='300' cy='300' r='180' fill='none' stroke='rgba(90, 51, 28, 0.028)' stroke-width='0.7' stroke-dasharray='3,6' /%3E%3Cline x1='50' y1='300' x2='550' y2='300' stroke='rgba(90, 51, 28, 0.022)' stroke-width='0.5' stroke-dasharray='1,5' /%3E%3Cline x1='300' y1='50' x2='300' y2='550' stroke='rgba(90, 51, 28, 0.022)' stroke-width='0.5' stroke-dasharray='1,5' /%3E%3Cline x1='120' y1='120' x2='480' y2='480' stroke='rgba(90, 51, 28, 0.015)' stroke-width='0.5' stroke-dasharray='1,8' /%3E%3Crect x='450' y='480' width='80' height='50' fill='none' stroke='rgba(90, 51, 28, 0.025)' stroke-width='0.5' /%3E%3Cline x1='460' y1='495' x2='520' y2='495' stroke='rgba(90, 51, 28, 0.018)' stroke-width='0.5' /%3E%3Cline x1='460' y1='510' x2='500' y2='510' stroke='rgba(90, 51, 28, 0.018)' stroke-width='0.5' /%3E%3Cline x1='460' y1='520' x2='515' y2='520' stroke='rgba(90, 51, 28, 0.018)' stroke-width='0.5' /%3E%3C/svg%3E"),
+    /* Erased graphite sine curves and sketches */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3E%3Cpath d='M100,500 L300,500 L500,300 L700,300' fill='none' stroke='rgba(80, 70, 60, 0.018)' stroke-width='0.8' /%3E%3Cpath d='M250,550 Q380,200 480,500 T700,200' fill='none' stroke='rgba(80, 70, 60, 0.022)' stroke-width='0.8' stroke-dasharray='1,3' /%3E%3Cpath d='M120,150 C110,120 160,110 150,140 C140,170 90,130 110,160' fill='none' stroke='rgba(80, 70, 60, 0.030)' stroke-width='0.6' /%3E%3Ccircle cx='600' cy='200' r='45' fill='none' stroke='rgba(80, 70, 60, 0.018)' stroke-width='0.5' /%3E%3Ccircle cx='600' cy='200' r='15' fill='none' stroke='rgba(80, 70, 60, 0.012)' stroke-width='0.5' /%3E%3Cline x1='580' y1='170' x2='590' y2='160' stroke='rgba(80, 70, 60, 0.02)' stroke-width='0.6' /%3E%3Cline x1='585' y1='175' x2='595' y2='165' stroke='rgba(80, 70, 60, 0.02)' stroke-width='0.6' /%3E%3Cline x1='590' y1='180' x2='600' y2='170' stroke='rgba(80, 70, 60, 0.02)' stroke-width='0.6' /%3E%3Cline x1='610' y1='220' x2='620' y2='210' stroke='rgba(80, 70, 60, 0.02)' stroke-width='0.6' /%3E%3Cline x1='615' y1='225' x2='625' y2='215' stroke='rgba(80, 70, 60, 0.02)' stroke-width='0.6' /%3E%3C/svg%3E"),
+    /* Coffee ring outline fragment, paper scuffs, and dusty specks */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000'%3E%3Cpath d='M750,50 A180,180 0 0,1 950,250' fill='none' stroke='rgba(90, 51, 28, 0.018)' stroke-width='3.2' stroke-dasharray='15,20,40,10,5,30' /%3E%3Cpath d='M760,58 A170,170 0 0,1 942,240' fill='none' stroke='rgba(90, 51, 28, 0.012)' stroke-width='1.2' stroke-dasharray='8,35,12,15' /%3E%3Cpath d='M50,850 A150,150 0 0,0 200,1000' fill='none' stroke='rgba(90, 51, 28, 0.012)' stroke-width='2.8' stroke-dasharray='30,10,15,45' /%3E%3Cline x1='50' y1='80' x2='120' y2='40' stroke='rgba(90, 51, 28, 0.015)' stroke-width='0.5' /%3E%3Cline x1='80' y1='950' x2='140' y2='920' stroke='rgba(90, 51, 28, 0.01)' stroke-width='0.5' /%3E%3Ccircle cx='250' cy='180' r='1.2' fill='rgba(75, 45, 20, 0.08)' /%3E%3Ccircle cx='820' cy='320' r='1.8' fill='rgba(75, 45, 20, 0.07)' /%3E%3Ccircle cx='120' cy='670' r='1.0' fill='rgba(75, 45, 20, 0.06)' /%3E%3Ccircle cx='680' cy='880' r='2.2' fill='rgba(75, 45, 20, 0.09)' /%3E%3Ccircle cx='480' cy='520' r='1.5' fill='rgba(75, 45, 20, 0.08)' /%3E%3Ccircle cx='910' cy='780' r='1.2' fill='rgba(75, 45, 20, 0.06)' /%3E%3Ccircle cx='340' cy='430' r='2.0' fill='rgba(75, 45, 20, 0.07)' /%3E%3Cpath d='M180,310 Q182,314 179,317' stroke='rgba(75, 45, 20, 0.08)' stroke-width='0.7' fill='none' /%3E%3Cpath d='M750,710 Q754,708 758,712' stroke='rgba(75, 45, 20, 0.07)' stroke-width='0.6' fill='none' /%3E%3Cpath d='M520,240 Q517,243 519,247' stroke='rgba(75, 45, 20, 0.07)' stroke-width='0.8' fill='none' /%3E%3C/svg%3E"),
+    /* 7. Edge wear: thin dark scorched linear margins in burned sepia (#5A331C) and dusty brown (#B98A5A) */
+    linear-gradient(to right, rgba(90, 51, 28, 0.42) 0px, transparent 45px),
+    linear-gradient(to left, rgba(90, 51, 28, 0.35) 0px, transparent 40px),
+    linear-gradient(to bottom, rgba(90, 51, 28, 0.38) 0px, transparent 42px),
+    linear-gradient(to top, rgba(90, 51, 28, 0.32) 0px, transparent 35px),
+    /* 6. Corner grunge: soft, translucent dusty sepia stains in corners */
+    radial-gradient(ellipse 180px 120px at 0% 0%, rgba(90, 51, 28, 0.18) 0%, transparent 100%),
+    radial-gradient(ellipse 140px 100px at 100% 0%, rgba(90, 51, 28, 0.14) 0%, transparent 100%),
+    radial-gradient(ellipse 150px 110px at 0% 100%, rgba(90, 51, 28, 0.16) 0%, transparent 100%),
+    radial-gradient(ellipse 130px 90px at 100% 100%, rgba(90, 51, 28, 0.12) 0%, transparent 100%),
+    /* 5. Faded watermarks: extremely faint orange aging (#D78C3C) & dusty brown spots to preserve text readability */
+    radial-gradient(ellipse 100px 70px at 75% 35%, rgba(185, 138, 90, 0.14) 0%, transparent 100%),
+    radial-gradient(ellipse 70px 45px at 25% 68%, rgba(215, 140, 60, 0.10) 0%, transparent 100%),
+    /* 4. Paper fiber overlay: dense, horizontally stretched hand-pressed fibers (anisotropic noise ratio ~ 14:1) */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 450 450'%3E%3Cfilter id='organicFiber'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.28 0.02' numOctaves='3' seed='14' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.26'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23organicFiber)'/%3E%3C/svg%3E"),
+    /* 3. Pulp variation: large-scale slow turbulence representing broad cloudy pulp variation and cellulose compression */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3E%3Cfilter id='cloudyPulp'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.008 0.005' numOctaves='4' seed='28' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.28'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23cloudyPulp)'/%3E%3C/svg%3E"),
+    /* 2. Page lighting: Warm, matte diffuse sepia tone lighting */
+    radial-gradient(circle at 50% 50%, #D5BA94 0%, #D5BA94 15%, #C9AC8A 50%, #BA956D 72%, #A77C54 90%, #3F220D 100%);
+
+  background-blend-mode:
+    multiply, multiply, multiply,
+    /* technical residue layers */
+    normal, normal, normal, normal,
+    /* edge-wear */
+    multiply, multiply, multiply, multiply,
+    /* corner stains */
+    multiply, multiply,
+    /* watermarks */
+    overlay,
+    /* paper fiber overlay */
+    multiply,
+    /* pulp variation overlay */
+    normal;
+  /* page lighting */
+
+  background-size:
+    600px 600px, 800px 800px, 100% 100%,
+    /* technical residue layers */
+    100% 100%, 100% 100%, 100% 100%, 100% 100%,
+    100% 100%, 100% 100%, 100% 100%, 100% 100%,
+    100% 100%, 100% 100%,
+    450px 450px,
+    /* fiber tile */
+    800px 800px,
+    /* pulp tile */
+    100% 100%;
+  /* page lighting */
+
+  background-repeat:
+    no-repeat, no-repeat, no-repeat,
+    /* technical residue layers */
+    no-repeat, no-repeat, no-repeat, no-repeat,
+    no-repeat, no-repeat, no-repeat, no-repeat,
+    no-repeat, no-repeat,
+    repeat,
+    repeat,
+    no-repeat;
+
+  background-position:
+    30% 40%, 65% 25%, center,
+    /* technical residue layers */
+    center, center, center, center,
+    center, center, center, center,
+    center, center,
+    0 0,
+    0 0,
+    center;
+
+  padding: 40px 40px 40px 65px;
+  position: relative;
+  overflow: hidden;
+
+  /* Rigid, structurally tense clip-path (mostly straight page boundaries with tight, sharp localized breaks) */
+  clip-path: polygon(
+      /* Top Edge - straight at Y=0.4% with sharp break at X=42% */
+      0% 0.4%, 41.5% 0.4%, 42.0% 0.9%, 42.3% 0.4%, 99.2% 0.4%,
+      /* Top-Right Corner - stiff chamfer */
+      99.6% 0.8%,
+      /* Right Edge - straight at X=99.6% with sharp break at Y=48% and compressed dent at Y=75% */
+      99.6% 45%, 99.6% 47.5%, 99.0% 48.5%, 99.2% 49.5%, 99.6% 50.5%,
+      99.6% 72%, 99.6% 74.0%, 99.2% 74.8%, 99.5% 75.6%, 99.6% 77%, 99.6% 98.8%,
+      /* Bottom-Right Corner - stiff chamfer */
+      99.0% 99.6%,
+      /* Bottom Edge - straight at Y=99.6% with sharp break at X=24% */
+      25.5% 99.6%, 24.8% 99.0%, 24.2% 99.6%, 1% 99.6%,
+      /* Bottom-Left Corner */
+      0.4% 99.0%,
+      /* Left Spine Edge - straight binder alignment */
+      0.2% 90%, 0.4% 75%, 0.2% 60%, 0.4% 45%, 0.2% 30%, 0.4% 15%, 0.2% 0.4%);
+
+  box-shadow:
+    /* AO spine cavity — deep binding compression */
+    inset 22px 0 50px rgba(25, 10, 2, 0.62),
+    /* AO right edge recession */
+    inset -10px 0 25px rgba(20, 8, 2, 0.28),
+    /* AO ambient interior darkening */
+    inset 0 0 120px rgba(20, 10, 4, 0.40),
+    /* AO top fold shadow */
+    inset 0 35px 70px rgba(20, 8, 2, 0.28),
+    /* AO bottom fold shadow */
+    inset 0 -25px 50px rgba(20, 8, 2, 0.22),
+    /* Delicate burnt page outline shadow using #5A331C (subtle singed outline) */
+    inset 0 0 10px rgba(90, 51, 28, 0.45);
+}
+
+/* ── FILM GRAIN + ANALOG NOISE overlay (topmost layer on all paper) ──────────
+   Simulates analogue film scan grain — removes digital flatness completely.
+   Uses two noise passes: coarse (visible grain) + fine (micro-roughness).
+─────────────────────────────────────────────────────────────────────────── */
+.sheet-paper::after,
+.grid-paper::after,
+.lined-paper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+  background-image:
+    /* 1. Large-scale Cellulose Compression: organic soft cloudy paper breakup and watercolor-like aging splotches */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3E%3Cfilter id='cloudyPulpOverlay'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006 0.004' numOctaves='4' seed='88' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.12'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23cloudyPulpOverlay)'/%3E%3C/svg%3E"),
+    /* 2. Faint Stretched Fibers: extremely soft close-up horizontal wood/cotton strands */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cfilter id='softStrandsOverlay'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.28 0.02' numOctaves='2' seed='55' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.07'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23softStrandsOverlay)'/%3E%3C/svg%3E"),
+    /* 3. High-Frequency Matte Film Grain: micro-roughness representing physically scanned vintage paper */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='filmGrain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' seed='41' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.06'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23filmGrain)'/%3E%3C/svg%3E");
+  background-size: 800px 800px, 400px 400px, 200px 200px;
+  background-repeat: repeat, repeat, repeat;
+  mix-blend-mode: multiply;
+  opacity: 0.88;
+}
+
+.grid-paper {
+  background-color: #A77C54;
+  z-index: 2;
+  background-image:
+    /* Ghost technical drafting geometry */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Ccircle cx='300' cy='300' r='180' fill='none' stroke='rgba(90, 51, 28, 0.028)' stroke-width='0.7' stroke-dasharray='3,6' /%3E%3Cline x1='50' y1='300' x2='550' y2='300' stroke='rgba(90, 51, 28, 0.022)' stroke-width='0.5' stroke-dasharray='1,5' /%3E%3Cline x1='300' y1='50' x2='300' y2='550' stroke='rgba(90, 51, 28, 0.022)' stroke-width='0.5' stroke-dasharray='1,5' /%3E%3Cline x1='120' y1='120' x2='480' y2='480' stroke='rgba(90, 51, 28, 0.015)' stroke-width='0.5' stroke-dasharray='1,8' /%3E%3Crect x='450' y='480' width='80' height='50' fill='none' stroke='rgba(90, 51, 28, 0.025)' stroke-width='0.5' /%3E%3Cline x1='460' y1='495' x2='520' y2='495' stroke='rgba(90, 51, 28, 0.018)' stroke-width='0.5' /%3E%3Cline x1='460' y1='510' x2='500' y2='510' stroke='rgba(90, 51, 28, 0.018)' stroke-width='0.5' /%3E%3Cline x1='460' y1='520' x2='515' y2='520' stroke='rgba(90, 51, 28, 0.018)' stroke-width='0.5' /%3E%3C/svg%3E"),
+    /* Erased graphite sine curves and sketches */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3E%3Cpath d='M100,500 L300,500 L500,300 L700,300' fill='none' stroke='rgba(80, 70, 60, 0.018)' stroke-width='0.8' /%3E%3Cpath d='M250,550 Q380,200 480,500 T700,200' fill='none' stroke='rgba(80, 70, 60, 0.022)' stroke-width='0.8' stroke-dasharray='1,3' /%3E%3Cpath d='M120,150 C110,120 160,110 150,140 C140,170 90,130 110,160' fill='none' stroke='rgba(80, 70, 60, 0.030)' stroke-width='0.6' /%3E%3Ccircle cx='600' cy='200' r='45' fill='none' stroke='rgba(80, 70, 60, 0.018)' stroke-width='0.5' /%3E%3Ccircle cx='600' cy='200' r='15' fill='none' stroke='rgba(80, 70, 60, 0.012)' stroke-width='0.5' /%3E%3Cline x1='580' y1='170' x2='590' y2='160' stroke='rgba(80, 70, 60, 0.02)' stroke-width='0.6' /%3E%3Cline x1='585' y1='175' x2='595' y2='165' stroke='rgba(80, 70, 60, 0.02)' stroke-width='0.6' /%3E%3Cline x1='590' y1='180' x2='600' y2='170' stroke='rgba(80, 70, 60, 0.02)' stroke-width='0.6' /%3E%3Cline x1='610' y1='220' x2='620' y2='210' stroke='rgba(80, 70, 60, 0.02)' stroke-width='0.6' /%3E%3Cline x1='615' y1='225' x2='625' y2='215' stroke='rgba(80, 70, 60, 0.02)' stroke-width='0.6' /%3E%3C/svg%3E"),
+    /* Coffee ring outline fragment, paper scuffs, and dusty specks */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000'%3E%3Cpath d='M750,50 A180,180 0 0,1 950,250' fill='none' stroke='rgba(90, 51, 28, 0.018)' stroke-width='3.2' stroke-dasharray='15,20,40,10,5,30' /%3E%3Cpath d='M760,58 A170,170 0 0,1 942,240' fill='none' stroke='rgba(90, 51, 28, 0.012)' stroke-width='1.2' stroke-dasharray='8,35,12,15' /%3E%3Cpath d='M50,850 A150,150 0 0,0 200,1000' fill='none' stroke='rgba(90, 51, 28, 0.012)' stroke-width='2.8' stroke-dasharray='30,10,15,45' /%3E%3Cline x1='50' y1='80' x2='120' y2='40' stroke='rgba(90, 51, 28, 0.015)' stroke-width='0.5' /%3E%3Cline x1='80' y1='950' x2='140' y2='920' stroke='rgba(90, 51, 28, 0.01)' stroke-width='0.5' /%3E%3Ccircle cx='250' cy='180' r='1.2' fill='rgba(75, 45, 20, 0.08)' /%3E%3Ccircle cx='820' cy='320' r='1.8' fill='rgba(75, 45, 20, 0.07)' /%3E%3Ccircle cx='120' cy='670' r='1.0' fill='rgba(75, 45, 20, 0.06)' /%3E%3Ccircle cx='680' cy='880' r='2.2' fill='rgba(75, 45, 20, 0.09)' /%3E%3Ccircle cx='480' cy='520' r='1.5' fill='rgba(75, 45, 20, 0.08)' /%3E%3Ccircle cx='910' cy='780' r='1.2' fill='rgba(75, 45, 20, 0.06)' /%3E%3Ccircle cx='340' cy='430' r='2.0' fill='rgba(75, 45, 20, 0.07)' /%3E%3Cpath d='M180,310 Q182,314 179,317' stroke='rgba(75, 45, 20, 0.08)' stroke-width='0.7' fill='none' /%3E%3Cpath d='M750,710 Q754,708 758,712' stroke='rgba(75, 45, 20, 0.07)' stroke-width='0.6' fill='none' /%3E%3Cpath d='M520,240 Q517,243 519,247' stroke='rgba(75, 45, 20, 0.07)' stroke-width='0.8' fill='none' /%3E%3C/svg%3E"),
+    /* 7. Edge wear: thin dark scorched linear margins in burned sepia (#5A331C) and dusty brown (#B98A5A) */
+    linear-gradient(to right, rgba(90, 51, 28, 0.42) 0px, transparent 45px),
+    linear-gradient(to left, rgba(90, 51, 28, 0.35) 0px, transparent 40px),
+    linear-gradient(to bottom, rgba(90, 51, 28, 0.38) 0px, transparent 42px),
+    linear-gradient(to top, rgba(90, 51, 28, 0.32) 0px, transparent 35px),
+    /* 6. Corner stains: soft, translucent sepia stains */
+    radial-gradient(ellipse 180px 120px at 0% 0%, rgba(90, 51, 28, 0.18) 0%, transparent 100%),
+    radial-gradient(ellipse 140px 100px at 100% 0%, rgba(90, 51, 28, 0.14) 0%, transparent 100%),
+    radial-gradient(ellipse 150px 110px at 0% 100%, rgba(90, 51, 28, 0.16) 0%, transparent 100%),
+    radial-gradient(ellipse 130px 90px at 100% 100%, rgba(90, 51, 28, 0.12) 0%, transparent 100%),
+    /* 5. Faded watermarks: highly translucent orange aging (#D78C3C) & dusty brown spots to maximize text readability */
+    radial-gradient(ellipse 100px 70px at 75% 35%, rgba(185, 138, 90, 0.14) 0%, transparent 100%),
+    radial-gradient(ellipse 70px 45px at 25% 68%, rgba(215, 140, 60, 0.10) 0%, transparent 100%),
+    /* 4. Paper fiber overlay: dense, horizontally stretched hand-pressed fibers (anisotropic noise ratio ~ 14:1) */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 450 450'%3E%3Cfilter id='fiberG'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.28 0.02' numOctaves='3' seed='15' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.26'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23fiberG)'/%3E%3C/svg%3E"),
+    /* 3. Pulp variation: large-scale slow turbulence representing broad cloudy pulp variation and cellulose compression */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3E%3Cfilter id='pulpG'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.008 0.005' numOctaves='4' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.28'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23pulpG)'/%3E%3C/svg%3E"),
+    /* 2. Page lighting: Warm, matte diffuse sepia tone lighting */
+    radial-gradient(circle at 50% 50%, #D5BA94 0%, #D5BA94 15%, #C9AC8A 50%, #BA956D 72%, #A77C54 90%, #3F220D 100%);
+  background-blend-mode:
+    multiply, multiply, multiply,
+    /* technical residue layers */
+    normal, normal, normal, normal,
+    multiply, multiply, multiply, multiply,
+    multiply, multiply,
+    overlay,
+    multiply,
+    normal;
+  background-size:
+    600px 600px, 800px 800px, 100% 100%,
+    /* technical residue layers */
+    100% 100%, 100% 100%, 100% 100%, 100% 100%,
+    100% 100%, 100% 100%, 100% 100%, 100% 100%,
+    100% 100%, 100% 100%,
+    450px 450px,
+    /* fiber tile */
+    800px 800px,
+    /* pulp tile */
+    100% 100%;
+  background-repeat:
+    no-repeat, no-repeat, no-repeat,
+    /* technical residue layers */
+    no-repeat, no-repeat, no-repeat, no-repeat,
+    no-repeat, no-repeat, no-repeat, no-repeat,
+    no-repeat, no-repeat,
+    repeat, repeat,
+    no-repeat;
+  background-position:
+    30% 40%, 65% 25%, center,
+    /* technical residue layers */
+    center, center, center, center,
+    center, center, center, center,
+    center, center,
+    0 0, 0 0,
+    center;
+  position: relative;
+  overflow: hidden;
+
+  box-shadow:
+    /* AO spine cavity — deep binding compression */
+    inset 22px 0 50px rgba(25, 10, 2, 0.62),
+    /* AO right edge recession */
+    inset -10px 0 25px rgba(20, 8, 2, 0.28),
+    /* AO ambient interior darkening */
+    inset 0 0 120px rgba(20, 10, 4, 0.40),
+    /* AO top fold shadow */
+    inset 0 35px 70px rgba(20, 8, 2, 0.28),
+    /* AO bottom fold shadow */
+    inset 0 -25px 50px rgba(20, 8, 2, 0.22),
+    /* Delicate burnt page outline shadow using #5A331C (subtle singed outline) */
+    inset 0 0 10px rgba(90, 51, 28, 0.45);
+}
+
+.lined-paper {
+  background-color: #A77C54;
+  z-index: 2;
+  background-image:
+    /* Ghost technical drafting geometry */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Ccircle cx='300' cy='300' r='180' fill='none' stroke='rgba(90, 51, 28, 0.028)' stroke-width='0.7' stroke-dasharray='3,6' /%3E%3Cline x1='50' y1='300' x2='550' y2='300' stroke='rgba(90, 51, 28, 0.022)' stroke-width='0.5' stroke-dasharray='1,5' /%3E%3Cline x1='300' y1='50' x2='300' y2='550' stroke='rgba(90, 51, 28, 0.022)' stroke-width='0.5' stroke-dasharray='1,5' /%3E%3Cline x1='120' y1='120' x2='480' y2='480' stroke='rgba(90, 51, 28, 0.015)' stroke-width='0.5' stroke-dasharray='1,8' /%3E%3Crect x='450' y='480' width='80' height='50' fill='none' stroke='rgba(90, 51, 28, 0.025)' stroke-width='0.5' /%3E%3Cline x1='460' y1='495' x2='520' y2='495' stroke='rgba(90, 51, 28, 0.018)' stroke-width='0.5' /%3E%3Cline x1='460' y1='510' x2='500' y2='510' stroke='rgba(90, 51, 28, 0.018)' stroke-width='0.5' /%3E%3Cline x1='460' y1='520' x2='515' y2='520' stroke='rgba(90, 51, 28, 0.018)' stroke-width='0.5' /%3E%3C/svg%3E"),
+    /* Erased graphite sine curves and sketches */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3E%3Cpath d='M100,500 L300,500 L500,300 L700,300' fill='none' stroke='rgba(80, 70, 60, 0.018)' stroke-width='0.8' /%3E%3Cpath d='M250,550 Q380,200 480,500 T700,200' fill='none' stroke='rgba(80, 70, 60, 0.022)' stroke-width='0.8' stroke-dasharray='1,3' /%3E%3Cpath d='M120,150 C110,120 160,110 150,140 C140,170 90,130 110,160' fill='none' stroke='rgba(80, 70, 60, 0.030)' stroke-width='0.6' /%3E%3Ccircle cx='600' cy='200' r='45' fill='none' stroke='rgba(80, 70, 60, 0.018)' stroke-width='0.5' /%3E%3Ccircle cx='600' cy='200' r='15' fill='none' stroke='rgba(80, 70, 60, 0.012)' stroke-width='0.5' /%3E%3Cline x1='580' y1='170' x2='590' y2='160' stroke='rgba(80, 70, 60, 0.02)' stroke-width='0.6' /%3E%3Cline x1='585' y1='175' x2='595' y2='165' stroke='rgba(80, 70, 60, 0.02)' stroke-width='0.6' /%3E%3Cline x1='590' y1='180' x2='600' y2='170' stroke='rgba(80, 70, 60, 0.02)' stroke-width='0.6' /%3E%3Cline x1='610' y1='220' x2='620' y2='210' stroke='rgba(80, 70, 60, 0.02)' stroke-width='0.6' /%3E%3Cline x1='615' y1='225' x2='625' y2='215' stroke='rgba(80, 70, 60, 0.02)' stroke-width='0.6' /%3E%3C/svg%3E"),
+    /* Coffee ring outline fragment, paper scuffs, and dusty specks */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000'%3E%3Cpath d='M750,50 A180,180 0 0,1 950,250' fill='none' stroke='rgba(90, 51, 28, 0.018)' stroke-width='3.2' stroke-dasharray='15,20,40,10,5,30' /%3E%3Cpath d='M760,58 A170,170 0 0,1 942,240' fill='none' stroke='rgba(90, 51, 28, 0.012)' stroke-width='1.2' stroke-dasharray='8,35,12,15' /%3E%3Cpath d='M50,850 A150,150 0 0,0 200,1000' fill='none' stroke='rgba(90, 51, 28, 0.012)' stroke-width='2.8' stroke-dasharray='30,10,15,45' /%3E%3Cline x1='50' y1='80' x2='120' y2='40' stroke='rgba(90, 51, 28, 0.015)' stroke-width='0.5' /%3E%3Cline x1='80' y1='950' x2='140' y2='920' stroke='rgba(90, 51, 28, 0.01)' stroke-width='0.5' /%3E%3Ccircle cx='250' cy='180' r='1.2' fill='rgba(75, 45, 20, 0.08)' /%3E%3Ccircle cx='820' cy='320' r='1.8' fill='rgba(75, 45, 20, 0.07)' /%3E%3Ccircle cx='120' cy='670' r='1.0' fill='rgba(75, 45, 20, 0.06)' /%3E%3Ccircle cx='680' cy='880' r='2.2' fill='rgba(75, 45, 20, 0.09)' /%3E%3Ccircle cx='480' cy='520' r='1.5' fill='rgba(75, 45, 20, 0.08)' /%3E%3Ccircle cx='910' cy='780' r='1.2' fill='rgba(75, 45, 20, 0.06)' /%3E%3Ccircle cx='340' cy='430' r='2.0' fill='rgba(75, 45, 20, 0.07)' /%3E%3Cpath d='M180,310 Q182,314 179,317' stroke='rgba(75, 45, 20, 0.08)' stroke-width='0.7' fill='none' /%3E%3Cpath d='M750,710 Q754,708 758,712' stroke='rgba(75, 45, 20, 0.07)' stroke-width='0.6' fill='none' /%3E%3Cpath d='M520,240 Q517,243 519,247' stroke='rgba(75, 45, 20, 0.07)' stroke-width='0.8' fill='none' /%3E%3C/svg%3E"),
+    /* 7. Edge wear: thin dark scorched linear margins in burned sepia (#5A331C) and dusty brown (#B98A5A) */
+    linear-gradient(to right, rgba(90, 51, 28, 0.42) 0px, transparent 45px),
+    linear-gradient(to left, rgba(90, 51, 28, 0.35) 0px, transparent 40px),
+    linear-gradient(to bottom, rgba(90, 51, 28, 0.38) 0px, transparent 42px),
+    linear-gradient(to top, rgba(90, 51, 28, 0.32) 0px, transparent 35px),
+    /* 6. Corner stains: soft, translucent sepia stains */
+    radial-gradient(ellipse 200px 140px at 0% 0%, rgba(90, 51, 28, 0.18) 0%, transparent 100%),
+    radial-gradient(ellipse 170px 120px at 100% 0%, rgba(90, 51, 28, 0.14) 0%, transparent 100%),
+    radial-gradient(ellipse 180px 130px at 0% 100%, rgba(90, 51, 28, 0.16) 0%, transparent 100%),
+    radial-gradient(ellipse 160px 110px at 100% 100%, rgba(90, 51, 28, 0.12) 0%, transparent 100%),
+    /* 5. Faded watermarks: highly translucent orange aging (#D78C3C) & dusty brown spots to preserve text readability */
+    radial-gradient(ellipse 110px 80px at 75% 35%, rgba(185, 138, 90, 0.14) 0%, transparent 100%),
+    radial-gradient(ellipse 80px 50px at 25% 68%, rgba(215, 140, 60, 0.10) 0%, transparent 100%),
+    /* 4. Paper fiber overlay: dense, horizontally stretched hand-pressed fibers (anisotropic noise ratio ~ 14:1) */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 450 450'%3E%3Cfilter id='fiberL'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.28 0.02' numOctaves='3' seed='22' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.26'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23fiberL)'/%3E%3C/svg%3E"),
+    /* 3. Pulp variation: large-scale slow turbulence representing broad cloudy pulp variation and cellulose compression */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3E%3Cfilter id='pulpL'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.008 0.005' numOctaves='4' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.28'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23pulpL)'/%3E%3C/svg%3E"),
+    /* 2. Page lighting: Warm, matte diffuse sepia tone lighting */
+    radial-gradient(circle at 50% 50%, #D5BA94 0%, #D5BA94 15%, #C9AC8A 50%, #BA956D 72%, #A77C54 90%, #3F220D 100%),
+    /* 1. Page Ruling Lines */
+    linear-gradient(rgba(55, 30, 10, 0.20) 1px, transparent 1px);
+  background-blend-mode:
+    multiply, multiply, multiply,
+    /* technical residue layers */
+    normal, normal, normal, normal,
+    multiply, multiply, multiply, multiply,
+    multiply, multiply,
+    overlay,
+    multiply,
+    normal,
+    normal;
+  background-size:
+    600px 600px, 800px 800px, 100% 100%,
+    /* technical residue layers */
+    100% 100%, 100% 100%, 100% 100%, 100% 100%,
+    100% 100%, 100% 100%, 100% 100%, 100% 100%,
+    100% 100%, 100% 100%,
+    450px 450px,
+    /* fiber tile */
+    800px 800px,
+    /* pulp tile */
+    100% 100%,
+    100% 26px;
+  background-repeat:
+    no-repeat, no-repeat, no-repeat,
+    /* technical residue layers */
+    no-repeat, no-repeat, no-repeat, no-repeat,
+    no-repeat, no-repeat, no-repeat, no-repeat,
+    no-repeat, no-repeat,
+    repeat, repeat,
+    no-repeat,
+    repeat;
+  background-position:
+    30% 40%, 65% 25%, center,
+    /* technical residue layers */
+    center, center, center, center,
+    center, center, center, center,
+    center, center,
+    0 0, 0 0,
+    center,
+    0 0;
+  position: relative;
+  overflow: hidden;
+
+  box-shadow:
+    /* AO spine cavity — deep binding compression */
+    inset 22px 0 50px rgba(25, 10, 2, 0.62),
+    /* AO right edge recession */
+    inset -10px 0 25px rgba(20, 8, 2, 0.28),
+    /* AO ambient interior darkening */
+    inset 0 0 120px rgba(20, 10, 4, 0.40),
+    /* AO top fold shadow */
+    inset 0 35px 70px rgba(20, 8, 2, 0.28),
+    /* AO bottom fold shadow */
+    inset 0 -25px 50px rgba(20, 8, 2, 0.22),
+    /* Delicate burnt page outline shadow using #5A331C (subtle singed outline) */
+    inset 0 0 10px rgba(90, 51, 28, 0.45);
+}
+
+.grid-paper::before,
+.lined-paper::before {
+  content: '';
+  position: absolute;
+  left: 75px;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: rgba(166, 66, 59, 0.35);
+  border-right: 1px solid rgba(166, 66, 59, 0.1);
+  z-index: 2;
+}
+
+.loading-sheet {
+  margin: auto;
+  font-size: 1.8rem;
+  color: var(--faded-graphite);
+}
+
+.page-body-spread {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  gap: 30px;
+}
+
+.page-side {
+  flex: 1;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.left-side {
+  flex: 6;
+}
+
+.right-side {
+  flex: 5;
+  justify-content: center;
+  align-items: center;
+}
+
+.notebook-header-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  border-bottom: 1px dashed rgba(85, 68, 57, 0.2);
+  padding-bottom: 8px;
+}
+
+.header-vintage {
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+}
+
+.text-faded {
+  color: var(--faded-graphite);
+}
+
+.stamp-active {
+  color: var(--stamp-red);
+  border: 2px solid var(--stamp-red);
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  transform: rotate(-4deg);
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.1);
+  text-shadow: 0.5px 0.5px 0px rgba(255, 255, 255, 0.3);
+  opacity: 0.85;
+}
+
+/* ==========================================================================
+   PAGE 2: INTRODUCTION PAGE
+   ========================================================================== */
+.intro-heading-container {
+  margin-bottom: 20px;
+}
+
+.intro-greeting {
+  font-size: 2.8rem;
+  color: var(--dark-ink);
+  display: block;
+  font-family: var(--font-hand) !important;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  /* Slight rotation like actual handwriting */
+  display: inline-block;
+  transform: rotate(-0.8deg);
+}
+
+.intro-name {
+  font-size: 3.6rem;
+  line-height: 0.95;
+  margin-bottom: 8px;
+  font-family: var(--font-stamp);
+  font-weight: 900;
+
+  /* Distressed letterpress stamped ink using Main Ink Black #1B120D & Faded Ink #3A2A1F */
+  color: transparent;
+  background-image:
+    url("data:image/svg+xml;utf8,%3Csvg viewBox=%270 0 150 150%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cfilter id=%27stampNoiseIntro%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.85%27 numOctaves=%273%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23stampNoiseIntro)%27 opacity=%270.26%27/%3E%3C/svg%3E"),
+    radial-gradient(circle at center, #3A2A1F 0%, #1B120D 100%);
+  background-blend-mode: screen;
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: drop-shadow(1px 1px 0.3px rgba(255, 255, 255, 0.35));
+}
+
+.highlight-bar {
+  display: inline-block;
+  background-color: rgba(241, 194, 78, 0.78);
+  background-image: linear-gradient(95deg, rgba(254, 230, 140, 0.3) 0%, rgba(241, 194, 78, 0.05) 90%);
+  color: var(--dark-ink);
+  font-family: var(--font-mono);
+  padding: 3px 12px;
+  font-size: 0.92rem;
+  font-weight: bold;
+  transform: rotate(-0.8deg);
+  border-radius: 4px 50px 3px 35px / 8px 3px 12px 4px;
+  box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.3), inset -1px -1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.intro-body {
+  font-size: 1.65rem;
+  line-height: 1.5;
+  color: var(--dark-ink);
+  margin-bottom: 35px;
+  max-width: 500px;
+  /* Handwritten font for body paragraph */
+  font-family: var(--font-hand) !important;
+}
+
+.pinned-note {
+  /* Vintage rectangular paper note, aged ivory/warm beige */
+  background-color: #F4EDE1;
+  background-image:
+    /* 1. Uniform isotropic grain — no stripes, just natural paper texture */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='chitGrain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' seed='14' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.13'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23chitGrain)'/%3E%3C/svg%3E"),
+    /* 2. Light corner coffee stains and natural aging marks */
+    radial-gradient(ellipse 90px 75px at 8% 10%, rgba(120, 85, 50, 0.07) 0%, transparent 100%),
+    radial-gradient(ellipse 110px 80px at 92% 92%, rgba(120, 85, 50, 0.07) 0%, transparent 100%),
+    /* 3. Soft warm gradient base */
+    radial-gradient(ellipse at 40% 35%, #FAF5EC 0%, #EFE8D9 100%);
+  background-blend-mode: overlay, normal, normal, normal;
+  border: 1px solid rgba(140, 115, 90, 0.35);
+  padding: 18px 22px;
+  box-shadow:
+    /* Soft ambient shadows showing paper thickness */
+    1px 2px 4px rgba(40, 30, 20, 0.12),
+    2px 5px 12px rgba(40, 30, 20, 0.16),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.65),
+    inset -1px -1px 1px rgba(0, 0, 0, 0.06);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 1;
+
+  /* Clean rectangular silhouette with minor imperfections and corner damage */
+  clip-path: polygon(0.3% 0.5%, 99.7% 0.2%, 99.4% 99.3%, 0.6% 99.7%);
+}
+
+/* 3D curled corner page shadow effects */
+.pinned-note::before,
+.pinned-note::after {
+  display: none !important;
+}
+
+.pinned-note::before {
+  left: 6px;
+  transform: rotate(-3deg);
+}
+
+.pinned-note::after {
+  right: 6px;
+  transform: rotate(3deg);
+}
+
+.pinned-note:hover::before {
+  transform: rotate(-6deg) translateY(1px);
+  box-shadow: 0 12px 18px rgba(43, 33, 26, 0.45);
+}
+
+.pinned-note:hover::after {
+  transform: rotate(6deg) translateY(1px);
+  box-shadow: 0 12px 18px rgba(43, 33, 26, 0.45);
+}
+
+.pinned-note:hover {
+  transform: translateY(-2px) rotate(1deg);
+  box-shadow: 4px 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.current-focus-note {
+  max-width: 320px;
+  transform: rotate(-2.5deg);
+  margin-bottom: 35px;
+}
+
+.current-focus-note .brass-pin {
+  top: 5px;
+  left: 15px;
+  transform: none;
+}
+
+.pin {
+  position: absolute;
+  z-index: 10;
+}
+
+.brass-pin {
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-5deg);
+  width: 12px;
+  height: 18px;
+  z-index: 15;
+  background: none;
+}
+
+/* Steel needle for brass pin */
+.brass-pin::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 5px;
+  width: 2px;
+  height: 8px;
+  background: linear-gradient(to right, #e0e0e0, #888888);
+}
+
+/* Metallic brass head */
+.brass-pin::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(circle at 35% 35%, #fce09d 0%, #b8933e 70%, #6b5018 100%);
+  border-radius: 50%;
+  box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.7), 2px 3px 5px rgba(43, 33, 26, 0.3);
+}
+
+.red-thumbtack {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%) rotate(5deg);
+  width: 14px;
+  height: 22px;
+  z-index: 15;
+  background: none;
+}
+
+/* Steel needle for pushpin */
+.red-thumbtack::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 6px;
+  width: 2px;
+  height: 10px;
+  background: linear-gradient(to right, #e0e0e0, #8c8c8c);
+}
+
+/* Plastic red dome */
+.red-thumbtack::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(circle at 35% 35%, #ff5c5c 0%, #c61111 65%, #7a0000 100%);
+  border-radius: 50% 50% 2px 2px;
+  box-shadow: inset 1px 1.5px 2px rgba(255, 255, 255, 0.75), 2px 4px 6px rgba(43, 33, 26, 0.35);
+}
+
+.pinned-note-title {
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  color: var(--faded-graphite);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.inline-icon {
+  width: 12px;
+  height: 12px;
+  fill: currentColor;
+}
+
+.pinned-note-text {
+  font-size: 1.6rem;
+  line-height: 1.2;
+  color: var(--dark-ink);
+  /* Handwritten style text inside chit */
+  font-family: var(--font-hand) !important;
+}
+
+.doodle-star {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  color: var(--vintage-gold);
+  font-size: 1.1rem;
+}
+
+.social-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.social-section .social-label {
+  font-size: 0.7rem;
+  letter-spacing: 1.5px;
+  color: var(--faded-graphite);
+}
+
+.social-buttons-container {
+  display: flex;
+  gap: 18px;
+}
+
+.paper-label-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  /* Pressed Card Paper background #D3BA9A */
+  background: #D3BA9A;
+  background-image:
+    url("data:image/svg+xml;utf8,%3Csvg viewBox=%270 0 100 100%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cfilter id=%27btnNoise%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.7%27 numOctaves=%273%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23btnNoise)%27 opacity=%270.22%27/%3E%3C/svg%3E"),
+    radial-gradient(circle at 30% 25%, rgba(211, 186, 154, 0.5) 0%, rgba(166, 134, 99, 0.25) 100%);
+  background-blend-mode: multiply, normal;
+  padding: 10px 18px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: #1B120D;
+  /* Main Ink Black */
+  border-radius: 2px;
+  /* Soft AO stickers-on-paper shadow using Shadow Areas #A68663 */
+  box-shadow:
+    2px 3px 8px rgba(166, 134, 99, 0.35),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.35),
+    inset -1px -1px 1px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(166, 134, 99, 0.35);
+  text-decoration: none;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease;
+  position: relative;
+}
+
+/* Tape strip on top of each button (like sticker labels in reference) */
+.paper-label-button::before {
+  content: '';
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 28px;
+  height: 10px;
+  background: rgba(210, 180, 130, 0.55);
+  backdrop-filter: blur(1px);
+  border-radius: 1px;
+  box-shadow: 0 1px 2px rgba(43, 33, 26, 0.15);
+  clip-path: polygon(3% 0%, 97% 0%, 100% 100%, 0% 100%);
+}
+
+.paper-label-button:hover {
+  transform: translateY(-3px) rotate(1deg);
+  box-shadow: 3px 6px 14px rgba(0, 0, 0, 0.22);
+  filter: brightness(1.05);
+}
+
+.button-icon {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+.intro-polaroid-side {
+  padding-left: 20px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 5px;
+}
+
+/* 1.7x larger polaroid image container and related components inside intro page */
+#page-intro .left-side {
+  flex: 5.2;
+  /* Shrink left column slightly to make room for larger photo spread */
+}
+
+#page-intro .intro-polaroid-side {
+  flex: 6.8;
+  /* Expand right column to accommodate 1.7x photo container beautifully */
+  padding-left: 10px;
+  padding-top: 30px; /* Shifted downward for better vertical balance */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px; /* Slightly more vertical space between photo and buttons */
+}
+
+#page-intro .polaroid {
+  padding: 24px !important;
+  /* Scale padding from 14px by 1.7x */
+  border-radius: 4px;
+}
+
+/* Remove unwanted stacked beige paper layers/shadow backings behind the polaroid card */
+#page-intro .polaroid::before,
+#page-intro .polaroid::after {
+  display: none !important;
+}
+
+#page-intro .photo-container {
+  width: 250px !important;
+  /* Balanced default size */
+  height: 250px !important;
+  margin-bottom: 12px !important;
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.6) !important;
+}
+
+.intro-photo-tilted {
+  transform: rotate(4.5deg) translateY(0) !important; /* Removed upward offset to shift downward */
+  transform-origin: center top;
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.35s ease;
+}
+
+.intro-photo-tilted:hover {
+  transform: rotate(2deg) translateY(calc(-15px + 5mm)) scale(1.02) !important;
+  box-shadow:
+    6px 14px 30px rgba(43, 26, 10, 0.35),
+    2px 4px 8px rgba(43, 26, 10, 0.15) !important;
+}
+
+/* Tape strips scaled up 1.0x (default) inside intro page */
+#page-intro .tape {
+  width: 105px !important;
+  height: 28px !important;
+  background-size: auto, auto, 100% 100%, 100% 100%, 105px 28px !important;
+}
+
+#page-intro .tape-top-left {
+  top: -14px !important;
+  left: -24px !important;
+}
+
+#page-intro .tape-bottom-right {
+  bottom: -14px !important;
+  right: -24px !important;
+}
+
+.margin-drawing {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.24;
+  /* Soft graphite sketch overlay look */
+  stroke: #8E755F;
+  /* Main Sketch Color */
+  fill: none;
+}
+
+/* Large cinematic bridge sketch like reference image (suspension bridge) */
+.drawing-bridge-intro {
+  bottom: 0;
+  right: 35px;
+  width: 520px;
+  height: 173px;
+  opacity: 0.42;
+}
+
+.drawing-compass {
+  top: 40px;
+  right: 40px;
+  width: 70px;
+  height: 70px;
+  background: url('data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 70 70%22%3E%3Ccircle cx=%2235%22 cy=%2235%22 r=%2230%22 stroke=%22%238E755F%22 stroke-width=%220.8%22 fill=%22none%22 stroke-dasharray=%222 2%22/%3E%3Cpath d=%22M35,5 L35,65 M5,35 L65,35 M15,15 L55,55 M15,55 L55,15%22 stroke=%22%23B49B83%22 stroke-width=%220.5%22 fill=%22none%22/%3E%3Cpolygon points=%2235,12 39,35 35,38%22 fill=%22%238E755F%22/%3E%3Cpolygon points=%2235,58 31,35 35,38%22 fill=%22none%22 stroke=%22%238E755F%22 stroke-width=%220.8%22/%3E%3C/svg%3E') no-repeat;
+}
+
+/* ── INTRO PAGE: Darker Warm Paper Override ──────────────────────────────
+   Palette: #CDB090 (dominant), #B98B5F (edges), #D7BE9B (highlight), #C4A27B (mid)
+──────────────────────────────────────────────────────────────────────── */
+#page-intro .grid-paper {
+  background-color: #A77C54;
+  background-image:
+    /* Ghost technical drafting geometry */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Ccircle cx='300' cy='300' r='180' fill='none' stroke='rgba(90, 51, 28, 0.028)' stroke-width='0.7' stroke-dasharray='3,6' /%3E%3Cline x1='50' y1='300' x2='550' y2='300' stroke='rgba(90, 51, 28, 0.022)' stroke-width='0.5' stroke-dasharray='1,5' /%3E%3Cline x1='300' y1='50' x2='300' y2='550' stroke='rgba(90, 51, 28, 0.022)' stroke-width='0.5' stroke-dasharray='1,5' /%3E%3Cline x1='120' y1='120' x2='480' y2='480' stroke='rgba(90, 51, 28, 0.015)' stroke-width='0.5' stroke-dasharray='1,8' /%3E%3Crect x='450' y='480' width='80' height='50' fill='none' stroke='rgba(90, 51, 28, 0.025)' stroke-width='0.5' /%3E%3Cline x1='460' y1='495' x2='520' y2='495' stroke='rgba(90, 51, 28, 0.018)' stroke-width='0.5' /%3E%3Cline x1='460' y1='510' x2='500' y2='510' stroke='rgba(90, 51, 28, 0.018)' stroke-width='0.5' /%3E%3Cline x1='460' y1='520' x2='515' y2='520' stroke='rgba(90, 51, 28, 0.018)' stroke-width='0.5' /%3E%3C/svg%3E"),
+    /* Erased graphite sine curves and sketches */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3E%3Cpath d='M100,500 L300,500 L500,300 L700,300' fill='none' stroke='rgba(80, 70, 60, 0.018)' stroke-width='0.8' /%3E%3Cpath d='M250,550 Q380,200 480,500 T700,200' fill='none' stroke='rgba(80, 70, 60, 0.022)' stroke-width='0.8' stroke-dasharray='1,3' /%3E%3Cpath d='M120,150 C110,120 160,110 150,140 C140,170 90,130 110,160' fill='none' stroke='rgba(80, 70, 60, 0.030)' stroke-width='0.6' /%3E%3Ccircle cx='600' cy='200' r='45' fill='none' stroke='rgba(80, 70, 60, 0.018)' stroke-width='0.5' /%3E%3Ccircle cx='600' cy='200' r='15' fill='none' stroke='rgba(80, 70, 60, 0.012)' stroke-width='0.5' /%3E%3C/svg%3E"),
+    /* Coffee ring outline fragment, paper scuffs, and dusty specks */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000'%3E%3Cpath d='M750,50 A180,180 0 0,1 950,250' fill='none' stroke='rgba(90, 51, 28, 0.018)' stroke-width='3.2' stroke-dasharray='15,20,40,10,5,30' /%3E%3Cpath d='M760,58 A170,170 0 0,1 942,240' fill='none' stroke='rgba(90, 51, 28, 0.012)' stroke-width='1.2' stroke-dasharray='8,35,12,15' /%3E%3Ccircle cx='250' cy='180' r='1.2' fill='rgba(75, 45, 20, 0.08)' /%3E%3Ccircle cx='820' cy='320' r='1.8' fill='rgba(75, 45, 20, 0.07)' /%3E%3Ccircle cx='120' cy='670' r='1.0' fill='rgba(75, 45, 20, 0.06)' /%3E%3Ccircle cx='680' cy='880' r='2.2' fill='rgba(75, 45, 20, 0.09)' /%3E%3Ccircle cx='480' cy='520' r='1.5' fill='rgba(75, 45, 20, 0.08)' /%3E%3Ccircle cx='910' cy='780' r='1.2' fill='rgba(75, 45, 20, 0.06)' /%3E%3Ccircle cx='340' cy='430' r='2.0' fill='rgba(75, 45, 20, 0.07)' /%3E%3Cpath d='M180,310 Q182,314 179,317' stroke='rgba(75, 45, 20, 0.08)' stroke-width='0.7' fill='none' /%3E%3Cpath d='M750,710 Q754,708 758,712' stroke='rgba(75, 45, 20, 0.07)' stroke-width='0.6' fill='none' /%3E%3Cpath d='M520,240 Q517,243 519,247' stroke='rgba(75, 45, 20, 0.07)' stroke-width='0.8' fill='none' /%3E%3C/svg%3E"),
+    /* Edge wear: darker scorched margins using #B98B5F edge color */
+    linear-gradient(to right, rgba(90, 51, 28, 0.42) 0px, transparent 45px),
+    linear-gradient(to left, rgba(90, 51, 28, 0.35) 0px, transparent 40px),
+    linear-gradient(to bottom, rgba(90, 51, 28, 0.38) 0px, transparent 42px),
+    linear-gradient(to top, rgba(90, 51, 28, 0.32) 0px, transparent 35px),
+    /* Corner stains: deeper sepia */
+    radial-gradient(ellipse 180px 120px at 0% 0%, rgba(90, 51, 28, 0.18) 0%, transparent 100%),
+    radial-gradient(ellipse 140px 100px at 100% 0%, rgba(90, 51, 28, 0.14) 0%, transparent 100%),
+    radial-gradient(ellipse 150px 110px at 0% 100%, rgba(90, 51, 28, 0.16) 0%, transparent 100%),
+    radial-gradient(ellipse 130px 90px at 100% 100%, rgba(90, 51, 28, 0.12) 0%, transparent 100%),
+    /* Faded watermarks */
+    radial-gradient(ellipse 100px 70px at 75% 35%, rgba(185, 139, 95, 0.14) 0%, transparent 100%),
+    radial-gradient(ellipse 70px 45px at 25% 68%, rgba(196, 162, 123, 0.10) 0%, transparent 100%),
+    /* Paper fiber overlay */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 450 450'%3E%3Cfilter id='fiberIntro'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.28 0.02' numOctaves='3' seed='15' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.26'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23fiberIntro)'/%3E%3C/svg%3E"),
+    /* Pulp variation */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3E%3Cfilter id='pulpIntro'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.008 0.005' numOctaves='4' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.28'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23pulpIntro)'/%3E%3C/svg%3E"),
+    /* Page lighting: Warm, matte diffuse sepia tone lighting */
+    radial-gradient(circle at 50% 50%, #D5BA94 0%, #D5BA94 15%, #C9AC8A 50%, #BA956D 72%, #A77C54 90%, #3F220D 100%);
+  background-blend-mode:
+    multiply, multiply, multiply,
+    normal, normal, normal, normal,
+    multiply, multiply, multiply, multiply,
+    multiply, multiply,
+    overlay,
+    multiply,
+    normal;
+  background-size:
+    600px 600px, 800px 800px, 100% 100%,
+    100% 100%, 100% 100%, 100% 100%, 100% 100%,
+    100% 100%, 100% 100%, 100% 100%, 100% 100%,
+    100% 100%, 100% 100%,
+    450px 450px,
+    800px 800px,
+    100% 100%;
+  background-repeat:
+    no-repeat, no-repeat, no-repeat,
+    no-repeat, no-repeat, no-repeat, no-repeat,
+    no-repeat, no-repeat, no-repeat, no-repeat,
+    no-repeat, no-repeat,
+    repeat, repeat,
+    no-repeat;
+  background-position:
+    30% 40%, 65% 25%, center,
+    center, center, center, center,
+    center, center, center, center,
+    center, center,
+    0 0, 0 0,
+    center;
+
+  box-shadow:
+    /* Deeper AO spine cavity */
+    inset 22px 0 55px rgba(20, 8, 2, 0.72),
+    /* Deeper right edge */
+    inset -10px 0 30px rgba(20, 8, 2, 0.35),
+    /* Stronger ambient interior darkening */
+    inset 0 0 130px rgba(20, 10, 4, 0.50),
+    /* Top fold shadow */
+    inset 0 35px 75px rgba(20, 8, 2, 0.35),
+    /* Bottom fold shadow */
+    inset 0 -25px 55px rgba(20, 8, 2, 0.28),
+    /* Darker burnt outline */
+    inset 0 0 12px rgba(90, 51, 28, 0.55);
+}
+
+/* Darken the intro highlight bar to complement the darker paper */
+#page-intro .highlight-bar {
+  background-color: rgba(215, 190, 155, 0.82);
+  background-image: linear-gradient(95deg, rgba(215, 190, 155, 0.35) 0%, rgba(205, 176, 144, 0.08) 90%);
+}
+
+/* Darken the intro pinned-note / current-focus-note */
+#page-intro .current-focus-note {
+  background-color: #EFE7DA;
+  background-image:
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='cfnGrain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' seed='22' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.12'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23cfnGrain)'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse 90px 75px at 8% 10%, rgba(110, 75, 40, 0.07) 0%, transparent 100%),
+    radial-gradient(ellipse 110px 80px at 92% 92%, rgba(110, 75, 40, 0.08) 0%, transparent 100%),
+    radial-gradient(ellipse at 40% 35%, #F3ECDF 0%, #E9E1D2 100%);
+  background-blend-mode: overlay, normal, normal, normal;
+}
+
+/* Lighter, premium warm aged-ivory sticker label buttons on intro page */
+#page-intro .paper-label-button {
+  background-color: #FAF4E8;
+  background-image:
+    url("data:image/svg+xml;utf8,%3Csvg viewBox=%270 0 100 100%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cfilter id=%27btnNoiseIntroLight%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.7%27 numOctaves=%273%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23btnNoiseIntroLight)%27 opacity=%270.16%27/%3E%3C/svg%3E"),
+    radial-gradient(circle at 30% 25%, rgba(255, 253, 248, 0.65) 0%, rgba(225, 212, 192, 0.35) 100%);
+  background-blend-mode: multiply, normal;
+  border-color: rgba(166, 140, 110, 0.45);
+  box-shadow:
+    2px 4px 10px rgba(40, 25, 12, 0.18),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.75),
+    inset -1px -1px 1px rgba(0, 0, 0, 0.05);
+}
+
+/* Slashed physical paper crack effect on exactly one button */
+#page-intro .paper-label-button.button-cracked {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 35%, 95% 40%, 82% 46%, 93% 52%, 99% 56%, 100% 100%, 0% 100%);
+}
+
+/* Detailed pencil-thin ink split drawing extending from the crack tip */
+#page-intro .paper-label-button.button-cracked::after {
+  content: '';
+  position: absolute;
+  top: 46%;
+  right: 18%;
+  width: 14px;
+  height: 1px;
+  background: #2A1C12;
+  opacity: 0.75;
+  transform: rotate(-10deg);
+  transform-origin: right center;
+  pointer-events: none;
+}
+
+/* Ensure high contrast text on the darker intro page background */
+#page-intro .text-faded,
+#page-intro .social-label,
+#page-intro .pinned-note-title {
+  color: #3D2719 !important;
+  /* Deep dark brown for details/faded texts */
+  opacity: 0.95;
+}
+
+#page-intro .intro-greeting,
+#page-intro .intro-body,
+#page-intro .pinned-note-text {
+  color: #120A05 !important;
+  /* Deepest black-brown ink for primary handwritten text */
+}
+#page-intro .intro-greeting {
+  font-size: 2.8rem !important;
+}
+#page-intro .intro-body {
+  font-size: 1.65rem !important;
+}
+#page-intro .pinned-note-text {
+  font-size: 1.6rem !important;
+}
+
+#page-intro .stamp-active {
+  color: #721C16 !important;
+  /* Richer, darker stamp red */
+  border-color: #721C16 !important;
+  opacity: 0.95;
+}
+
+#page-intro .margin-drawing {
+  opacity: 0.35 !important;
+  /* Slightly enhance vintage drawings visibility */
+}
+#page-intro .drawing-bridge-intro {
+  opacity: 0.42 !important;
+}
+
+/* ==========================================================================
+   PAGE 3: SKILLS PAGE (VINTAGE ARCHIVE GRID REDESIGN)
+   ========================================================================== */
+.left-side-skills {
+  flex: 4;
+}
+
+.right-side-skills {
+  flex: 6;
+  padding-left: 20px;
+  position: relative;
+}
+
+.skills-header-block {
+  margin-bottom: 25px;
+}
+
+.skills-main-title {
+  font-size: 3.4rem;
+  line-height: 1;
+  color: var(--dark-ink);
+  margin-bottom: 10px;
+}
+
+.skills-sub {
+  font-size: 1.55rem;
+  line-height: 1.35;
+  font-family: var(--font-hand);
+  color: var(--dark-ink);
+}
+
+.gear-doodle-container {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  opacity: 0.12;
+  margin-bottom: 30px;
+}
+
+.doodle-gear-1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 60px;
+  fill: var(--dark-ink);
+  animation: gearSpin 20s linear infinite;
+}
+
+.doodle-gear-2 {
+  position: absolute;
+  top: 40px;
+  left: 45px;
+  width: 45px;
+  height: 45px;
+  fill: var(--dark-ink);
+  animation: gearSpinAnti 15s linear infinite;
+}
+
+@keyframes gearSpin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes gearSpinAnti {
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+.sticky-learning-note {
+  max-width: 250px;
+  background: #fbf0cf;
+  transform: rotate(2deg);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 3px 5px 12px rgba(43, 33, 26, 0.12);
+}
+
+.paperclip-holder {
+  position: absolute;
+  top: -15px;
+  left: 20px;
+  width: 20px;
+  height: 40px;
+  background: url('data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 20 40%22%3E%3Cpath d=%22M10,5 C13,5 15,7 15,10 L15,30 C15,34 11,37 7,35 C4,33 4,28 4,28 L4,12 C4,12 3,9 6,9 C9,9 9,12 9,12 L9,26 C9,26 9,28 7,28 C5,28 6,26 6,26 L6,14%22 fill=%22none%22 stroke=%22%238A7A69%22 stroke-width=%221.2%22/%3E%3C/svg%3E') no-repeat;
+  z-index: 10;
+  filter: drop-shadow(1px 2px 2px rgba(90, 74, 62, 0.45));
+  /* #5A4A3E shadow */
+}
+
+.crown-stamp {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  color: var(--stamp-red);
+  opacity: 0.25;
+  font-size: 1.5rem;
+}
+
+.technical-gears-blueprint {
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  width: 200px;
+  height: 100px;
+  opacity: 0.08;
+  color: var(--dark-ink);
+  pointer-events: none;
+}
+
+.tech-blueprint-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* 2x3 FLAT LAY BOOKSHELF ARCHIVE GRID */
+.notebook-archive-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px 18px;
+  width: 100%;
+  height: auto;
+  padding-top: 10px;
+}
+
+/* book base element */
+.vintage-book {
+  position: relative;
+  height: 185px;
+  width: 100%;
+  cursor: pointer;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease;
+  margin-bottom: 2px;
+  box-shadow: 1px 3px 6px rgba(43, 33, 26, 0.15);
+  border-radius: 3px;
+}
+
+.vintage-book:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 4px 10px 18px rgba(43, 33, 26, 0.3);
+}
+
+/* dark leather left spine binding */
+.book-spine-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 100%;
+  background: linear-gradient(to right, #402c1d 0%, #291a0f 100%);
+  border-radius: 3px 0 0 3px;
+  box-shadow: inset 1px 0 2px rgba(255, 255, 255, 0.05), 1px 0 3px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+/* Material spines */
+.book-frontend .book-spine-left {
+  background: linear-gradient(to right, #bca188 0%, #876d57 100%);
+}
+
+.book-backend .book-spine-left {
+  background: linear-gradient(to right, #38110b 0%, #1a0503 100%);
+  border-right: 1px solid rgba(235, 209, 189, 0.15);
+}
+
+.book-cloud .book-spine-left {
+  background: linear-gradient(to right, #1d2c3d 0%, #0d141c 100%);
+}
+
+.book-database .book-spine-left {
+  background: linear-gradient(to right, #292929 0%, #121212 100%);
+  /* Black tape cloth spine */
+}
+
+.book-tools .book-spine-left {
+  background: linear-gradient(to right, #4a4a4a 0%, #2a2a2a 100%);
+}
+
+.book-concepts .book-spine-left {
+  background: linear-gradient(to right, #3e4435 0%, #21251d 100%);
+}
+
+/* 3D stacked paper edges under book cover */
+.book-pages-deck {
+  position: absolute;
+  top: 2px;
+  left: 8px;
+  width: calc(100% - 10px);
+  height: calc(100% - 4px);
+  z-index: 1;
+}
+
+.book-layer {
+  position: absolute;
+  background: #faf6f0;
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 0 4px 4px 0;
+}
+
+.layer-1 {
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+.layer-2 {
+  top: 2px;
+  left: 2px;
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+}
+
+.layer-3 {
+  top: 4px;
+  left: 4px;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+}
+
+/* The cover that rotates open in 3D */
+.book-container-3d {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  width: calc(100% - 10px);
+  height: 100%;
+  transform-style: preserve-3d;
+  transform-origin: left center;
+  transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 5;
+}
+
+.book-front-cover,
+.book-back-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0 4px 4px 0;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.15);
+  backface-visibility: hidden;
+}
+
+/* Book front cover mockup lying flat */
+.book-front-cover {
+  background: #fbfaf6;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-left: none;
+  padding: 15px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+}
+
+/* 1. FRONTEND: Clean sketchbook style, grid lines, oatmeal linen canvas */
+.book-frontend .book-front-cover {
+  background-color: #faf6f0;
+  background-image:
+    url("data:image/svg+xml;utf8,%3Csvg viewBox=%270 0 200 200%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cfilter id=%27noise%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.65%27 numOctaves=%273%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23noise)%27 opacity=%270.35%27/%3E%3C/svg%3E"),
+    linear-gradient(rgba(170, 137, 108, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(170, 137, 108, 0.05) 1px, transparent 1px);
+  background-size: auto, 10px 10px, 10px 10px;
+  border: 1px solid rgba(135, 115, 95, 0.15);
+}
+
+/* 2. BACKEND: Thick leather manual, mahogany color, gold embossed border threads */
+.book-backend .book-front-cover {
+  background-color: #4a1c15;
+  background-image:
+    url("data:image/svg+xml;utf8,%3Csvg viewBox=%270 0 200 200%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cfilter id=%27noise%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.8%27 numOctaves=%274%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23noise)%27 opacity=%270.28%27/%3E%3C/svg%3E"),
+    radial-gradient(circle at center, #63281e 0%, #3a120c 100%);
+  background-blend-mode: multiply;
+  border: 1px solid #230805;
+  color: #ebd1bd;
+}
+
+.book-backend .book-front-cover::after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border: 1px solid rgba(235, 209, 189, 0.22);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.book-backend .book-title-header {
+  color: #ebd1bd;
+  border-bottom: 1px solid rgba(235, 209, 189, 0.18);
+}
+
+.book-backend .logo-name {
+  color: #ebd1bd;
+}
+
+/* 3. CLOUD & DEVOPS: Blueprint blue folder, blueprints grid, white technical diagrams */
+.book-cloud .book-front-cover {
+  background-color: #263c54;
+  background-image:
+    url("data:image/svg+xml;utf8,%3Csvg viewBox=%270 0 120 120%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cfilter id=%27noise%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.55%27 numOctaves=%274%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23noise)%27 opacity=%270.32%27/%3E%3C/svg%3E"),
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    radial-gradient(circle at center, #2e4a68 0%, #1c2b3d 100%);
+  background-size: auto, 12px 12px, 12px 12px, auto;
+  background-blend-mode: multiply;
+  border: 1px solid #14202d;
+  color: #c9e3f5;
+}
+
+.book-cloud .book-title-header {
+  color: #c9e3f5;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.book-cloud .logo-name {
+  color: #c9e3f5;
+}
+
+/* 4. DATABASE: Sage green ledger paper, cloth-bound tape spine, green ledger lines */
+.book-database .book-front-cover {
+  background-color: #556b56;
+  background-image:
+    url("data:image/svg+xml;utf8,%3Csvg viewBox=%270 0 150 150%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cfilter id=%27noise%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.55%27 numOctaves=%274%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23noise)%27 opacity=%270.32%27/%3E%3C/svg%3E"),
+    linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at center, #647d65 0%, #465947 100%);
+  background-size: auto, 100% 8px, auto;
+  background-blend-mode: multiply;
+  border: 1px solid #334234;
+  color: #e2ede2;
+}
+
+.book-database .book-title-header {
+  color: #e2ede2;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.book-database .logo-name {
+  color: #e2ede2;
+}
+
+/* 5. TOOLS: Charcoal grey carbon cardboard, corrugated Horizontal ribs */
+.book-tools .book-front-cover {
+  background-color: #6e6e6e;
+  background-image:
+    url("data:image/svg+xml;utf8,%3Csvg viewBox=%270 0 200 200%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cfilter id=%27noise%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.7%27 numOctaves=%274%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23noise)%27 opacity=%270.32%27/%3E%3C/svg%3E"),
+    radial-gradient(circle at center, #7d7d7d 0%, #525252 100%);
+  background-blend-mode: multiply;
+  border: 1px solid #3d3d3d;
+  color: #ededed;
+}
+
+.book-tools .book-title-header {
+  color: #ededed;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.book-tools .logo-name {
+  color: #ededed;
+}
+
+/* 6. CONCEPTS: Worn olive field notebook, hand-stitched borders */
+.book-concepts .book-front-cover {
+  background-color: #555d49;
+  background-image:
+    url("data:image/svg+xml;utf8,%3Csvg viewBox=%270 0 100 100%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cfilter id=%27noise%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.8%27 numOctaves=%273%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23noise)%27 opacity=%270.32%27/%3E%3C/svg%3E"),
+    radial-gradient(circle at center, #69735a 0%, #3e4435 100%);
+  background-blend-mode: multiply;
+  border: 1px solid #2e3328;
+  color: #e8e8e3;
+}
+
+.book-concepts .book-front-cover::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  border: 1px dashed rgba(232, 232, 227, 0.18);
+  pointer-events: none;
+}
+
+.book-concepts .book-title-header {
+  color: #e8e8e3;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.book-concepts .logo-name {
+  color: #e8e8e3;
+}
+
+.book-title-header {
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  color: var(--dark-ink);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  width: 100%;
+  text-align: center;
+  padding-bottom: 6px;
+  margin-bottom: 15px;
+}
+
+/* The three logos inside cover */
+.book-logos-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.book-logo-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-box {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.15));
+  transition: transform 0.2s ease;
+}
+
+.logo-box:hover {
+  transform: translateY(-2px) scale(1.1);
+}
+
+.skill-logo-svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.logo-name {
+  font-size: 0.65rem;
+  font-weight: bold;
+  color: var(--light-ink);
+  text-align: center;
+}
+
+.book-back-cover {
+  background: #3e3028;
+  transform: rotateY(180deg);
+  z-index: 5;
+}
+
+/* The lined paper hidden inside, revealed on flip */
+.book-inner-sheet {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: calc(100% - 2px);
+  height: calc(100% - 4px);
+  border-radius: 0 4px 4px 0;
+  padding: 15px 12px;
+  overflow-y: auto;
+  z-index: 2;
+  box-shadow: inset 5px 0 10px rgba(0, 0, 0, 0.08);
+}
+
+.sheet-title {
+  font-size: 0.7rem;
+  font-weight: bold;
+  color: var(--faded-graphite);
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  padding-bottom: 3px;
+}
+
+/* tech detail snippets inside books */
+.tech-snippets {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tech-snippet {
+  font-size: 1.35rem;
+  line-height: 1.1;
+  padding: 4px 8px;
+  border-radius: 2px;
+  display: inline-block;
+  width: max-content;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.05);
+  color: var(--dark-ink);
+}
+
+.snippet-tape {
+  background: rgba(246, 235, 206, 0.8);
+  border-left: 2px solid var(--vintage-gold);
+}
+
+.snippet-stamp {
+  border: 1px dashed var(--stamp-red);
+  color: var(--stamp-red);
+  padding: 2px 6px;
+}
+
+.snippet-paper {
+  background: #faf3eb;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.snippet-tape-blue {
+  background: rgba(180, 210, 225, 0.5);
+  border-left: 2px solid #5a7b96;
+}
+
+.snippet-stamp-dark {
+  border: 1px solid var(--dark-ink);
+  padding: 2px 6px;
+  color: var(--dark-ink);
+}
+
+.vintage-book.open {
+  z-index: 100;
+  box-shadow: 6px 15px 30px rgba(27, 18, 12, 0.45);
+  transform-style: flat !important;
+  -webkit-transform-style: flat !important;
+}
+
+.vintage-book.open:hover {
+  box-shadow: 6px 15px 35px rgba(27, 18, 12, 0.5);
+}
+
+/* Specific centering translations and 2.5x scaling for each book when opened */
+#book-fe.open,
+#book-fe.open:hover {
+  transform: translate(396px, 150px) scale(2.5) !important;
+  -webkit-transform: translate(396px, 150px) scale(2.5) !important;
+}
+
+#book-be.open,
+#book-be.open:hover {
+  transform: translate(198px, 150px) scale(2.5) !important;
+  -webkit-transform: translate(198px, 150px) scale(2.5) !important;
+}
+
+#book-cd.open,
+#book-cd.open:hover {
+  transform: translate(0px, 150px) scale(2.5) !important;
+  -webkit-transform: translate(0px, 150px) scale(2.5) !important;
+}
+
+#book-db.open,
+#book-db.open:hover {
+  transform: translate(396px, -60px) scale(2.5) !important;
+  -webkit-transform: translate(396px, -60px) scale(2.5) !important;
+}
+
+#book-tl.open,
+#book-tl.open:hover {
+  transform: translate(198px, -60px) scale(2.5) !important;
+  -webkit-transform: translate(198px, -60px) scale(2.5) !important;
+}
+
+#book-cp.open,
+#book-cp.open:hover {
+  transform: translate(0px, -60px) scale(2.5) !important;
+  -webkit-transform: translate(0px, -60px) scale(2.5) !important;
+}
+
+.vintage-book.open .book-container-3d {
+  transform: rotateY(-140deg);
+}
+
+/* Allow books to overflow sheet-paper when expanded 2.5x */
+.sheet-paper:has(.vintage-book.open),
+.sheet-paper.book-open-active,
+.sheet-paper.book-open-active .page-body-spread,
+.sheet-paper.book-open-active .page-side,
+.sheet-paper.book-open-active .notebook-archive-grid,
+.page-sheet:has(.book-open-active),
+.notebook-inner-pages:has(.book-open-active),
+.notebook:has(.book-open-active) {
+  overflow: visible !important;
+}
+
+/* Focus mode: fade out and disable hover on other books when one is open */
+.notebook-archive-grid:has(.vintage-book.open) .vintage-book:not(.open),
+.sheet-paper.book-open-active .vintage-book:not(.open) {
+  opacity: 0.35;
+  filter: blur(0.5px);
+  transition: opacity 0.4s ease, filter 0.4s ease;
+}
+
+
+/* Pinned card at bottom right */
+.skills-more-indicator {
+  position: absolute;
+  bottom: 20px;
+  right: 40px;
+  background: #fbf5e6;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 8px 24px;
+  box-shadow: var(--shadow-paper);
+  transform: rotate(-1.5deg);
+  border-radius: 2px;
+  z-index: 10;
+}
+
+.skills-more-indicator::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 25px;
+  width: 15px;
+  height: 10px;
+  background: rgba(210, 190, 160, 0.45);
+  transform: rotate(-5deg);
+}
+
+.more-indicator-text {
+  font-size: 1.65rem;
+  color: var(--dark-ink);
+}
+
+/* ==========================================================================
+   PAGE 4: PROJECTS PAGE (BLUEPRINTS & LEATHER PULL TABS)
+   ========================================================================== */
+.left-side-projects {
+  flex: 4;
+}
+
+.right-side-projects {
+  flex: 6;
+  padding-left: 10px;
+}
+
+.projects-title-container {
+  margin-bottom: 25px;
+}
+
+.projects-main-title {
+  font-size: 3.4rem;
+  line-height: 1;
+  color: var(--dark-ink);
+  margin-bottom: 10px;
+}
+
+.projects-sub {
+  font-family: var(--font-hand);
+  font-size: 1.55rem;
+  color: var(--dark-ink);
+}
+
+.watchtower-doodle-container {
+  width: 220px;
+  height: 350px;
+  color: var(--dark-ink);
+  opacity: 0.65;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  display: block;
+  mix-blend-mode: multiply;
+  filter: drop-shadow(0.5px 0.5px 1px rgba(0, 0, 0, 0.2)) contrast(1.05);
+}
+
+.watchtower-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.projects-list-side {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  overflow-y: auto;
+  padding-right: 15px;
+  justify-content: flex-start !important;
+  align-items: stretch !important;
+}
+
+.project-container-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+}
+
+.project-paper-card {
+  flex: 1;
+  background-color: #faf7f2;
+  background-image:
+    url("data:image/svg+xml;utf8,%3Csvg viewBox=%270 0 100 100%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cfilter id=%27cardNoise%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.6%27 numOctaves=%274%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23cardNoise)%27 opacity=%270.30%27/%3E%3C/svg%3E"),
+    linear-gradient(135deg, #fdfbfa 0%, #faf7f2 60%, #eedfcb 100%);
+  background-blend-mode: multiply;
+  border: 1px solid rgba(135, 115, 95, 0.15);
+  border-radius: 4px;
+  box-shadow: var(--shadow-paper);
+  padding: 20px;
+  z-index: 10;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-paper-card:hover {
+  transform: translateY(-3px) rotate(0.5deg);
+  box-shadow: 4px 8px 18px rgba(43, 33, 26, 0.18);
+}
+
+.project-paperclip {
+  position: absolute;
+  top: -15px;
+  right: 40px;
+  width: 18px;
+  height: 35px;
+  background: url('data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 20 40%22%3E%3Cpath d=%22M10,5 C13,5 15,7 15,10 L15,30 C15,34 11,37 7,35 C4,33 4,28 4,28 L4,12 C4,12 3,9 6,9 C9,9 9,12 9,12 L9,26 C9,26 9,28 7,28 C5,28 6,26 6,26 L6,14%22 fill=%22none%22 stroke=%22%238A7A69%22 stroke-width=%221.3%22/%3E%3C/svg%3E') no-repeat;
+  z-index: 12;
+  filter: drop-shadow(1.5px 2px 2.5px rgba(90, 74, 62, 0.48));
+  /* #5A4A3E shadow */
+}
+
+.project-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 8px;
+}
+
+.project-number {
+  font-size: 0.95rem;
+  color: var(--stamp-red);
+  border: 1px solid rgba(164, 62, 55, 0.3);
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
+.project-title {
+  font-size: 1.15rem;
+  color: var(--dark-ink);
+}
+
+.project-tagline {
+  font-size: 1.55rem;
+  font-family: var(--font-hand);
+  color: var(--dark-ink);
+  margin-bottom: 12px;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.project-tag-snippet {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  background: #f0e6dc;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 2px 8px;
+  color: var(--faded-graphite);
+}
+
+.project-actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.project-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 2px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-demo {
+  background: #5b7355;
+  color: #f7fbe5;
+}
+
+.btn-github {
+  background: #3e3028;
+  color: #ebd1bd;
+}
+
+.project-action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 2px 5px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-arrow,
+.btn-gh-logo {
+  width: 12px;
+  height: 12px;
+  fill: currentColor;
+}
+
+.project-desc {
+  font-family: var(--font-hand);
+  font-size: 1.45rem;
+  line-height: 1.3;
+  color: var(--dark-ink);
+  margin-bottom: 15px;
+  border-left: 2px solid rgba(85, 68, 57, 0.25);
+  padding-left: 10px;
+}
+
+.tech-stack-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tech-label {
+  font-size: 0.7rem;
+  color: var(--faded-graphite);
+}
+
+.tech-icons-list {
+  display: flex;
+  gap: 6px;
+}
+
+.mini-tech-icon {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  background: #eae1d7;
+  padding: 1px 6px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* SECRET BLUEPRINT PULL TAB SLIDER EFFECT */
+.pull-slider-wrapper {
+  position: absolute;
+  top: 15px;
+  right: -25px;
+  height: calc(100% - 30px);
+  width: 250px;
+  z-index: 5;
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  pointer-events: none;
+}
+
+.pull-tab {
+  width: 28px;
+  height: 80px;
+  background: #6a4b35;
+  border-radius: 0 4px 4px 0;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  pointer-events: auto;
+  margin-top: 30px;
+  border: 1px solid #4a3424;
+  border-left: none;
+  z-index: 10;
+}
+
+.pull-tab-text {
+  font-size: 0.5rem;
+  color: #ecd9cb;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  letter-spacing: 1px;
+}
+
+.slider-blueprint-content {
+  flex: 1;
+  background: #253b4c;
+  border: 1px solid #14212b;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+  padding: 12px;
+  color: #c9e3f5;
+  border-radius: 0 4px 4px 0;
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.4s ease;
+  cursor: zoom-in;
+}
+
+.pull-slider-wrapper.expanded {
+  transform: translateX(245px);
+  pointer-events: auto;
+}
+
+.pull-slider-wrapper.expanded .slider-blueprint-content {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.pull-slider-wrapper.expanded .pull-tab {
+  background: #3e3028;
+}
+
+.blueprint-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.blueprint-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 10px 10px;
+}
+
+.blueprint-title {
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: 4px;
+}
+
+.arch-sketch-svg {
+  width: 100%;
+  height: auto;
+  margin: 10px 0;
+  color: #a8d5f7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.zoom-label {
+  font-size: 1.1rem;
+  color: #8bbce1;
+  text-align: right;
+  display: block;
+}
+
+/* ==========================================================================
+   PAGE 5: JOURNEY PAGE (MILESTONES & PAPER AIRPLANES GLIDE)
+   ========================================================================== */
+.left-side-journey {
+  flex: 4;
+}
+
+.right-side-journey {
+  flex: 6;
+  padding-left: 10px;
+  position: relative;
+}
+
+.journey-header-block {
+  margin-bottom: 25px;
+}
+
+.journey-main-title {
+  font-size: 3.4rem;
+  line-height: 1;
+  color: var(--dark-ink);
+  margin-bottom: 10px;
+}
+
+.journey-sub {
+  font-family: var(--font-hand);
+  font-size: 1.55rem;
+  color: var(--dark-ink);
+}
+
+.taped-journey {
+  max-width: 220px;
+  margin-top: 15px;
+}
+
+.journey-polaroid-sketch {
+  width: 100%;
+  height: auto;
+}
+
+.milestone-timeline-side {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.flight-paths-svg-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5; /* Drawn behind milestone-cards (z-index: 10) so chits are layered on top of the trails */
+}
+
+.flight-paths-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.flight-trail {
+  stroke: #2e1d11 !important;
+  /* Extremely high contrast dark charcoal ink */
+  stroke-width: 2.2px !important;
+  /* Thin hand-drawn ink marker trail */
+  stroke-linecap: round;
+  opacity: 0.85 !important;
+  filter: drop-shadow(1px 1px 1px rgba(255, 255, 255, 0.45));
+  /* subtle paper indent glow */
+}
+
+.paper-airplane {
+  opacity: 0;
+  offset-path: path("M -5,229 C 20,229 60,280 90,280 C 130,280 185,70 235,70 C 285,70 330,320 380,320 C 420,320 460,80 500,80 C 560,80 525,285 635,175");
+  offset-rotate: auto;
+  transform: scale(2.2);
+  /* Scaled 2.2x to make it very visible */
+  z-index: 99;
+}
+
+/* Make the paper plane stand out with crisp dark ink outlines and bright cream fill */
+.paper-airplane polygon {
+  fill: #fffcf2 !important;
+  stroke: #1c0e05 !important;
+  stroke-width: 1.4px !important;
+}
+
+.paper-airplane line {
+  stroke: #1c0e05 !important;
+  stroke-width: 1.4px !important;
+}
+
+@keyframes flightGlide {
+  0% {
+    offset-distance: 0%;
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    offset-distance: 100%;
+    opacity: 0;
+  }
+}
+
+.milestones-wrapper {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  margin-top: 20px;
+}
+
+.milestone-card {
+  position: absolute;
+  background-color: #F4EDE1;
+  background-image:
+    /* 1. Uniform isotropic grain — no stripes, just natural paper texture */
+    url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='milestoneGrain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' seed='33' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.13'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23milestoneGrain)'/%3E%3C/svg%3E"),
+    /* 2. Light corner coffee stains and natural aging marks */
+    radial-gradient(ellipse 80px 60px at 8% 10%, rgba(120, 85, 50, 0.07) 0%, transparent 100%),
+    radial-gradient(ellipse 90px 70px at 92% 92%, rgba(120, 85, 50, 0.07) 0%, transparent 100%),
+    /* 3. Warm beige / aged ivory base */
+    radial-gradient(ellipse at 40% 35%, #FAF5EC 0%, #EFE8D9 100%);
+  background-blend-mode: overlay, normal, normal, normal;
+  border: 1px solid rgba(130, 110, 85, 0.35);
+  /* Delicate realistic outline instead of bold black ink */
+  padding: 16px 12px 12px 12px;
+  width: 180px;
+  box-shadow:
+    /* Soft ambient shadows showing paper thickness */
+    1px 2px 4px rgba(40, 30, 20, 0.12),
+    3px 6px 15px rgba(40, 30, 20, 0.18),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.65),
+    inset -1px -1px 1px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+  z-index: 10;
+}
+
+/* Subtle crinkle fold line across the paper chits */
+/* milestone-card::before removed — was rendering as a visible horizontal bar across each chit */
+
+.milestone-card:hover {
+  transform: scale(1.08) rotate(3deg) !important;
+  box-shadow: 6px 12px 22px rgba(43, 33, 26, 0.35);
+  z-index: 15;
+}
+
+#milestone-2024 {
+  transform: rotate(-3.5deg);
+  /* Clean rectangular silhouette with minor imperfections and corner damage */
+  clip-path: polygon(0.2% 0.5%, 99.8% 0.2%, 99.5% 99.3%, 0.5% 99.8%);
+}
+
+#milestone-2025 {
+  transform: rotate(2.8deg);
+  /* Clean rectangular silhouette with minor imperfections and corner damage */
+  clip-path: polygon(0.4% 0.1%, 99.6% 0.4%, 99.8% 99.5%, 0.2% 99.2%);
+}
+
+#milestone-2026 {
+  transform: rotate(-1.8deg);
+  /* Clean rectangular silhouette with minor imperfections and corner damage */
+  clip-path: polygon(0.1% 0.3%, 99.9% 0.1%, 99.3% 99.7%, 0.7% 99.4%);
+}
+
+.milestone-year {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: var(--stamp-red);
+  margin-bottom: 6px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding-bottom: 2px;
+}
+
+.milestone-text {
+  font-size: 1.45rem;
+  line-height: 1.15;
+  color: var(--dark-ink);
+  margin-bottom: 8px;
+}
+
+.milestone-sketch-icon {
+  font-size: 0.7rem;
+  color: var(--faded-graphite);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.inline-sketch-icon {
+  width: 12px;
+  height: 12px;
+  fill: currentColor;
+}
+
+.journey-footer {
+  text-align: center;
+  font-size: 1.75rem;
+  color: var(--dark-ink);
+  margin-top: 15px;
+  opacity: 0.85;
+}
+
+/* ==========================================================================
+   PAGE 6: ABOUT ME PAGE (COLLAGE & MOUNTAIN LANDSCAPES)
+   ========================================================================== */
+.left-side-about {
+  flex: 6.5;
+}
+
+.right-side-about {
+  flex: 4.5;
+  padding-left: 20px;
+}
+
+.about-title {
+  font-size: 3.4rem;
+  line-height: 1;
+  color: var(--dark-ink);
+  margin-bottom: 30px;
+}
+
+.sticky-collage {
+  position: relative;
+  width: 100%;
+  height: 480px;
+}
+
+.postit {
+  position: absolute;
+  padding: 16px;
+  box-shadow: 1px 1px 4px rgba(43, 33, 26, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  z-index: 10;
+}
+
+/* 3D curled corner postit shadow effects */
+.postit::before,
+.postit::after {
+  display: none !important;
+}
+
+.postit::before {
+  left: 6px;
+  transform: rotate(-4deg);
+}
+
+.postit::after {
+  right: 6px;
+  transform: rotate(4deg);
+}
+
+.postit:hover::before {
+  transform: rotate(-8deg) translateY(1px);
+  box-shadow: 0 12px 18px rgba(43, 33, 26, 0.45);
+}
+
+.postit:hover::after {
+  transform: rotate(8deg) translateY(1px);
+  box-shadow: 0 12px 18px rgba(43, 33, 26, 0.45);
+}
+
+.postit:hover {
+  transform: scale(1.05) rotate(0deg) !important;
+  box-shadow: 6px 12px 20px rgba(0, 0, 0, 0.2);
+  z-index: 15;
+}
+
+.postit-text {
+  font-family: var(--font-hand);
+  font-size: 1.3rem;
+  line-height: 1.3;
+  color: var(--dark-ink);
+}
+
+.postit-yellow {
+  background: #faf0c8;
+}
+
+.postit-kraft {
+  background: #ecdac5;
+}
+
+.postit-pink {
+  background: #ecdce3;
+}
+
+.postit-cream {
+  background: #faf4e9;
+}
+
+.postit-ripped-notebook {
+  background: #fafaf5;
+  background-image: linear-gradient(rgba(170, 137, 108, 0.08) 1px, transparent 1px);
+  background-size: 100% 20px;
+  border-top: 1px dashed rgba(0, 0, 0, 0.1);
+  border-bottom: 2px dashed rgba(0, 0, 0, 0.1);
+}
+
+.postit-ripped-notebook::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  background: repeating-linear-gradient(to bottom, #d23 0px, #d23 4px, transparent 4px, transparent 12px);
+  opacity: 0.15;
+}
+
+.post-solving {
+  width: 170px;
+  height: 160px;
+  top: 10px;
+  left: 10px;
+}
+ 
+.post-interfaces {
+  width: 190px;
+  height: 160px;
+  top: 15px;
+  left: 195px;
+}
+ 
+.post-coffee {
+  width: 170px;
+  height: 160px;
+  top: 8px;
+  left: 400px;
+  z-index: 11;
+}
+ 
+.post-consistency {
+  width: 210px;
+  height: 160px;
+  top: 195px;
+  left: 70px;
+}
+ 
+.post-reading {
+  width: 230px;
+  height: 160px;
+  top: 200px;
+  left: 300px;
+}
+
+/* Custom chipped paper chit (post-it note) style */
+.postit-wrapper {
+  position: absolute;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  filter: drop-shadow(2px 3px 5px rgba(43, 33, 26, 0.15)) drop-shadow(0 6px 10px rgba(43, 33, 26, 0.12));
+  z-index: 10;
+}
+
+.postit-wrapper:hover {
+  transform: scale(1.05) rotate(0deg) !important;
+  z-index: 15;
+  filter: drop-shadow(4px 8px 12px rgba(43, 33, 26, 0.22)) drop-shadow(0 10px 16px rgba(43, 33, 26, 0.15));
+}
+
+.postit-wrapper .postit {
+  position: relative;
+  top: auto;
+  left: auto;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  box-shadow: none !important;
+  border: 1px solid rgba(43, 33, 26, 0.08);
+  /* slightly stronger border for clipped edge clarity */
+}
+
+.postit-wrapper .postit::before,
+.postit-wrapper .postit::after {
+  display: none !important;
+  /* Hide old rectangular curled shadows to prevent mismatch */
+}
+
+.postit-wrapper .postit:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.postit-chipped {
+  /* Exactly 3 chipped paper cuts, random positions and random depths:
+     1. Top edge: x=31% with depth y=9%
+     2. Right edge: y=61.5% with depth x=91%
+     3. Bottom edge: x=72% with depth y=88%
+  */
+  clip-path: polygon(0% 0%,
+      28% 0%, 29.5% 2%, 31% 9%, 32% 3%, 33% 0%,
+      100% 0%,
+      100% 58%, 97% 60%, 91% 61.5%, 98% 63%, 100% 65%,
+      100% 100%,
+      76% 100%, 74% 97%, 72% 88%, 70% 98%, 68% 100%,
+      0% 100%);
+}
+
+.postit-doodle-lightbulb {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  width: 25px;
+  height: 25px;
+  background: url('data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M12 2c-3.87 0-7 3.13-7 7 0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.87-3.13-7-7-7zm2 15h-4v-1h4v1zm0-2h-4v-1h4v1zm-2-9c-1.65 0-3 1.35-3 3h1.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5c0 .83-.67 1.5-1.5 1.5V13h1v-1.74c1.54-.77 2.5-2.38 2.5-4.26 0-1.65-1.35-3-3-3z%22 fill=%22%23554439%22 opacity=%220.35%22/%3E%3C/svg%3E') no-repeat;
+}
+
+.postit-doodle-coffee {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  width: 25px;
+  height: 25px;
+  background: url('data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M2 21h18v-2H2v2zM20 8h-2V5h2v3zm2-5H2v14h16V8h4V3z%22 fill=%22%23554439%22 opacity=%220.35%22/%3E%3C/svg%3E') no-repeat;
+}
+
+.doodle-airplane-trail {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  width: 35px;
+  height: 25px;
+  background: url('data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 30%22%3E%3Cpath d=%22M 5,25 Q 12,10 18,18 T 32,8%22 fill=%22none%22 stroke=%22%23554439%22 stroke-width=%220.8%22 stroke-dasharray=%222 2%22 opacity=%220.35%22/%3E%3Cpolygon points=%2232,8 26,10 29,8 27,6%22 fill=%22none%22 stroke=%22%23554439%22 stroke-width=%220.8%22 opacity=%220.35%22/%3E%3C/svg%3E') no-repeat;
+}
+
+.postit-paperclip {
+  position: absolute;
+  top: -12px;
+  left: 40%;
+  width: 14px;
+  height: 28px;
+  background: url('data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 20 40%22%3E%3Cpath d=%22M10,5 C13,5 15,7 15,10 L15,30 C15,34 11,37 7,35 C4,33 4,28 4,28 L4,12 C4,12 3,9 6,9 C9,9 9,12 9,12 L9,26 C9,26 9,28 7,28 C5,28 6,26 6,26 L6,14%22 fill=%22none%22 stroke=%22%238A7A69%22 stroke-width=%221.3%22/%3E%3C/svg%3E') no-repeat;
+  z-index: 10;
+  filter: drop-shadow(1px 1.5px 2px rgba(90, 74, 62, 0.45));
+}
+
+.about-photos-side {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+}
+
+.taped-about {
+  max-width: 220px;
+}
+
+.sketch-card-taped {
+  background: #faf6ee;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 12px;
+  width: 200px;
+  box-shadow: var(--shadow-thick);
+  position: relative;
+}
+
+.landscape-sketch-svg {
+  width: 100%;
+  height: auto;
+}
+
+.tape-top-left-sketch {
+  position: absolute;
+  top: -12px;
+  left: -20px;
+  width: 70px;
+  height: 20px;
+  background: rgba(246, 235, 206, 0.45);
+  transform: rotate(-30deg);
+}
+
+.tape-bottom-right-sketch {
+  position: absolute;
+  bottom: -12px;
+  right: -20px;
+  width: 70px;
+  height: 20px;
+  background: rgba(246, 235, 206, 0.45);
+  transform: rotate(-30deg);
+}
+
+/* ==========================================================================
+   PAGE 7: CONTACT ENVELOPE & WAX SEAL
+   ========================================================================== */
+.left-side-contact {
+  flex: 4.5;
+}
+
+.right-side-contact {
+  flex: 5.5;
+  padding-left: 10px;
+  position: relative;
+}
+
+.contact-title-block {
+  margin-bottom: 25px;
+}
+
+.contact-main-title {
+  font-size: 3.4rem;
+  line-height: 1;
+  color: var(--dark-ink);
+  margin-bottom: 10px;
+}
+
+.contact-sub {
+  font-size: 1.55rem;
+  line-height: 1.35;
+  font-family: var(--font-hand);
+  color: var(--dark-ink);
+}
+
+.contact-sketch-container {
+  width: 100px;
+  height: 60px;
+  color: var(--dark-ink);
+  opacity: 0.12;
+  margin-bottom: 30px;
+}
+
+.doodle-contact-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.envelope-interactive-side {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.envelope-outer-container {
+  position: relative;
+  width: 320px;
+  height: 210px;
+  perspective: 1000px;
+  margin-top: -30px;
+}
+
+.envelope {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #c99b63;
+  background-image:
+    url("data:image/svg+xml;utf8,%3Csvg viewBox=%270 0 100 100%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cfilter id=%27noise%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.75%27 numOctaves=%274%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23noise)%27 opacity=%270.28%27/%3E%3C/svg%3E"),
+    linear-gradient(135deg, #c99b63 0%, #b38550 50%, #9c6e3b 100%);
+  background-blend-mode: multiply;
+  border-radius: 4px;
+  box-shadow: 12px 18px 38px rgba(27, 18, 12, 0.4);
+  cursor: pointer;
+  transform: rotate(-3.5deg) rotateX(8deg) rotateY(-5deg);
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s ease;
+}
+
+.envelope:hover {
+  transform: translateY(-8px) rotate(-1deg) rotateX(5deg) rotateY(-2deg);
+  box-shadow: 18px 28px 48px rgba(27, 18, 12, 0.5);
+}
+
+.envelope-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #8c5d35;
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(30, 15, 5, 0.7) 0%, rgba(15, 8, 2, 0.9) 100%),
+    url("data:image/svg+xml;utf8,%3Csvg viewBox=%270 0 100 100%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cfilter id=%27noise%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.75%27 numOctaves=%274%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23noise)%27 opacity=%270.35%27/%3E%3C/svg%3E");
+  background-blend-mode: multiply;
+  border-radius: 4px;
+  z-index: 1;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.8);
+}
+
+.envelope-left-wing {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #cf9e65;
+  background-image:
+    linear-gradient(to right, #cf9e65 0%, #a0723e 80%, #7d5224 100%),
+    radial-gradient(circle at 20% 30%, rgba(139, 90, 43, 0.15) 0%, transparent 60%),
+    url("data:image/svg+xml;utf8,%3Csvg viewBox=%270 0 100 100%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cfilter id=%27noise%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.85%27 numOctaves=%274%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23noise)%27 opacity=%270.3%27/%3E%3C/svg%3E");
+  background-blend-mode: multiply;
+  clip-path: polygon(0% 0%, 51% 50%, 0% 100%);
+  border: none;
+  z-index: 5;
+  filter: drop-shadow(3px 0 4px rgba(0, 0, 0, 0.22));
+}
+
+.envelope-right-wing {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #cf9e65;
+  background-image:
+    linear-gradient(to left, #cf9e65 0%, #a0723e 80%, #7d5224 100%),
+    radial-gradient(circle at 80% 60%, rgba(139, 90, 43, 0.15) 0%, transparent 60%),
+    url("data:image/svg+xml;utf8,%3Csvg viewBox=%270 0 100 100%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cfilter id=%27noise%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.85%27 numOctaves=%274%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23noise)%27 opacity=%270.3%27/%3E%3C/svg%3E");
+  background-blend-mode: multiply;
+  clip-path: polygon(100% 0%, 100% 100%, 49% 50%);
+  border: none;
+  z-index: 5;
+  filter: drop-shadow(-3px 0 4px rgba(0, 0, 0, 0.22));
+}
+
+.envelope-bottom-wing {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #c79760;
+  background-image:
+    linear-gradient(to top, #c79760 0%, #9e713e 75%, #764e22 100%),
+    radial-gradient(circle at 45% 80%, rgba(100, 50, 20, 0.12) 0%, transparent 50%),
+    url("data:image/svg+xml;utf8,%3Csvg viewBox=%270 0 100 100%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cfilter id=%27noise%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.85%27 numOctaves=%274%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23noise)%27 opacity=%270.3%27/%3E%3C/svg%3E");
+  background-blend-mode: multiply;
+  clip-path: polygon(0% 100%, 50% 49%, 100% 100%);
+  border: none;
+  z-index: 6;
+  filter: drop-shadow(0 -4px 6px rgba(27, 18, 12, 0.3));
+}
+
+.envelope-bottom-wing::after {
+  content: '';
+  position: absolute;
+  bottom: 15px;
+  left: 25px;
+  width: 55px;
+  height: 55px;
+  border: 1px dashed rgba(60, 40, 25, 0.22);
+  border-radius: 50%;
+  transform: rotate(-12deg);
+  pointer-events: none;
+  background-image: radial-gradient(circle, transparent 55%, rgba(60, 40, 25, 0.22) 57%, transparent 60%);
+  box-sizing: border-box;
+}
+
+.envelope-top-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #d6a76e;
+  background-image:
+    linear-gradient(to bottom, #d6a76e 0%, #b38550 75%, #855b2a 100%),
+    radial-gradient(circle at 50% 20%, rgba(139, 90, 43, 0.18) 0%, transparent 60%),
+    url("data:image/svg+xml;utf8,%3Csvg viewBox=%270 0 100 100%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cfilter id=%27noise%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.85%27 numOctaves=%274%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23noise)%27 opacity=%270.3%27/%3E%3C/svg%3E");
+  background-blend-mode: multiply;
+  clip-path: polygon(0% 0%, 100% 0%, 50% 51%);
+  border: none;
+  transform-origin: top center;
+  transition: transform 0.45s ease;
+  z-index: 7;
+  filter: drop-shadow(0 5px 7px rgba(27, 18, 12, 0.45));
+}
+
+.envelope.envelope-open .envelope-top-flap {
+  transform: rotateX(180deg);
+  z-index: 2;
+  filter: drop-shadow(0 -5px 7px rgba(27, 18, 12, 0.2));
+}
+
+.envelope-letter {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  width: calc(100% - 20px);
+  height: calc(100% - 10px);
+  background-color: #f7eedb;
+  background-image:
+    radial-gradient(circle at 80% 25%, rgba(139, 90, 43, 0.15) 0%, transparent 45%),
+    radial-gradient(circle at 20% 75%, rgba(139, 90, 43, 0.12) 0%, transparent 50%),
+    url("data:image/svg+xml;utf8,%3Csvg viewBox=%270 0 100 100%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cfilter id=%27noise%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.7%27 numOctaves=%274%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23noise)%27 opacity=%270.25%27/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at 50% 50%, #fbf8f0 0%, #f4e8cf 60%, #e6d3af 100%);
+  background-blend-mode: multiply;
+  padding: 18px;
+  clip-path: polygon(0% 2%, 3% 0%, 15% 1%, 28% 0%, 42% 1%, 56% 0%, 72% 1%, 86% 0%, 97% 1%, 100% 3%,
+      99% 15%, 100% 28%, 99% 42%, 100% 57%, 99% 73%, 100% 86%, 98% 97%, 96% 100%,
+      84% 99%, 71% 100%, 55% 99%, 41% 100%, 26% 99%, 12% 100%, 3% 98%, 0% 96%,
+      1% 84%, 0% 70%, 1% 55%, 0% 41%, 1% 27%, 0% 12%);
+  filter: drop-shadow(3px 4px 10px rgba(27, 18, 12, 0.45));
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 3;
+}
+
+.envelope-letter::before {
+  content: '1932';
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 38px;
+  height: 48px;
+  background: #eae0cd;
+  border: 1px dashed #b89c7c;
+  border-radius: 2px;
+  font-family: var(--font-stamp);
+  font-size: 0.6rem;
+  font-weight: bold;
+  color: #8a6b4e;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  transform: rotate(6deg);
+  z-index: 4;
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(138, 107, 78, 0.15) 0%, transparent 60%),
+    linear-gradient(to bottom, transparent 75%, rgba(138, 107, 78, 0.2) 75%);
+  padding: 2px;
+  text-align: center;
+  line-height: 1;
+}
+
+.letter-paper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-left: 15px;
+  background: transparent !important;
+  border: none;
+  position: relative;
+}
+
+.letter-paper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: repeating-linear-gradient(transparent 0px,
+      transparent 23px,
+      rgba(90, 120, 160, 0.12) 23px,
+      rgba(90, 120, 160, 0.12) 24px);
+  background-size: 100% 24px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.letter-paper::after {
+  content: '';
+  position: absolute;
+  left: 30px;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: rgba(166, 66, 59, 0.25) !important;
+  border-right: 1px solid rgba(166, 66, 59, 0.08) !important;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.letter-label {
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  color: #8c7255;
+  margin-bottom: 6px;
+  border-bottom: 1px dashed rgba(140, 114, 85, 0.2) !important;
+  padding-bottom: 2px;
+  z-index: 2;
+}
+
+.letter-email-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  z-index: 2;
+  transform: rotate(-1deg);
+}
+
+.letter-mail-icon {
+  width: 15px;
+  height: 15px;
+  fill: #a83f39;
+}
+
+.letter-email {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #a83f39;
+  text-decoration: underline;
+  word-break: break-all;
+  font-family: var(--font-mono);
+}
+
+.letter-message {
+  font-family: var(--font-hand);
+  font-size: 1.65rem;
+  line-height: 1.3;
+  color: var(--dark-ink);
+  margin-top: 10px;
+  z-index: 2;
+  transform: rotate(1deg);
+}
+
+.wax-seal {
+  position: absolute;
+  top: calc(50% - 30px);
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 60px;
+  background-color: #cc3b32;
+  background-image:
+    url("data:image/svg+xml;utf8,%3Csvg viewBox=%270 0 100 100%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cfilter id=%27waxNoise%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.6%27 numOctaves=%274%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23waxNoise)%27 opacity=%270.32%27/%3E%3C/svg%3E"),
+    radial-gradient(circle at 35% 35%, #f65349 0%, #b81f18 45%, #760904 85%, #420200 100%);
+  background-blend-mode: multiply;
+  clip-path: polygon(35% 2%, 52% 4%, 68% 1%, 82% 10%, 93% 21%, 98% 38%, 95% 55%, 98% 72%, 87% 88%, 70% 98%, 52% 95%, 34% 99%, 17% 93%, 4% 81%, 1% 63%, 6% 46%, 2% 29%, 14% 14%, 25% 9%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 15;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+  transform: rotate(-5deg);
+  filter: drop-shadow(3px 5px 8px rgba(35, 12, 5, 0.65));
+}
+
+.wax-seal::before {
+  display: none;
+}
+
+.wax-seal::after {
+  content: '';
+  position: absolute;
+  width: 72%;
+  height: 72%;
+  border-radius: 48% 52% 47% 53% / 51% 49% 52% 48%;
+  box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.65), inset -2px -2px 4px rgba(255, 255, 255, 0.2), 1px 1px 2px rgba(255, 255, 255, 0.15);
+  background: radial-gradient(circle at 35% 35%, #a61c15 0%, #760904 70%, #420200 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.wax-seal-text {
+  font-family: var(--font-stamp);
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #380200;
+  text-shadow: -1px -1px 0px rgba(0, 0, 0, 0.4), 1px 1px 1px rgba(255, 255, 255, 0.2);
+  letter-spacing: 1px;
+  opacity: 0.9;
+  z-index: 2;
+}
+
+.stamp-open-me {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  font-size: 0.75rem;
+  border: 1px dashed rgba(85, 68, 57, 0.4);
+  padding: 2px 6px;
+  color: rgba(85, 68, 57, 0.5);
+  transform: rotate(5deg);
+  z-index: 10;
+}
+
+.sticky-ideas-note {
+  position: absolute;
+  bottom: 35px;
+  right: 80px;
+  width: 195px;
+  /* Spacious width to fully contain Caveat font text */
+  background: #faf4e9;
+  z-index: 11;
+  box-shadow: var(--shadow-paper);
+  padding: 14px 20px;
+}
+
+.sticky-ideas-note .pinned-note-text {
+  font-size: 1.55rem;
+  line-height: 1.2;
+  text-align: center;
+  /* Center-align for perfect layout balance */
+  word-break: keep-all;
+  white-space: nowrap;
+  /* Prevent any wrapping inside card */
+}
+
+.sticky-ideas-note::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 38%;
+  width: 32px;
+  height: 12px;
+  background: rgba(220, 200, 160, 0.45);
+  transform: rotate(-12deg);
+}
+
+.coffee-cup-container {
+  position: absolute;
+  bottom: 25px;
+  right: 15px;
+  width: 115px;
+  height: 115px;
+  z-index: 15;
+  pointer-events: auto;
+  /* Enable mouse hover */
+  cursor: pointer;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.coffee-cup-coaster {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #bca590;
+  background-image:
+    url("data:image/svg+xml;utf8,%3Csvg viewBox=%270 0 100 100%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cfilter id=%27corkNoise%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.8%27 numOctaves=%273%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23corkNoise)%27 opacity=%270.30%27/%3E%3C/svg%3E"),
+    radial-gradient(circle, #e4d7c8 40%, #bca590 75%, #765e49 100%);
+  background-blend-mode: multiply;
+  border-radius: 50%;
+  box-shadow: 3px 5px 12px rgba(27, 18, 12, 0.45);
+  border: 1px dashed rgba(62, 38, 23, 0.25);
+  transform: rotateX(38deg) rotateY(-8deg);
+  /* Perfect isometric tilt */
+}
+
+.coffee-cup {
+  position: absolute;
+  top: 7%;
+  left: 7%;
+  width: 86%;
+  height: 86%;
+  background: radial-gradient(circle at 35% 35%, #fcf7ec 0%, #eddcb9 60%, #c8b594 100%);
+  border-radius: 50%;
+  /* 3D Extrusion using layered vertical shadows, projecting a solid speckled cream cylinder downwards */
+  box-shadow:
+    0 1px 0 #eddcb9,
+    0 2px 0 #e4d3af,
+    0 3px 0 #d9c8a5,
+    0 4px 0 #cebe9a,
+    0 5px 0 #c4b490,
+    0 6px 0 #b9a986,
+    0 7px 0 #ae9f7c,
+    0 8px 0 #a49572,
+    0 9px 0 #998a68,
+    0 10px 0 #8f805e,
+    0 12px 20px rgba(27, 18, 12, 0.42),
+    /* Tabletop drop-shadow */
+    inset -3px -4px 8px rgba(35, 20, 10, 0.15),
+    /* Inner shadow */
+    inset 3px 3px 6px rgba(255, 255, 255, 0.5);
+  /* Outer ceramic rim highlight */
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 8%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+  transform: rotateX(38deg) rotateY(-8deg) translateZ(4px);
+  /* Locked perspective: shadows and body remain completely locked downwards */
+}
+
+.coffee-cup-rotator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  pointer-events: none;
+  /* Mouseover handled by container */
+}
+
+.coffee-cup-handle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  z-index: -1;
+  /* Behind the main cup body */
+}
+
+.coffee-cup-handle::after {
+  content: '';
+  position: absolute;
+  right: -19px;
+  top: calc(50% - 18px);
+  width: 26px;
+  height: 38px;
+  background: transparent;
+  border: 6.5px solid #eddcb9;
+  /* Matching speckled cream handle */
+  border-left-color: transparent;
+  border-radius: 50% 12px 12px 50%;
+  /* Extruded shadows for handle body matching beige clay */
+  box-shadow:
+    0 2px 0 #d9c8a5,
+    0 4px 0 #ae9f7c,
+    3px 3px 6px rgba(0, 0, 0, 0.22);
+  transform: none;
+  box-sizing: border-box;
+}
+
+@keyframes coffeeSwirl {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes coffeeSteam {
+  0% {
+    transform: translateY(0) scale(0.9) rotate(0deg);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.18;
+  }
+
+  100% {
+    transform: translateY(-16px) scale(1.2) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+.coffee-liquid {
+  position: absolute;
+  top: 8%;
+  left: 8%;
+  width: 84%;
+  height: 84%;
+  /* Golden crema-rimmed radial matching reference photo */
+  background: radial-gradient(circle at 45% 45%, #160a04 0%, #2a1106 35%, #4e220e 70%, #b27a48 93%, #ebd4bb 100%);
+  border-radius: 50%;
+  box-shadow: inset 1px 2px 6px rgba(0, 0, 0, 0.65);
+  overflow: hidden;
+  animation: coffeeSwirl 18s linear infinite;
+  transform: translateZ(2px);
+}
+
+.coffee-liquid::before {
+  content: '';
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  width: 70%;
+  height: 70%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.06) 0%, transparent 60%);
+  border-radius: 50%;
+  filter: blur(4px);
+  animation: coffeeSteam 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.coffee-bubble {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 50%;
+  border: 0.5px solid rgba(255, 255, 255, 0.08);
+}
+
+.cb-1 {
+  width: 5px;
+  height: 5px;
+  top: 30%;
+  left: 40%;
+}
+
+.cb-2 {
+  width: 3px;
+  height: 3px;
+  top: 25%;
+  left: 46%;
+}
+
+.dried-flower-lay {
+  position: absolute;
+  bottom: 0px;
+  right: 120px;
+  width: 80px;
+  height: 70px;
+  opacity: 0.38;
+  /* Slightly more visible to showcase the beautiful organic details */
+  /* Dry organic plant texture: Stem Brown #6B4A2D and Dry Petal Beige #B6916A */
+  background: url('data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 70%22%3E%3Cpath d=%22M10,65 Q35,40 55,10 M35,40 Q25,35 15,38 M45,26 Q55,22 65,28 M20,53 Q35,50 40,55%22 fill=%22none%22 stroke=%22%236B4A2D%22 stroke-width=%220.8%22/%3E%3Ccircle cx=%2215%22 cy=%2238%22 r=%221.5%22 fill=%22%23B6916A%22/%3E%3Ccircle cx=%2265%22 cy=%2228%22 r=%221.5%22 fill=%22%23B6916A%22/%3E%3Ccircle cx=%2240%22 cy=%2255%22 r=%221.5%22 fill=%22%23B6916A%22/%3E%3C/svg%3E') no-repeat;
+  pointer-events: none;
+  transform: rotate(-10deg);
+}
+
+/* ==========================================================================
+   ZOOM LIGHTBOX MODAL OVERLAY
+   ========================================================================== */
+.lightbox-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(19, 10, 5, 0.85);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s;
+}
+
+.lightbox-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-content-card {
+  width: 750px;
+  height: 520px;
+  background: #253b4c;
+  border-radius: 6px;
+  padding: 30px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #c9e3f5;
+  border: 1px solid #14212b;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.lightbox-close:hover {
+  background: var(--stamp-red);
+}
+
+.lightbox-title {
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: 8px;
+}
+
+.lightbox-blueprint-body {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.lightbox-blueprint-body .arch-sketch-svg {
+  width: 75%;
+  height: auto;
+  max-height: 350px;
+  color: #a8d5f7;
+}
+
+.lightbox-caption {
+  font-size: 0.7rem;
+  color: #8bbce1;
+  text-align: center;
+}
+
+/* ==========================================================================
+   BOTANICAL DECORATION ACCENTS (TORN PAPERS / BRANCHES / PRESSED LEAVES)
+   ========================================================================== */
+.botanical-decoration {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.22;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.botanical-intro-left {
+  bottom: 20px;
+  left: 20px;
+  width: 60px;
+  height: 120px;
+  background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 60 120%22%3E%3Cpath d=%22M30,110 Q30,50 35,10 M35,10 C25,20 15,30 20,38 Q25,45 34,42 M35,42 C45,45 50,55 45,62 Q40,68 34,60%22 fill=%22none%22 stroke=%22%233e3028%22 stroke-width=%220.8%22/%3E%3C/svg%3E');
+}
+
+.botanical-projects-left {
+  bottom: 10px;
+  left: 10px;
+  width: 100px;
+  height: 120px;
+  background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 120%22%3E%3Cpath d=%22M50,110 C45,70 30,50 15,30 M15,30 C5,35 0,45 5,52 Q12,60 22,46 M50,110 C55,80 70,60 85,40 M85,40 C95,45 100,55 95,62 Q88,70 78,56%22 fill=%22none%22 stroke=%22%235b7355%22 stroke-width=%221.2%22/%3E%3C/svg%3E');
+  opacity: 0.28;
+}
+
+.botanical-journey-left {
+  bottom: 15px;
+  left: 20px;
+  width: 80px;
+  height: 90px;
+  background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 90%22%3E%3Cpath d=%22M40,80 Q40,40 50,10 M50,10 C40,25 35,30 38,35 Q40,40 45,30%22 fill=%22none%22 stroke=%22%233e3028%22 stroke-width=%220.8%22/%3E%3C/svg%3E');
+}
+
+.botanical-about-right {
+  bottom: 10px;
+  right: 15px;
+  width: 90px;
+  height: 90px;
+  background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 90 90%22%3E%3Cpath d=%22M45,80 Q35,40 25,10 M25,10 Q15,20 10,25 M45,80 Q55,45 65,15 M65,15 Q75,25 80,30%22 fill=%22none%22 stroke=%22%233e3028%22 stroke-width=%220.8%22/%3E%3C/svg%3E');
+}
+
+.botanical-contact-left {
+  bottom: 25px;
+  left: 25px;
+  width: 70px;
+  height: 100px;
+  background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 70 100%22%3E%3Cpath d=%22M35,90 Q30,50 40,10 M40,10 Q25,25 22,30%22 fill=%22none%22 stroke=%22%233e3028%22 stroke-width=%220.8%22/%3E%3C/svg%3E');
+}
+
+.paperclip-corner {
+  position: absolute;
+  top: -12px;
+  left: 45px;
+  width: 22px;
+  height: 45px;
+  background: url('data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 20 40%22%3E%3Cpath d=%22M10,5 C13,5 15,7 15,10 L15,30 C15,34 11,37 7,35 C4,33 4,28 4,28 L4,12 C4,12 3,9 6,9 C9,9 9,12 9,12 L9,26 C9,26 9,28 7,28 C5,28 6,26 6,26 L6,14%22 fill=%22none%22 stroke=%22%238A7A69%22 stroke-width=%221.3%22/%3E%3C/svg%3E') no-repeat;
+  z-index: 10;
+  transform: rotate(-10deg);
+  filter: drop-shadow(1px 2px 2px rgba(90, 74, 62, 0.45));
+}
+
+/* ==========================================================================
+   RESPONSIVENESS (MOBILE & TABLET ADAPTATION LAYOUTS)
+   ========================================================================== */
+
+/* Custom robust scaling for medium screens / laptops to prevent clipping tabs or edges */
+@media (max-width: 1250px) or (max-height: 830px) {
+  .notebook-wrapper {
+    transform: scale(calc(min(96vw / 1200, 92vh / 750))) !important;
+    transform-origin: center center;
+    width: 1200px !important;
+    height: 750px !important;
+  }
+}
+
+@media (max-width: 1220px) {
+  .drawing-bridge-intro {
+    display: none;
+  }
+}
+
+@media (max-width: 992px) {
+  .page-body-spread {
+    flex-direction: column;
+    overflow-y: auto;
+    gap: 40px;
+    padding-bottom: 40px;
+  }
+
+  .left-side,
+  .right-side,
+  .left-side-skills,
+  .right-side-skills,
+  .left-side-projects,
+  .right-side-projects,
+  .left-side-journey,
+  .right-side-journey,
+  .left-side-about,
+  .right-side-about,
+  .left-side-contact,
+  .right-side-contact {
+    flex: none !important;
+    width: 100% !important;
+  }
+
+  .notebook.closed {
+    transform: translateX(0);
+  }
+
+  .intro-polaroid-side {
+    padding-left: 0;
+    align-items: center;
+  }
+
+  .notebook-archive-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .pull-slider-wrapper.expanded {
+    transform: translateX(0);
+    position: relative;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 150px;
+    margin-top: 15px;
+  }
+
+  .pull-tab {
+    display: none;
+  }
+
+  .slider-blueprint-content {
+    border-radius: 4px;
+    transform: none !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  .milestones-wrapper {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    margin-top: 40px;
+  }
+
+  .milestone-card {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 80% !important;
+    max-width: 320px;
+    transform: none !important;
+  }
+
+  .flight-paths-svg-container {
+    display: none;
+  }
+
+  .envelope-outer-container {
+    margin-top: 20px;
+  }
+
+  .coffee-cup-container,
+  .dried-flower-lay {
+    position: relative !important;
+    bottom: auto !important;
+    right: auto !important;
+    margin: 20px auto 0 auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .desk {
+    padding: 10px;
+  }
+
+  .notebook-wrapper {
+    height: 98vh;
+    width: 100%;
+  }
+
+  .notebook-cover {
+    display: none;
+  }
+
+  .notebook.closed {
+    transform: none;
+  }
+
+  .sheet-paper {
+    padding: 20px 15px 20px 45px;
+  }
+
+  .notebook-tabs {
+    left: 45px;
+    width: calc(100% - 60px);
+    gap: 4px;
+    top: -30px;
+  }
+
+  .tab-paper {
+    padding: 6px 8px 10px 8px;
+    font-size: 0.65rem;
+    gap: 3px;
+  }
+
+  .tab-icon {
+    display: none;
+  }
+
+  .intro-name {
+    font-size: 2.4rem;
+  }
+
+  .intro-body {
+    font-size: 1.15rem;
+  }
+
+  .social-buttons-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .polaroid .photo-container {
+    width: 180px;
+    height: 180px;
+  }
+
+  .skills-main-title {
+    font-size: 2.2rem;
+  }
+
+  .notebook-archive-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .sticky-collage {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .postit,
+  .postit-wrapper {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    transform: none !important;
+  }
+
+  .envelope-outer-container {
+    width: 100%;
+    height: 180px;
+  }
+
+  .envelope-letter {
+    padding: 10px;
+  }
+
+  .letter-email {
+    font-size: 0.75rem;
+  }
+
+  .letter-message {
+    font-size: 1.25rem;
+  }
+
+  .wax-seal {
+    width: 50px;
+    height: 50px;
+    top: calc(50% - 25px);
+    left: calc(50% - 25px);
+  }
+
+  .lightbox-content-card {
+    width: 92%;
+    height: auto;
+    max-height: 90vh;
+    padding: 15px;
+  }
+
+  .lightbox-blueprint-body .arch-sketch-svg {
+    width: 95%;
+  }
+}
+
+/* ==========================================================================
+   COVER-ONLY LANDING MODE
+   ========================================================================== */
+
+/* When the notebook is in cover-only mode, cover page fills entire area */
+.notebook-inner-pages.cover-mode #page-cover {
+  cursor: pointer;
+}
+
+/* Pulsing "click to open" hint at bottom of cover page */
+.cover-open-hint {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  color: var(--faded-graphite);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 200;
+  white-space: nowrap;
+  animation: hintPulse 2.5s ease-in-out infinite;
+  animation-delay: 1.2s;
+}
+
+.cover-open-hint::before {
+  content: '▲';
+  display: block;
+  text-align: center;
+  font-size: 0.6rem;
+  margin-bottom: 4px;
+  animation: hintBounce 2.5s ease-in-out infinite;
+  animation-delay: 1.2s;
+}
+
+@keyframes hintPulse {
+
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  40%,
+  60% {
+    opacity: 0.55;
+  }
+}
+
+@keyframes hintBounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Cover page has a subtle inviting glow when in landing mode */
+.cover-mode #page-cover.active {
+  box-shadow: 0 0 0 0 rgba(185, 140, 60, 0);
+  animation: coverPulseGlow 3s ease-in-out infinite;
+  animation-delay: 0.8s;
+}
+
+@keyframes coverPulseGlow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(185, 140, 60, 0);
+  }
+
+  50% {
+    box-shadow: 0 0 25px 4px rgba(185, 140, 60, 0.08);
+  }
+}
+
+/* Cover page flips out with a cinematic page-turn */
+.cover-flip-out {
+  animation: coverFlipOut 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
+}
+
+@keyframes coverFlipOut {
+  0% {
+    opacity: 1;
+    transform: translateX(0) rotate(0deg) scale(1);
+  }
+
+  40% {
+    opacity: 0.8;
+    transform: translateX(-30px) rotate(-1.5deg) scale(0.99);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(-80px) rotate(-3deg) scale(0.97);
+  }
+}
+
+/* Intro page enters with a soft page-settle after cover flips away */
+.intro-settle-in {
+  animation: introSettleIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards !important;
+}
+
+@keyframes introSettleIn {
+  0% {
+    opacity: 0;
+    transform: translateX(60px) rotate(2deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0) rotate(0deg);
+  }
+}
+
+
+/* ==========================================================================
+   FULL-SCREEN COVER OVERLAY
+   ========================================================================== */
+
+/* The full-screen cover — 100vw × 100vh, above everything */
+.cover-fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 97vw;
+  height: 100vh;
+  z-index: 99999;
+  cursor: pointer;
+  overflow: hidden;
+
+  /* Same deeply aged kraft paper as the notebook cover */
+  background-color: #a8844e;
+  background-image:
+    repeating-linear-gradient(-30deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(60, 35, 10, 0.07) 2px,
+      rgba(60, 35, 10, 0.07) 3px),
+    repeating-linear-gradient(30deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(40, 20, 5, 0.05) 2px,
+      rgba(40, 20, 5, 0.05) 3px),
+    repeating-linear-gradient(90deg,
+      transparent 0px,
+      transparent 3px,
+      rgba(30, 15, 5, 0.04) 3px,
+      rgba(30, 15, 5, 0.04) 4px),
+    radial-gradient(ellipse at 40% 35%, #d4a86a 0%, #b88040 35%, #8a5820 65%, #6a3e10 100%);
+
+  /* Depth shadows: heavy inset vignette like real cardboard */
+  box-shadow:
+    inset 0 0 120px rgba(15, 7, 2, 0.6),
+    inset 60px 0 100px rgba(10, 5, 2, 0.35),
+    inset -30px 0 60px rgba(200, 160, 80, 0.08);
+
+  /* Grain overlay via pseudo-element */
+  transform-origin: left center;
+  transition: opacity 0.3s ease;
+  will-change: transform, opacity;
+}
+
+/* Grain texture on full-screen cover */
+.cover-fullscreen::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.55;
+  background-image:
+    url("data:image/svg+xml;utf8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 300 300%27%3E%3Cfilter id=%27g%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.55%27 numOctaves=%275%27 stitchTiles=%27stitch%27/%3E%3CfeColorMatrix type=%27saturate%27 values=%270%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23g)%27 opacity=%271%27/%3E%3C/svg%3E");
+  background-size: 280px 280px;
+  mix-blend-mode: multiply;
+}
+
+/* Bottom-edge worn stitching / border line */
+.cover-fullscreen::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  border: 1px dashed rgba(200, 160, 90, 0.12);
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Cover content area — fills available space between spine and band */
+.cfs-content {
+  position: absolute;
+  top: 0;
+  left: 60px;
+  /* spine width */
+  right: 20px;
+  /* elastic band width */
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  align-items: stretch;
+}
+
+/* Pull the .cover-exterior inside full-screen to fill height */
+.cfs-content .cover-exterior {
+  position: relative !important;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+  padding: 5vh 6vw;
+}
+
+/* Scale up the title and content proportionally for full-screen */
+.cfs-content .main-title {
+  font-size: clamp(4rem, 9vw, 8rem);
+  line-height: 0.85;
+}
+
+.cfs-content .personal-archive-header {
+  font-size: clamp(1.4rem, 2.5vw, 2.4rem);
+}
+
+.cfs-content .polaroid .photo-container {
+  width: clamp(280px, 28vw, 460px);
+  height: clamp(280px, 28vw, 460px);
+}
+
+.cfs-content .polaroid-caption {
+  font-size: clamp(1.6rem, 2.2vw, 2.4rem);
+}
+
+.cfs-content .interest-icon {
+  width: clamp(28px, 2.5vw, 42px);
+  height: clamp(28px, 2.5vw, 42px);
+}
+
+.cfs-content .interest-item span {
+  font-size: clamp(1.1rem, 1.5vw, 1.6rem);
+}
+
+.cfs-content .sub-title-badge {
+  font-size: clamp(0.85rem, 1.1vw, 1.1rem);
+  padding: 6px 22px;
+}
+
+.cfs-content .stamp-choice {
+  font-size: clamp(1rem, 1.5vw, 1.6rem);
+}
+
+.cfs-content .coffee-stain-large {
+  width: clamp(160px, 18vw, 300px);
+  height: clamp(160px, 18vw, 300px);
+}
+
+/* Spiral binding — left side of full-screen cover */
+.cfs-spine {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 60px;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none;
+  background-color: #1D140F;
+  /* Main Spiral Color */
+  background-image:
+    /* Spiral ring bumps */
+    repeating-radial-gradient(ellipse at 30px center,
+      transparent 0px,
+      transparent 14px,
+      #0a0603 14px,
+      #1D140F 17px,
+      #4A3A31 20px,
+      #1D140F 23px,
+      transparent 23px,
+      transparent 42px),
+    /* Vertical spine depth using spiral binder colors */
+    linear-gradient(to right, #0a0604 0%, #4A3A31 40%, #1D140F 70%, #0a0604 100%);
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.6), inset -4px 0 8px rgba(255, 200, 100, 0.04);
+}
+
+/* Spiral wire highlight */
+.cfs-spine::before {
+  content: '';
+  position: absolute;
+  left: 18px;
+  top: 0;
+  width: 8px;
+  height: 100%;
+  background-image: repeating-linear-gradient(to bottom,
+      transparent 0px,
+      transparent 16px,
+      rgba(255, 200, 80, 0.18) 16px,
+      rgba(255, 200, 80, 0.08) 20px,
+      transparent 22px,
+      transparent 42px);
+}
+
+/* Elastic band — right side of full-screen cover */
+.cfs-band {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 20px;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none;
+  background-color: #1a1a1a;
+  /* Premium vertical-ribbed elastic fabric weave and volumetric lighting gradient */
+  background-image:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0px, rgba(255, 255, 255, 0.03) 1px, transparent 1px, transparent 4px),
+    repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.18) 0px, rgba(0, 0, 0, 0.18) 1.5px, transparent 1.5px, transparent 3px),
+    repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.02) 0px, rgba(255, 255, 255, 0.02) 1.5px, transparent 1.5px, transparent 3px),
+    linear-gradient(to right, #080808 0%, #2b2b2b 25%, #404040 50%, #1e1e1e 75%, #050505 100%);
+  background-blend-mode: normal, overlay, overlay, normal;
+  box-shadow:
+    -5px 0 20px rgba(10, 4, 1, 0.72),
+    inset 4px 0 10px rgba(0, 0, 0, 0.7),
+    inset -2.5px 0 3px rgba(255, 255, 255, 0.05);
+}
+
+/* "CLICK TO OPEN" pulsing hint at the bottom */
+.cfs-hint {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.72rem;
+  letter-spacing: 3px;
+  color: rgba(200, 160, 90, 0.7);
+  pointer-events: none;
+  z-index: 20;
+  white-space: nowrap;
+  animation: cfsPulse 2.8s ease-in-out infinite;
+  animation-delay: 1.5s;
+  opacity: 0;
+}
+
+.cfs-hint::before {
+  content: '▲';
+  display: block;
+  text-align: center;
+  font-size: 0.55rem;
+  margin-bottom: 5px;
+  animation: cfsBounce 2.8s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+
+@keyframes cfsPulse {
+
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  35%,
+  65% {
+    opacity: 1;
+  }
+}
+
+@keyframes cfsBounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+/* Cinematic sweep-out animation when cover is clicked */
+.cover-fullscreen.cfs-opening {
+  animation: cfsOpen 0.75s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+@keyframes cfsOpen {
+  0% {
+    transform: translateX(0) scaleX(1);
+    opacity: 1;
+  }
+
+  30% {
+    transform: translateX(-3%) scaleX(0.98);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(-100%) scaleX(0.96);
+    opacity: 0.6;
+  }
+}
+
+/* Desk fades in as cover sweeps out */
+.desk.desk-reveal {
+  animation: deskReveal 0.55s ease 0.3s forwards;
+}
+
+@keyframes deskReveal {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   BULLETPROOF SHADOW TRANSPARENCY RESET FOR STICKY CHITS & PINNED NOTES
+   ========================================================================== */
+.pinned-note::before,
+.pinned-note::after,
+.postit::before,
+.postit::after,
+.current-focus-note::before,
+.current-focus-note::after,
+.sticky-learning-note::before,
+.sticky-learning-note::after,
+.sticky-ideas-note::before,
+.sticky-ideas-note::after,
+#page-intro .current-focus-note::before,
+#page-intro .current-focus-note::after,
+#page-intro .pinned-note::before,
+#page-intro .pinned-note::after,
+#page-skills .pinned-note::before,
+#page-skills .pinned-note::after,
+#page-about .postit::before,
+#page-about .postit::after,
+#page-contact .pinned-note::before,
+#page-contact .pinned-note::after {
+  display: none !important;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN FOR PORTABLES (TABLET & PHONE)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  /* Reset desk wrapper styling */
+  .desk {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+    perspective: none;
+    padding: 20px 10px;
+    background-attachment: scroll;
+    display: block;
+  }
+
+  /* Hide physical props on smaller viewports to save space */
+  .desk-prop.fountain-pen,
+  .desk-prop.ink-bottle {
+    display: none !important;
+  }
+
+  /* Responsive notebook wrapper */
+  .notebook-wrapper {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    transform: none !important;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  /* Responsive physical notebook container */
+  .notebook {
+    height: auto;
+    min-height: 100vh;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    background-image: radial-gradient(ellipse at center, #6a4025 0%, #3d2314 100%);
+    overflow: visible;
+  }
+
+  .notebook::after {
+    border-radius: 6px;
+  }
+
+  .notebook.closed {
+    transform: none;
+  }
+
+  /* Responsive cover fullscreen overlay (before clicking open) */
+  .cover-fullscreen {
+    padding: 20px 10px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  .cfs-content {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+  }
+
+  .cover-exterior {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 500px;
+    padding: 30px 20px !important;
+    flex-direction: column !important;
+    clip-path: none !important;
+    gap: 30px;
+  }
+
+  .cover-content {
+    flex-direction: column !important;
+    gap: 30px !important;
+  }
+
+  .cover-left, .cover-right {
+    width: 100%;
+    flex: none !important;
+  }
+
+  .cover-right .main-title {
+    font-size: 3.5rem !important;
+    text-align: center;
+  }
+
+  .personal-archive-header {
+    text-align: center;
+  }
+
+  .sub-title-badge {
+    display: block;
+    text-align: center;
+    margin: 0 auto 20px auto;
+    width: max-content;
+    max-width: 100%;
+  }
+
+  .stamp-choice {
+    position: static;
+    margin: 20px auto 0 auto;
+    text-align: center;
+    width: max-content;
+  }
+
+  .volume-text {
+    position: static;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  /* Outer cover bindings hidden or scaled down */
+  .cover-spine-spiral,
+  .cover-punched-holes {
+    display: none !important;
+  }
+
+  /* Inner pages wrapper */
+  .notebook-inner-pages {
+    position: relative;
+    top: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    padding: 10px;
+    margin: 0;
+    box-shadow: none;
+    border-radius: 0;
+    background: #c9b48a;
+  }
+
+  .notebook-inner-pages::before {
+    display: none !important;
+  }
+
+  .notebook-spine-spiral {
+    display: none !important;
+  }
+
+  /* Bookmark tabs */
+  .notebook-tabs {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 5px;
+    margin-bottom: 10px;
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto !important;
+  }
+
+  .nav-tab {
+    filter: none !important;
+  }
+
+  .tab-paper {
+    padding: 8px 12px 10px 12px !important;
+    font-size: 0.75rem !important;
+    clip-path: none !important;
+    border-radius: 4px 4px 0 0 !important;
+    border-bottom: none !important;
+  }
+
+  /* Page sheet display */
+  .page-sheet {
+    position: relative;
+    width: 100%;
+    height: auto;
+    transform: none !important;
+    animation: none !important;
+    transition: opacity 0.3s ease;
+    display: none;
+  }
+
+  .page-sheet.active {
+    display: block;
+  }
+
+  .sheet-paper {
+    padding: 20px 15px !important;
+    height: auto !important;
+    clip-path: none !important;
+    box-shadow: none !important;
+  }
+
+  .sheet-paper::before,
+  .grid-paper::before,
+  .lined-paper::before {
+    left: 15px !important;
+  }
+
+  /* Stack page body spread vertically */
+  .page-body-spread {
+    flex-direction: column !important;
+    gap: 30px;
+    height: auto !important;
+  }
+
+  .page-side {
+    width: 100%;
+    flex: none !important;
+    height: auto !important;
+  }
+
+  /* Introduction page updates */
+  #page-intro .left-side,
+  #page-intro .intro-polaroid-side {
+    width: 100%;
+    flex: none !important;
+    padding: 0 !important;
+    align-items: center;
+  }
+
+  .intro-name {
+    font-size: 2.8rem !important;
+    text-align: center;
+  }
+
+  .intro-greeting {
+    text-align: center;
+    width: 100%;
+  }
+
+  .intro-body {
+    text-align: center;
+    max-width: 100% !important;
+    font-size: 1.35rem !important;
+  }
+
+  .current-focus-note {
+    max-width: 100% !important;
+    margin: 20px auto !important;
+  }
+
+  .drawing-bridge-intro {
+    display: none !important;
+  }
+
+  .drawing-compass {
+    display: none !important;
+  }
+
+  /* Skills Page updates */
+  .notebook-archive-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 15px !important;
+  }
+
+  .skills-more-indicator {
+    position: static;
+    margin: 20px auto 0 auto;
+    width: max-content;
+  }
+
+  /* Opened skills book translation resets */
+  .vintage-book.open {
+    position: fixed;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) scale(1.8) !important;
+    z-index: 10000;
+  }
+
+  #book-fe.open, #book-be.open, #book-cd.open, #book-db.open, #book-tl.open, #book-cp.open {
+    transform: translate(-50%, -50%) scale(1.8) !important;
+  }
+
+  /* Projects Page updates */
+  .projects-list-side {
+    overflow-y: visible !important;
+    padding-right: 0 !important;
+  }
+
+  .watchtower-doodle-container {
+    margin: 10px auto !important;
+    width: 180px;
+    height: 290px;
+  }
+
+  .project-container-wrapper {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* Slide-out blueprint overlay on mobile/tablet instead of sliding out of window */
+  .pull-slider-wrapper {
+    position: relative !important;
+    top: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    transform: none !important;
+    pointer-events: auto !important;
+  }
+
+  .pull-tab {
+    width: 100% !important;
+    height: auto !important;
+    padding: 10px !important;
+    border-radius: 4px !important;
+    border: 1px solid #4a3424 !important;
+    margin-top: 10px !important;
+  }
+
+  .pull-tab-text {
+    writing-mode: horizontal-tb !important;
+    text-orientation: mixed !important;
+    text-align: center;
+  }
+
+  .slider-blueprint-content {
+    display: none;
+    transform: none !important;
+    opacity: 1 !important;
+    border-radius: 4px !important;
+    margin-top: 5px;
+    cursor: pointer;
+  }
+
+  .pull-slider-wrapper.expanded .slider-blueprint-content {
+    display: block !important;
+  }
+
+  /* Journey Page updates */
+  .milestones-wrapper {
+    position: relative;
+    width: 100%;
+    height: auto !important;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .flight-paths-svg-container {
+    display: none !important;
+  }
+
+  .milestone-card {
+    position: static !important;
+    width: 100% !important;
+    margin: 0 !important;
+    transform: none !important;
+  }
+
+  .journey-footer {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  /* Contact Page updates */
+  .envelope-interactive-side {
+    align-items: center !important;
+  }
+
+  .envelope-outer-container {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .envelope {
+    width: 100% !important;
+    transform: scale(0.9);
+  }
+
+  .coffee-cup-container {
+    position: static !important;
+    margin: 30px auto 0 auto !important;
+  }
+
+  .dried-flower-lay {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Skills Page stack to 1 column on small phones */
+  .notebook-archive-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .vintage-book.open {
+    transform: translate(-50%, -50%) scale(1.3) !important;
+  }
+
+  #book-fe.open, #book-be.open, #book-cd.open, #book-db.open, #book-tl.open, #book-cp.open {
+    transform: translate(-50%, -50%) scale(1.3) !important;
+  }
+
+  .cover-right .main-title {
+    font-size: 2.8rem !important;
+  }
+
+  .polaroid .photo-container {
+    width: 200px !important;
+    height: 200px !important;
+  }
+  
+  .taped-cover .photo-container {
+    width: 180px !important;
+    height: 180px !important;
+  }
+}

@@ -1,0 +1,580 @@
+<div class="sheet-paper grid-paper">
+  <!-- Bridge sketch at bottom right like reference image -->
+  <!-- Bridge sketch at bottom right like reference image -->
+  <svg class="margin-drawing drawing-bridge-intro" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- Technical Grid Guidelines -->
+    <g stroke="#3E2719" stroke-width="0.25" stroke-dasharray="1 9" opacity="0.15">
+      <line x1="50" y1="2" x2="50" y2="198" />
+      <line x1="100" y1="2" x2="100" y2="198" />
+      <line x1="150" y1="2" x2="150" y2="198" />
+      <line x1="200" y1="2" x2="200" y2="198" />
+      <line x1="250" y1="2" x2="250" y2="198" />
+      <line x1="300" y1="2" x2="300" y2="198" />
+      <line x1="350" y1="2" x2="350" y2="198" />
+      <line x1="400" y1="2" x2="400" y2="198" />
+      <line x1="450" y1="2" x2="450" y2="198" />
+      <line x1="500" y1="2" x2="500" y2="198" />
+      <line x1="550" y1="2" x2="550" y2="198" />
+      
+      <line x1="2" y1="25" x2="598" y2="25" />
+      <line x1="2" y1="50" x2="598" y2="50" />
+      <line x1="2" y1="75" x2="598" y2="75" />
+      <line x1="2" y1="100" x2="598" y2="100" />
+      <line x1="2" y1="125" x2="598" y2="125" />
+      <line x1="2" y1="150" x2="598" y2="150" />
+      <line x1="2" y1="175" x2="598" y2="175" />
+    </g>
+
+    <!-- Drafting Sweeps / Circle Geometry -->
+    <g stroke="#3E2719" stroke-width="0.3" stroke-dasharray="1 8" fill="none" opacity="0.2">
+      <circle cx="300" cy="140" r="160" />
+      <circle cx="140" cy="42" r="100" />
+      <circle cx="460" cy="42" r="100" />
+      <circle cx="300" cy="140" r="30" />
+    </g>
+
+    <!-- Technical Sun & Clouds (Drafting Style) -->
+    <g stroke="#3E2719" stroke-width="0.3" fill="none" opacity="0.35">
+      <circle cx="55" cy="55" r="10" stroke-dasharray="1 3" />
+      <circle cx="55" cy="55" r="13" />
+      <!-- Sun rays -->
+      <line x1="55" y1="38" x2="55" y2="42" />
+      <line x1="55" y1="68" x2="55" y2="72" />
+      <line x1="38" y1="55" x2="42" y2="55" />
+      <line x1="68" y1="55" x2="72" y2="55" />
+      <line x1="43" y1="43" x2="46" y2="46" />
+      <line x1="67" y1="67" x2="64" y2="64" />
+      <line x1="67" y1="43" x2="64" y2="46" />
+      <line x1="43" y1="67" x2="46" y2="64" />
+    </g>
+
+    <!-- Flying birds silhouette -->
+    <g stroke="#3E2719" stroke-width="0.45" fill="none" opacity="0.4">
+      <path d="M 85,32 Q 88,29 90,32 Q 92,29 95,32" />
+      <path d="M 105,27 Q 108,24 110,27 Q 112,24 115,27" />
+      <path d="M 98,39 Q 100,37 102,39 Q 104,37 106,39" />
+      <path d="M 210,30 Q 212,28 214,30 Q 216,28 218,30" />
+      <path d="M 222,35 Q 224,33 226,35 Q 228,33 230,35" />
+    </g>
+
+    <!-- Shorelines (Earth sections) -->
+    <!-- Left Shore -->
+    <g stroke="#3E2719" stroke-width="0.6" fill="none" opacity="0.45">
+      <path d="M2,150 Q45,148 75,152 Q100,155 125,175 L125,198 L2,198 Z" />
+      <!-- Earth Hatching -->
+      <path d="M10,198 L38,150 M30,198 L58,151 M50,198 L78,152 M70,198 L94,154 M90,198 L114,163 M110,198 L124,173" stroke-width="0.4" opacity="0.7" />
+    </g>
+    <!-- Right Shore -->
+    <g stroke="#3E2719" stroke-width="0.6" fill="none" opacity="0.45">
+      <path d="M475,175 Q500,155 525,152 Q555,148 598,150 L598,198 L475,198 Z" />
+      <!-- Earth Hatching -->
+      <path d="M570,150 L598,198 M550,150 L580,198 M530,151 L560,198 M510,154 L540,198 M490,165 L520,198 M480,171 L500,198" stroke-width="0.4" opacity="0.7" />
+    </g>
+
+    <!-- Water Waves -->
+    <g stroke="#3E2719" stroke-width="0.4" stroke-dasharray="3 3" fill="none" opacity="0.35">
+      <path d="M 125,152 Q 140,150 160,152 T 200,152 T 240,152 T 280,152 T 320,152 T 360,152 T 400,152 T 440,152 T 475,152" />
+      <path d="M 135,160 Q 155,158 175,160 T 215,160 T 255,160 T 295,160 T 335,160 T 375,160 T 415,160 T 455,160 Q 470,158 472,160" />
+      <path d="M 150,168 Q 170,166 190,168 T 230,168 T 270,168 T 310,168 T 350,168 T 390,168 T 460,168" />
+    </g>
+
+    <!-- Tiny Sailboat under the left span -->
+    <g stroke="#1B120D" fill="none" opacity="0.8">
+      <path d="M 203,139 L 217,139 L 219,136.5 L 201,136.5 Z" fill="#1B120D" stroke-width="0.5" />
+      <line x1="209" y1="136.5" x2="209" y2="124" stroke-width="0.7" />
+      <path d="M 209,125 L 215,134 L 209,134 Z" fill="#FAF4E8" stroke-width="0.5" opacity="0.9" />
+      <path d="M 208.5,126 L 203,134 L 208.5,134 Z" stroke-width="0.4" />
+    </g>
+
+    <!-- Concrete Tower Piers (Footings with staggered stone block texture) -->
+    <!-- Left Pier -->
+    <g stroke="#1B120D" stroke-width="0.8" fill="none">
+      <polygon points="122,175 125,148 155,148 158,175" />
+      <line x1="123.5" y1="157" x2="156.5" y2="157" stroke-width="0.5" />
+      <line x1="122.5" y1="166" x2="157.5" y2="166" stroke-width="0.5" />
+      <line x1="115" y1="175" x2="165" y2="175" stroke-width="1.0" />
+      <!-- Vertical masonry joint details -->
+      <path d="M132,148 L132,157 M140,148 L140,157 M148,148 L148,157" stroke-width="0.4" opacity="0.75" />
+      <path d="M129,157 L129,166 M137,157 L137,166 M145,157 L145,166 M153,157 L153,166" stroke-width="0.4" opacity="0.75" />
+      <path d="M126,166 L126,175 M134,166 L134,175 M142,166 L142,175 M150,166 L150,175 M156,166 L156,175" stroke-width="0.4" opacity="0.75" />
+    </g>
+    <!-- Center Pier -->
+    <g stroke="#1B120D" stroke-width="0.8" fill="none">
+      <polygon points="282,175 285,148 315,148 318,175" />
+      <line x1="283.5" y1="157" x2="316.5" y2="157" stroke-width="0.5" />
+      <line x1="282.5" y1="166" x2="317.5" y2="166" stroke-width="0.5" />
+      <line x1="275" y1="175" x2="325" y2="175" stroke-width="1.0" />
+      <!-- Vertical masonry joint details -->
+      <path d="M292,148 L292,157 M300,148 L300,157 M308,148 L308,157" stroke-width="0.4" opacity="0.75" />
+      <path d="M289,157 L289,166 M297,157 L297,166 M305,157 L305,166 M313,157 L313,166" stroke-width="0.4" opacity="0.75" />
+      <path d="M286,166 L286,175 M294,166 L294,175 M302,166 L302,175 M310,166 L310,175 M316,166 L316,175" stroke-width="0.4" opacity="0.75" />
+    </g>
+    <!-- Right Pier -->
+    <g stroke="#1B120D" stroke-width="0.8" fill="none">
+      <polygon points="442,175 445,148 475,148 478,175" />
+      <line x1="443.5" y1="157" x2="476.5" y2="157" stroke-width="0.5" />
+      <line x1="442.5" y1="166" x2="477.5" y2="166" stroke-width="0.5" />
+      <line x1="435" y1="175" x2="485" y2="175" stroke-width="1.0" />
+      <!-- Vertical masonry joint details -->
+      <path d="M452,148 L452,157 M460,148 L460,157 M468,148 L468,157" stroke-width="0.4" opacity="0.75" />
+      <path d="M449,157 L449,166 M457,157 L457,166 M465,157 L465,166 M473,157 L473,166" stroke-width="0.4" opacity="0.75" />
+      <path d="M446,166 L446,175 M454,166 L454,175 M462,166 L462,175 M470,166 L470,175 M476,166 L476,175" stroke-width="0.4" opacity="0.75" />
+    </g>
+
+    <!-- Tower 1 Centerlines -->
+    <line x1="140" y1="18" x2="140" y2="182" stroke="#3E2719" stroke-width="0.4" stroke-dasharray="8 3 2 3" opacity="0.5" />
+    <!-- Tower 2 Centerlines -->
+    <line x1="460" y1="18" x2="460" y2="182" stroke="#3E2719" stroke-width="0.4" stroke-dasharray="8 3 2 3" opacity="0.5" />
+    <!-- Centerline of Span -->
+    <line x1="300" y1="10" x2="300" y2="185" stroke="#3E2719" stroke-width="0.4" stroke-dasharray="8 3 2 3" opacity="0.4" />
+
+    <!-- Left Tower (Structure with steel plates & saddles) -->
+    <g stroke="#1B120D" stroke-width="0.8" fill="none">
+      <!-- Columns -->
+      <path d="M 128,42 L 128,148 M 134,42 L 134,148 M 146,42 L 146,148 M 152,42 L 152,148" />
+      <!-- Steel Plate horizontal segments -->
+      <path d="M128,52 L134,52 M128,62 L134,62 M128,72 L134,72 M128,82 L134,82 M128,92 L134,92 M128,102 L134,102 M128,112 L134,112 M128,122 L134,122 M128,132 L134,132" stroke-width="0.45" opacity="0.7" />
+      <path d="M146,52 L152,52 M146,62 L152,62 M146,72 L152,72 M146,82 L152,82 M146,92 L152,92 M146,102 L152,102 M146,112 L152,112 M146,122 L152,122 M146,132 L152,132" stroke-width="0.45" opacity="0.7" />
+      
+      <!-- Cast Steel Saddles -->
+      <rect x="126" y="38" width="10" height="4" fill="#FAF4E8" stroke-width="0.8" />
+      <rect x="144" y="38" width="10" height="4" fill="#FAF4E8" stroke-width="0.8" />
+
+      <!-- Horizontal beams -->
+      <rect x="128" y="42" width="24" height="4.5" />
+      <rect x="128" y="68" width="24" height="5" />
+      <rect x="128" y="102" width="24" height="5" />
+      <rect x="128" y="140" width="24" height="6" />
+      
+      <!-- Gothic Arches under beams -->
+      <path d="M 134,60 Q 140,51 146,60" stroke-width="0.6" />
+      <line x1="134" y1="60" x2="134" y2="68" stroke-width="0.6" />
+      <line x1="146" y1="60" x2="146" y2="68" stroke-width="0.6" />
+      
+      <path d="M 134,94 Q 140,85 146,94" stroke-width="0.6" />
+      <line x1="134" y1="94" x2="134" y2="102" stroke-width="0.6" />
+      <line x1="146" y1="94" x2="146" y2="102" stroke-width="0.6" />
+      
+      <path d="M 134,132 Q 140,123 146,132" stroke-width="0.6" />
+      <line x1="134" y1="132" x2="134" y2="140" stroke-width="0.6" />
+      <line x1="146" y1="132" x2="146" y2="140" stroke-width="0.6" />
+
+      <!-- X-bracing in open panels -->
+      <path d="M 134,46.5 L 146,68 M 146,46.5 L 134,68" stroke-width="0.5" opacity="0.85" />
+      <path d="M 134,73 L 146,102 M 146,73 L 134,102" stroke-width="0.5" opacity="0.85" />
+      <path d="M 134,107 L 146,140 M 146,107 L 134,140" stroke-width="0.5" opacity="0.85" />
+
+      <!-- Finials & Top Details -->
+      <polygon points="127,42 135,42 131,24" fill="#FAF4E8" stroke-width="0.8" />
+      <line x1="131" y1="24" x2="131" y2="18" />
+      <polygon points="145,42 153,42 149,24" fill="#FAF4E8" stroke-width="0.8" />
+      <line x1="149" y1="24" x2="149" y2="18" />
+      <path d="M 131,31 Q 140,25 149,31" />
+    </g>
+
+    <!-- Right Tower (Structure with steel plates & saddles) -->
+    <g stroke="#1B120D" stroke-width="0.8" fill="none">
+      <!-- Columns -->
+      <path d="M 448,42 L 448,148 M 454,42 L 454,148 M 466,42 L 466,148 M 472,42 L 472,148" />
+      <!-- Steel Plate horizontal segments -->
+      <path d="M448,52 L454,52 M448,62 L454,62 M448,72 L454,72 M448,82 L454,82 M448,92 L454,92 M448,102 L454,102 M448,112 L454,112 M448,122 L454,122 M448,132 L454,132" stroke-width="0.45" opacity="0.7" />
+      <path d="M466,52 L472,52 M466,62 L472,62 M466,72 L472,72 M466,82 L472,82 M466,92 L472,92 M466,102 L472,102 M466,112 L472,112 M466,122 L472,122 M466,132 L472,132" stroke-width="0.45" opacity="0.7" />
+      
+      <!-- Cast Steel Saddles -->
+      <rect x="446" y="38" width="10" height="4" fill="#FAF4E8" stroke-width="0.8" />
+      <rect x="464" y="38" width="10" height="4" fill="#FAF4E8" stroke-width="0.8" />
+
+      <!-- Horizontal beams -->
+      <rect x="448" y="42" width="24" height="4.5" />
+      <rect x="448" y="68" width="24" height="5" />
+      <rect x="448" y="102" width="24" height="5" />
+      <rect x="448" y="140" width="24" height="6" />
+
+      <!-- Gothic Arches under beams -->
+      <path d="M 454,60 Q 460,51 466,60" stroke-width="0.6" />
+      <line x1="454" y1="60" x2="454" y2="68" stroke-width="0.6" />
+      <line x1="466" y1="60" x2="466" y2="68" stroke-width="0.6" />
+      
+      <path d="M 454,94 Q 460,85 466,94" stroke-width="0.6" />
+      <line x1="454" y1="94" x2="454" y2="102" stroke-width="0.6" />
+      <line x1="466" y1="94" x2="466" y2="102" stroke-width="0.6" />
+      
+      <path d="M 454,132 Q 460,123 466,132" stroke-width="0.6" />
+      <line x1="454" y1="132" x2="454" y2="140" stroke-width="0.6" />
+      <line x1="466" y1="132" x2="466" y2="140" stroke-width="0.6" />
+
+      <!-- X-bracing in open panels -->
+      <path d="M 454,46.5 L 466,68 M 466,46.5 L 454,68" stroke-width="0.5" opacity="0.85" />
+      <path d="M 454,73 L 466,102 M 466,73 L 454,102" stroke-width="0.5" opacity="0.85" />
+      <path d="M 454,107 L 466,140 M 466,107 L 454,140" stroke-width="0.5" opacity="0.85" />
+
+      <!-- Finials & Top Details -->
+      <polygon points="447,42 455,42 451,24" fill="#FAF4E8" stroke-width="0.8" />
+      <line x1="451" y1="24" x2="451" y2="18" />
+      <polygon points="465,42 473,42 469,24" fill="#FAF4E8" stroke-width="0.8" />
+      <line x1="469" y1="24" x2="469" y2="18" />
+      <path d="M 451,31 Q 460,25 469,31" />
+    </g>
+
+    <!-- Center Tower (Structure with steel plates & saddles) -->
+    <g stroke="#1B120D" stroke-width="0.8" fill="none">
+      <!-- Columns -->
+      <path d="M 288,42 L 288,148 M 294,42 L 294,148 M 306,42 L 306,148 M 312,42 L 312,148" />
+      <!-- Steel Plate horizontal segments -->
+      <path d="M288,52 L294,52 M288,62 L294,62 M288,72 L294,72 M288,82 L294,82 M288,92 L294,92 M288,102 L294,102 M288,112 L294,112 M288,122 L294,122 M288,132 L294,132" stroke-width="0.45" opacity="0.7" />
+      <path d="M306,52 L312,52 M306,62 L312,62 M306,72 L312,72 M306,82 L312,82 M306,92 L312,92 M306,102 L312,102 M306,112 L312,112 M306,122 L312,122 M306,132 L312,132" stroke-width="0.45" opacity="0.7" />
+      
+      <!-- Cast Steel Saddles -->
+      <rect x="286" y="38" width="10" height="4" fill="#FAF4E8" stroke-width="0.8" />
+      <rect x="304" y="38" width="10" height="4" fill="#FAF4E8" stroke-width="0.8" />
+
+      <!-- Horizontal beams -->
+      <rect x="288" y="42" width="24" height="4.5" />
+      <rect x="288" y="68" width="24" height="5" />
+      <rect x="288" y="102" width="24" height="5" />
+      <rect x="288" y="140" width="24" height="6" />
+
+      <!-- Gothic Arches under beams -->
+      <path d="M 294,60 Q 300,51 306,60" stroke-width="0.6" />
+      <line x1="294" y1="60" x2="294" y2="68" stroke-width="0.6" />
+      <line x1="306" y1="60" x2="306" y2="68" stroke-width="0.6" />
+      
+      <path d="M 294,94 Q 300,85 306,94" stroke-width="0.6" />
+      <line x1="294" y1="94" x2="294" y2="102" stroke-width="0.6" />
+      <line x1="306" y1="94" x2="306" y2="102" stroke-width="0.6" />
+      
+      <path d="M 294,132 Q 300,123 306,132" stroke-width="0.6" />
+      <line x1="294" y1="132" x2="294" y2="140" stroke-width="0.6" />
+      <line x1="306" y1="132" x2="306" y2="140" stroke-width="0.6" />
+
+      <!-- X-bracing in open panels -->
+      <path d="M 294,46.5 L 306,68 M 306,46.5 L 294,68" stroke-width="0.5" opacity="0.85" />
+      <path d="M 294,73 L 306,102 M 306,73 L 306,102" stroke-width="0.5" opacity="0.85" />
+      <path d="M 294,107 L 306,140 M 306,107 L 294,140" stroke-width="0.5" opacity="0.85" />
+
+      <!-- Finials & Top Details -->
+      <polygon points="287,42 295,42 291,24" fill="#FAF4E8" stroke-width="0.8" />
+      <line x1="291" y1="24" x2="291" y2="18" />
+      <polygon points="305,42 313,42 309,24" fill="#FAF4E8" stroke-width="0.8" />
+      <line x1="309" y1="24" x2="309" y2="18" />
+      <path d="M 291,31 Q 300,25 309,31" />
+    </g>
+
+    <!-- Triple Main Suspension Cables (for bundle thickness) -->
+    <g stroke="#1B120D" fill="none">
+      <!-- Upper Cable -->
+      <path d="M 16,165 Q 75,145 128,42 M 152,42 Q 220,178 288,42 M 312,42 Q 380,178 448,42 M 472,42 Q 525,145 584,165" stroke-width="1.2" />
+      <!-- Middle Cable -->
+      <path d="M 16,167 Q 75,147 128,44 M 152,44 Q 220,180 288,44 M 312,44 Q 380,180 448,44 M 472,44 Q 525,147 584,167" stroke-width="0.8" opacity="0.85" />
+      <!-- Lower Cable -->
+      <path d="M 16,169 Q 75,149 128,46 M 152,46 Q 220,182 288,46 M 312,46 Q 380,182 448,46 M 472,46 Q 525,149 584,169" stroke-width="0.5" opacity="0.6" />
+    </g>
+
+    <!-- Anchorages at Shoreline ends -->
+    <g stroke="#1B120D" stroke-width="0.8" fill="none">
+      <polygon points="10,165 22,160 25,180 8,180" fill="#FAF4E8" />
+      <line x1="12" y1="170" x2="24" y2="170" stroke-width="0.5" />
+      <line x1="10" y1="175" x2="22" y2="175" stroke-width="0.5" />
+      
+      <polygon points="578,160 590,165 592,180 575,180" fill="#FAF4E8" />
+      <line x1="576" y1="170" x2="588" y2="170" stroke-width="0.5" />
+      <line x1="578" y1="175" x2="590" y2="175" stroke-width="0.5" />
+    </g>
+
+    <!-- Vertical Hangers (Suspender ropes) -->
+    <g stroke="#1B120D" stroke-width="0.5" fill="none">
+      <!-- Left Span Hangers (x = 160 to 280) -->
+      <path d="M160,57 L160,140 M170,73 L170,140 M180,87 L180,140 M190,98 L190,140 M200,105 L200,140 M210,109 L210,140 M220,110 L220,140 M230,109 L230,140 M240,105 L240,140 M250,98 L250,140 M260,87 L260,140 M270,73 L270,140 M280,57 L280,140" />
+      <!-- Right Span Hangers (x = 320 to 440) -->
+      <path d="M320,57 L320,140 M330,73 L330,140 M340,87 L340,140 M350,98 L350,140 M360,105 L360,140 M370,109 L370,140 M380,110 L380,140 M390,109 L390,140 M400,105 L400,140 M410,98 L410,140 M420,87 L420,140 M430,73 L430,140 M440,57 L440,140" />
+      <!-- Side Span Hangers -->
+      <path d="M30,159 L30,140 M40,152 L40,140 M50,145 L50,140 M60,136 L60,140 M70,126 L70,140 M80,115 L80,140 M90,102 L90,140 M100,88 L100,140 M110,73 L110,140 M120,56 L120,140" />
+      <path d="M480,56 L480,140 M490,73 L490,140 M500,88 L500,140 M510,102 L510,140 M520,115 L520,140 M530,126 L530,140 M540,136 L540,140 M550,145 L550,140 M560,152 L560,140 M570,159 L570,140" />
+    </g>
+
+    <!-- Diagonal Stay Cables (Brooklyn Bridge dense geometric rays) -->
+    <g stroke="#8E755F" stroke-width="0.3" opacity="0.45" fill="none">
+      <!-- Left Tower fan -->
+      <path d="M140,42 L30,140 M140,42 L45,140 M140,42 L60,140 M140,42 L75,140 M140,42 L90,140 M140,42 L105,140 M140,42 L120,140 M140,42 L160,140 M140,42 L175,140 M140,42 L190,140 M140,42 L205,140 M140,42 L220,140 M140,42 L235,140 M140,42 L250,140" />
+      <!-- Center Tower fan -->
+      <path d="M300,42 L190,140 M300,42 L205,140 M300,42 L220,140 M300,42 L235,140 M300,42 L250,140 M300,42 L265,140 M300,42 L280,140 M300,42 L320,140 M300,42 L335,140 M300,42 L350,140 M300,42 L365,140 M300,42 L380,140 M300,42 L395,140 M300,42 L410,140" />
+      <!-- Right Tower fan -->
+      <path d="M460,42 L350,140 M460,42 L365,140 M460,42 L380,140 M460,42 L395,140 M460,42 L410,140 M460,42 L425,140 M460,42 L440,140 M460,42 L480,140 M460,42 L495,140 M460,42 L510,140 M460,42 L525,140 M460,42 L540,140 M460,42 L555,140 M460,42 L570,140" />
+    </g>
+
+    <!-- Stiffening Warren Truss Deck (Intricate web girder) -->
+    <g stroke="#3E2719" stroke-width="0.45" fill="none">
+      <!-- Top & bottom chords (Double lines for structural steel thickness) -->
+      <line x1="2" y1="139.2" x2="598" y2="139.2" stroke="#1B120D" stroke-width="0.4" />
+      <line x1="2" y1="140.8" x2="598" y2="140.8" stroke="#1B120D" stroke-width="0.4" />
+      <line x1="2" y1="147.2" x2="598" y2="147.2" stroke="#1B120D" stroke-width="0.4" />
+      <line x1="2" y1="148.8" x2="598" y2="148.8" stroke="#1B120D" stroke-width="0.4" />
+      
+      <!-- Warren Truss Web (Zig-zag panels) -->
+      <!-- Left Span -->
+      <path d="M2,140 L10,148 L18,140 L26,148 L34,140 L42,148 L50,140 L58,148 L66,140 L74,148 L82,140 L90,148 L98,140 L106,148 L114,140 L122,148 L130,140 L138,148 L140,140" />
+      <!-- Main Span -->
+      <path d="M152,140 L160,148 L168,140 L176,148 L184,140 L192,148 L200,140 L208,148 L216,140 L224,148 L232,140 L240,148 L248,140 L256,148 L264,140 L272,148 L280,140 L288,148 L296,140 L304,148 L312,140 L320,148 L328,140 L336,148 L344,140 L352,148 L360,140 L368,148 L376,140 L384,148 L392,140 L400,148 L408,140 L416,148 L424,140 L432,148 L440,140 L448,148" />
+      <!-- Right Span -->
+      <path d="M472,140 L480,148 L488,140 L496,148 L504,140 L512,148 L520,140 L528,148 M528,140 L536,148 L544,140 L552,148 L560,140 L568,148 L576,140 L584,148 L592,140 L598,148" />
+      
+      <!-- Crossing Diagonals to form X-braced panels -->
+      <!-- Left Span -->
+      <path d="M10,140 L2,148 M26,140 L18,148 M42,140 L34,148 M58,140 L50,148 M74,140 L66,148 M90,140 L82,148 M106,140 L98,148 M122,140 L114,148 M138,140 L130,148" opacity="0.8" />
+      <!-- Main Span -->
+      <path d="M168,140 L160,148 M184,140 L176,148 M200,140 L192,148 M216,140 L208,148 M232,140 L224,148 M248,140 L240,148 M264,140 L256,148 M280,140 L272,148 M296,140 L288,148 M312,140 L304,148 M328,140 L320,148 M344,140 L336,148 M360,140 L352,148 M376,140 L368,148 M392,140 L384,148 M408,140 L400,148 M424,140 L416,148 M440,140 L432,148" opacity="0.8" />
+      <!-- Right Span -->
+      <path d="M488,140 L480,148 M504,140 L496,148 M520,140 L512,148 M536,140 L528,148 M552,140 L544,148 M568,140 L560,148 M584,140 L576,148 M598,140 L592,148" opacity="0.8" />
+
+      <!-- Vertical posts at panels -->
+      <path d="M10,140 L10,148 M26,140 L26,148 M42,140 L42,148 M58,140 L58,148 M74,140 L74,148 M90,140 L90,148 M106,140 L106,148 M122,140 L122,148 M138,140 L138,148 M160,140 L160,148 M176,140 L176,148 M192,140 L192,148 M208,140 L208,148 M224,140 L224,148 M240,140 L240,148 M256,140 L256,148 M272,140 L272,148 M288,140 L288,148 M304,140 L304,148 M320,140 L320,148 M336,140 L336,148 M352,140 L352,148 M368,140 L368,148 M384,140 L384,148 M400,140 L400,148 M416,140 L416,148 M432,140 L432,148 M448,140 L448,148 M480,140 L480,148 M496,140 L496,148 M512,140 L512,148 M528,140 L528,148 M544,140 L544,148 M560,140 L560,148 M576,140 L576,148 M592,140 L592,148" opacity="0.6" />
+
+      <!-- Deck Guardrail & Balusters -->
+      <line x1="2" y1="135" x2="598" y2="135" stroke="#1B120D" stroke-width="0.5" />
+      <line x1="2" y1="137" x2="598" y2="137" stroke="#3E2719" stroke-width="0.3" opacity="0.7" />
+      <path d="M6,135 L6,140 M12,135 L12,140 M18,135 L18,140 M24,135 L24,140 M30,135 L30,140 M36,135 L36,140 M42,135 L42,140 M48,135 L48,140 M54,135 L54,140 M60,135 L60,140 M66,135 L66,140 M72,135 L72,140 M78,135 L78,140 M84,135 L84,140 M90,135 L90,140 M96,135 L96,140 M102,135 L102,140 M108,135 L108,140 M114,135 L114,140 M120,135 L120,140 M126,135 L126,140 M132,135 L132,140 M138,135 L138,140 M154,135 L154,140 M160,135 L160,140 M166,135 L166,140 M172,135 L172,140 M178,135 L178,140 M184,135 L184,140 M190,135 L190,140 M196,135 L196,140 M202,135 L202,140 M208,135 L208,140 M214,135 L214,140 M220,135 L220,140 M226,135 L226,140 M232,135 L232,140 M238,135 L238,140 M244,135 L244,140 M250,135 L250,140 M256,135 L256,140 M262,135 L262,140 M268,135 L268,140 M274,135 L274,140 M280,135 L280,140 M286,135 L286,140 M292,135 L292,140 M298,135 L298,140 M304,135 L304,140 M310,135 L310,140 M316,135 L316,140 M322,135 L322,140 M328,135 L328,140 M334,135 L334,140 M340,135 L340,140 M346,135 L346,140 M352,135 L352,140 M358,135 L358,140 M364,135 L364,140 M370,135 L370,140 M376,135 L376,140 M382,135 L382,140 M388,135 L388,140 M394,135 L394,140 M400,135 L400,140 M406,135 L406,140 M412,135 L412,140 M418,135 L418,140 M424,135 L424,140 M430,135 L430,140 M436,135 L436,140 M442,135 L442,140 M476,135 L476,140 M482,135 L482,140 M488,135 L488,140 M494,135 L494,140 M500,135 L500,140 M506,135 L506,140 M512,135 L512,140 M518,135 L518,140 M524,135 L524,140 M530,135 L530,140 M536,135 L536,140 M542,135 L542,140 M548,135 L548,140 M554,135 L554,140 M560,135 L560,140 M566,135 M572,135 L572,140 M578,135 L578,140 M584,135 L584,140 M590,135 L590,140 M596,135 L596,140" stroke="#3E2719" stroke-width="0.35" opacity="0.75" />
+    </g>
+
+    <!-- Tiny Architectural Vehicles on the Road Deck (for human scale details) -->
+    <g stroke="#1B120D" fill="none" opacity="0.65">
+      <!-- Left Side: Tiny Truck -->
+      <path d="M 75,139 L 85,139 L 85,134 L 81,134 L 81,136.5 L 75,136.5 Z" fill="#FAF4E8" stroke-width="0.55" />
+      <circle cx="77.5" cy="139.5" r="0.8" fill="#1B120D" />
+      <circle cx="82.5" cy="139.5" r="0.8" fill="#1B120D" />
+      
+      <!-- Center Span: Tiny Sedan -->
+      <path d="M 315,139 L 323,139 L 322,137 L 319,137 L 317,137 L 316,137 Z" fill="#FAF4E8" stroke-width="0.55" />
+      <circle cx="317" cy="139.5" r="0.8" fill="#1B120D" />
+      <circle cx="321" cy="139.5" r="0.8" fill="#1B120D" />
+      
+      <!-- Right Side: Tiny Coupe -->
+      <path d="M 505,139 L 513,139 L 512,137 L 509,137 L 507,137 L 506,137 Z" fill="#FAF4E8" stroke-width="0.55" />
+      <circle cx="507" cy="139.5" r="0.8" fill="#1B120D" />
+      <circle cx="511" cy="139.5" r="0.8" fill="#1B120D" />
+    </g>
+
+    <!-- Force Vector diagrams & Stress analysis annotations -->
+    <g stroke="#721C16" stroke-width="0.75" fill="none">
+      <!-- Red compressive / tension vectors -->
+      <!-- Force Triangle 1 -->
+      <path d="M 70,75 L 70,105" />
+      <polygon points="70,105 68,100 72,100" fill="#721C16" />
+      
+      <path d="M 70,75 L 47,93.4" stroke="#3D2719" stroke-width="0.6" />
+      <polygon points="47,93.4 52,91 50,95" fill="#3D2719" />
+      
+      <path d="M 70,75 L 102,83" stroke="#3D2719" stroke-width="0.6" />
+      <polygon points="102,83 97,81 99,86" fill="#3D2719" />
+      
+      <!-- Parallelogram lines (dashed) -->
+      <path d="M 47,93.4 L 79,101.4 M 102,83 L 79,101.4" stroke="#3E2719" stroke-width="0.4" stroke-dasharray="1 2" opacity="0.6" />
+      
+      <!-- Arc for angle -->
+      <path d="M 58,85 A 25 25 0 0 1 70,75" stroke="#3E2719" stroke-width="0.4" stroke-dasharray="1 1" opacity="0.6" />
+
+      <!-- Force Triangle 2 -->
+      <path d="M 390,85 L 390,111" />
+      <polygon points="390,111 388,106 392,106" fill="#721C16" />
+      
+      <path d="M 390,85 L 367,71.2" stroke="#3D2719" stroke-width="0.6" />
+      <polygon points="367,71.2 372,70 370,74" fill="#3D2719" />
+      
+      <path d="M 390,85 L 418,72.2" stroke="#3D2719" stroke-width="0.6" />
+      <polygon points="418,72.2 413,71 415,75" fill="#3D2719" />
+    </g>
+
+    <!-- Text Annotations for Vectors -->
+    <g font-family="monospace" font-size="5" fill="#3D2719" opacity="0.9">
+      <text x="73" y="95" fill="#721C16" font-weight="bold">Fg = 18.2kN</text>
+      <text x="40" y="84">Ta</text>
+      <text x="96" y="78">Cs</text>
+      <text x="56" y="69" font-size="4">θ=38.5°</text>
+      
+      <text x="393" y="103" fill="#721C16" font-weight="bold">Pv = 14.5kN</text>
+      <text x="360" y="65">Ta2</text>
+      <text x="420" y="67">Ta3</text>
+    </g>
+
+    <!-- Bending Moment Parabola & Hatching -->
+    <g fill="none">
+      <line x1="170" y1="182" x2="430" y2="182" stroke="#3E2719" stroke-width="0.5" stroke-dasharray="2 4" opacity="0.6" />
+      <path d="M 170,182 Q 235,194 300,182 Q 365,194 430,182" stroke="#8E755F" stroke-width="0.6" />
+      <!-- Vertical hatchings inside moment diagram -->
+      <path d="M178,182 L178,185 M186,182 L186,187 M194,182 L194,189 M202,182 L202,191 M210,182 L210,192 M218,182 L218,193 M226,182 L226,194 M234,182 L234,194 M242,182 L242,194 M250,182 L250,193 M258,182 L258,192 M266,182 L266,191 M274,182 L274,189 M282,182 L282,187 M290,182 L290,185 M298,182 L298,182 M306,182 L306,185 M314,182 L314,187 M322,182 L322,189 M330,182 L330,191 M338,182 L338,192 M346,182 L346,193 M354,182 L354,194 M362,182 L362,194 M370,182 L370,194 M378,182 L378,193 M386,182 L386,192 M394,182 L394,191 M402,182 L402,189 M410,182 L410,187 M418,182 L418,185 M426,182 L426,182" stroke="#8E755F" stroke-width="0.35" opacity="0.6" />
+    </g>
+
+    <!-- Dimension Lines & Extension Lines -->
+    <g stroke="#3E2719" stroke-width="0.5" fill="none">
+      <!-- Overall spans L1 & L2 -->
+      <line x1="140" y1="180" x2="140" y2="195" stroke-width="0.3" opacity="0.6" />
+      <line x1="300" y1="180" x2="300" y2="195" stroke-width="0.3" opacity="0.6" />
+      <line x1="460" y1="180" x2="460" y2="195" stroke-width="0.3" opacity="0.6" />
+      <line x1="140" y1="190" x2="300" y2="190" />
+      <line x1="300" y1="190" x2="460" y2="190" />
+      <polygon points="140,190 146,188 146,192" fill="#3E2719" />
+      <polygon points="300,190 294,188 294,192" fill="#3E2719" />
+      <polygon points="300,190 306,188 306,192" fill="#3E2719" />
+      <polygon points="460,190 454,188 454,192" fill="#3E2719" />
+
+      <!-- Side span Left -->
+      <line x1="20" y1="168" x2="20" y2="182" stroke-width="0.3" opacity="0.6" />
+      <line x1="20" y1="176" x2="140" y2="176" />
+      <polygon points="20,176 26,174 26,178" fill="#3E2719" />
+      <polygon points="140,176 134,174 134,178" fill="#3E2719" />
+
+      <!-- Side span Right -->
+      <line x1="580" y1="168" x2="580" y2="182" stroke-width="0.3" opacity="0.6" />
+      <line x1="460" y1="176" x2="580" y2="176" />
+      <polygon points="460,176 466,174 466,178" fill="#3E2719" />
+      <polygon points="580,176 574,174 574,178" fill="#3E2719" />
+
+      <!-- Tower Height H -->
+      <line x1="110" y1="175" x2="128" y2="175" stroke-width="0.3" opacity="0.6" />
+      <line x1="110" y1="42" x2="128" y2="42" stroke-width="0.3" opacity="0.6" />
+      <line x1="115" y1="42" x2="115" y2="175" />
+      <polygon points="115,42 113,48 117,48" fill="#3E2719" />
+      <polygon points="115,175 113,169 117,169" fill="#3E2719" />
+    </g>
+
+    <!-- Dimension Text -->
+    <g font-family="monospace" font-size="7" fill="#3E2719" opacity="0.85">
+      <text x="220" y="188" text-anchor="middle">L1 = 160.00 m</text>
+      <text x="380" y="188" text-anchor="middle">L2 = 160.00 m</text>
+      <text x="80" y="173" text-anchor="middle" font-size="6">120.00 m</text>
+      <text x="520" y="173" text-anchor="middle" font-size="6">120.00 m</text>
+      <text x="111" y="105" text-anchor="middle" transform="rotate(-90 111 105)">H = 133.00 m</text>
+      
+      <!-- Elevation mark -->
+      <text x="160" y="38" font-size="5.5">EL. +133.00m</text>
+      <text x="160" y="148" font-size="5.5">EL. +35.00m (ROAD)</text>
+      <text x="160" y="173" font-size="5.5">EL. 0.00m (HWL)</text>
+    </g>
+
+    <!-- Handwritten Formulas & Annotations -->
+    <g fill="#1B120D" font-family="var(--font-hand), cursive" font-size="7.5" opacity="0.8">
+      <!-- Cursive Moment Diagram label -->
+      <text x="300" y="196" font-size="5.5" text-anchor="middle">Moment Diagram M(x)</text>
+    </g>
+
+    <!-- Drafting Compass Gear Doodle -->
+    <g transform="translate(560, 75)" stroke="#1B120D" stroke-width="0.8" fill="none" opacity="0.75">
+      <circle cx="0" cy="0" r="16" stroke-dasharray="2 2" />
+      <circle cx="0" cy="0" r="12" />
+      <circle cx="0" cy="0" r="4.5" />
+      <!-- Teeth -->
+      <path d="M-1.5,-16 L1.5,-16 L2,-12 L-2,-12 Z" />
+      <path d="M-1.5,-16 L1.5,-16 L2,-12 L-2,-12 Z" transform="rotate(30)" />
+      <path d="M-1.5,-16 L1.5,-16 L2,-12 L-2,-12 Z" transform="rotate(60)" />
+      <path d="M-1.5,-16 L1.5,-16 L2,-12 L-2,-12 Z" transform="rotate(90)" />
+      <path d="M-1.5,-16 L1.5,-16 L2,-12 L-2,-12 Z" transform="rotate(120)" />
+      <path d="M-1.5,-16 L1.5,-16 L2,-12 L-2,-12 Z" transform="rotate(150)" />
+      <path d="M-1.5,-16 L1.5,-16 L2,-12 L-2,-12 Z" transform="rotate(180)" />
+      <path d="M-1.5,-16 L1.5,-16 L2,-12 L-2,-12 Z" transform="rotate(210)" />
+      <path d="M-1.5,-16 L1.5,-16 L2,-12 L-2,-12 Z" transform="rotate(240)" />
+      <path d="M-1.5,-16 L1.5,-16 L2,-12 L-2,-12 Z" transform="rotate(270)" />
+      <path d="M-1.5,-16 L1.5,-16 L2,-12 L-2,-12 Z" transform="rotate(300)" />
+      <path d="M-1.5,-16 L1.5,-16 L2,-12 L-2,-12 Z" transform="rotate(330)" />
+      <!-- Compass directions -->
+      <line x1="0" y1="-22" x2="0" y2="22" stroke-width="0.4" stroke-dasharray="1 2" />
+      <line x1="-22" y1="0" x2="22" y2="0" stroke-width="0.4" stroke-dasharray="1 2" />
+      <text x="0" y="-23" font-family="monospace" font-size="5" text-anchor="middle" font-weight="bold" fill="#3E2719">N</text>
+      <text x="0" y="27" font-family="monospace" font-size="5" text-anchor="middle" font-weight="bold" fill="#3E2719">S</text>
+    </g>
+
+    <!-- Title Block Removed -->
+
+    <!-- Distressed Engineering Seal (Stamp) -->
+    <g transform="translate(540, 95)" opacity="0.8">
+      <circle cx="0" cy="0" r="14" stroke="#721C16" stroke-width="0.6" stroke-dasharray="1 1" fill="none" />
+      <circle cx="0" cy="0" r="18" stroke="#721C16" stroke-width="1.0" fill="none" />
+      <text x="0" y="-4" font-family="monospace" font-size="3" fill="#721C16" text-anchor="middle" font-weight="bold">YASH ZOPE</text>
+      <text x="0" y="0" font-family="monospace" font-size="2.5" fill="#721C16" text-anchor="middle">NO. 89211</text>
+      <text x="0" y="4" font-family="monospace" font-size="3" fill="#721C16" text-anchor="middle" font-weight="bold">CIVIL</text>
+      <text x="0" y="9" font-family="monospace" font-size="2" fill="#721C16" text-anchor="middle">STATE OF CA</text>
+    </g>
+
+    <!-- Borders Removed -->
+  </svg>
+  <!-- Compass gear doodle top-right -->
+  <div class="margin-drawing drawing-compass"></div>
+
+  <div class="page-body-spread">
+    <!-- Left Side: Bio content -->
+    <div class="page-side left-side">
+      <div class="notebook-header-line">
+        <span class="header-vintage font-mono text-faded">ENGINEERING NOTEBOOK // VOL. 03</span>
+        <span class="stamp-active font-stamp">ACTIVE</span>
+      </div>
+
+      <div class="intro-heading-container">
+        <span class="intro-greeting font-hand">Hey, I'm</span>
+        <h2 class="intro-name font-stamp">YASH ZOPE</h2>
+        <div class="highlight-bar font-mono">CLOUD &amp; FULL STACK DEVELOPER</div>
+      </div>
+
+      <p class="intro-body font-hand">
+        I build scalable systems and intuitive interfaces that solve real-world problems and create meaningful impact.
+        Currently exploring the intersection of cloud technologies and human-centered design.
+      </p>
+
+      <!-- Attached Sticky Note for Current Focus — old torn kraft paper chit -->
+      <div class="pinned-note current-focus-note">
+        <div class="pin brass-pin"></div>
+        <h3 class="pinned-note-title font-mono">
+          <svg viewBox="0 0 24 24" class="inline-icon">
+            <path
+              d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z" />
+          </svg>
+          CURRENT FOCUS
+        </h3>
+        <p class="pinned-note-text font-hand">
+          Building cloud based systems<br>and intuitive user experiences.
+        </p>
+        <span class="doodle-star">★</span>
+      </div>
+
+    </div>
+
+    <!-- Right Side: Tilted photo like reference + bridge sketch below -->
+    <div class="page-side right-side intro-polaroid-side">
+      <div class="polaroid taped-intro intro-photo-tilted">
+        <div class="tape tape-top-left"></div>
+        <div class="tape tape-bottom-right"></div>
+        <div class="photo-container">
+          <img src="assets/profile.png" alt="Yash Zope Portrait">
+        </div>
+      </div>
+
+      <!-- Find me on — sticker label buttons with chit color and shadows -->
+      <div class="social-section">
+        <span class="social-label font-mono">FIND ME ON</span>
+        <div class="social-buttons-container">
+          <a href="https://www.linkedin.com/in/yash-zope-50a2523a6/" target="_blank" class="paper-label-button">
+            <svg class="button-icon" viewBox="0 0 24 24">
+              <path
+                d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+            </svg>
+            <span class="font-mono">LINKEDIN →</span>
+          </a>
+          <a href="https://github.com/YASH-ZOPE" target="_blank" class="paper-label-button button-cracked">
+            <svg class="button-icon" viewBox="0 0 24 24">
+              <path
+                d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
+            </svg>
+            <span class="font-mono">GITHUB →</span>
+          </a>
+          <a href="#" class="paper-label-button" id="resume-btn">
+            <svg class="button-icon" viewBox="0 0 24 24">
+              <path
+                d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
+            </svg>
+            <span class="font-mono">RESUME →</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <div class="paperclip-corner"></div>
+</div>
