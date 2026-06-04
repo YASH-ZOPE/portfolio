@@ -52,6 +52,7 @@
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent !important;
 }
 
 body,
@@ -5178,6 +5179,12 @@ button,
    RESPONSIVE DESIGN FOR PORTABLES (TABLET & PHONE)
    ========================================================================== */
 @media (max-width: 1024px) {
+  /* Disable expensive SVG filter effects on mobile/tablet viewports to prevent lagging */
+  *:not(img) {
+    filter: none !important;
+    backdrop-filter: none !important;
+  }
+
   /* Reset desk wrapper styling */
   .desk {
     height: auto;
