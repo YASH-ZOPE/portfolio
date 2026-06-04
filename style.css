@@ -63,6 +63,7 @@ html {
   background-color: var(--desk-bg);
   font-family: var(--font-ui);
   color: var(--dark-ink);
+  overscroll-behavior: none;
 }
 
 a,
@@ -5194,6 +5195,7 @@ button,
     padding: 20px 10px;
     background-attachment: scroll;
     display: block;
+    overscroll-behavior-y: none;
   }
 
   /* Hide physical props on smaller viewports to save space */

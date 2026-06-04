@@ -580,6 +580,7 @@ function closeLightbox() {
  * Fully prevents visual snapping by managing angular momentum in JS.
  */
 function initCoffeeCupSpin() {
+  if (window.innerWidth <= 1024) return;
   const container = document.querySelector('.coffee-cup-container');
   const rotator = document.querySelector('.coffee-cup-rotator');
   if (!container || !rotator) return;
@@ -620,6 +621,7 @@ function initCoffeeCupSpin() {
  * Clamps beam range to a 120-degree horizontal cone [-60, 60] pointing rightwards.
  */
 function initLighthouseBeam() {
+  if (window.innerWidth <= 1024) return;
   let currentAngle = 0;
   let targetAngle = 0;
 
