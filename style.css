@@ -796,12 +796,16 @@ button,
 }
 
 .cover-right .main-title {
-  font-size: 5.2rem;
-  line-height: 0.85;
-  letter-spacing: 2px;
+  font-size: 4.0rem;
+  line-height: 0.9;
+  letter-spacing: 0px;
   margin-bottom: 15px;
-  font-family: var(--font-stamp);
-  font-weight: 900;
+  font-family: var(--font-hand);
+  font-weight: 700;
+  text-transform: none;
+  display: inline-block;
+  transform: rotate(-3.5deg);
+  transform-origin: left center;
 
   /* Rich dry stamped ink color */
   color: #1a0a04;
@@ -1730,20 +1734,17 @@ button,
 }
 
 .intro-name {
-  font-size: 3.6rem;
+  font-size: 3.0rem;
   line-height: 0.95;
   margin-bottom: 8px;
-  font-family: var(--font-stamp);
-  font-weight: 900;
+  font-family: var(--font-hand);
+  font-weight: 700;
+  display: inline-block;
+  transform: rotate(-2.5deg);
+  transform-origin: left center;
 
-  /* Distressed letterpress stamped ink using Main Ink Black #1B120D & Faded Ink #3A2A1F */
-  color: transparent;
-  background-image:
-    url("data:image/svg+xml;utf8,%3Csvg viewBox=%270 0 150 150%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cfilter id=%27stampNoiseIntro%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.85%27 numOctaves=%273%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23stampNoiseIntro)%27 opacity=%270.26%27/%3E%3C/svg%3E"),
-    radial-gradient(circle at center, #3A2A1F 0%, #1B120D 100%);
-  background-blend-mode: screen;
-  -webkit-background-clip: text;
-  background-clip: text;
+  /* Solid rich ink color for clean handwriting look */
+  color: #1B120D;
   filter: drop-shadow(1px 1px 0.3px rgba(255, 255, 255, 0.35));
 }
 
@@ -2038,12 +2039,14 @@ button,
   flex: 6.8;
   /* Expand right column to accommodate 1.7x photo container beautifully */
   padding-left: 10px;
-  padding-top: 30px; /* Shifted downward for better vertical balance */
+  padding-top: 30px;
+  /* Shifted downward for better vertical balance */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: 20px; /* Slightly more vertical space between photo and buttons */
+  gap: 20px;
+  /* Slightly more vertical space between photo and buttons */
 }
 
 #page-intro .polaroid {
@@ -2067,7 +2070,8 @@ button,
 }
 
 .intro-photo-tilted {
-  transform: rotate(4.5deg) translateY(0) !important; /* Removed upward offset to shift downward */
+  transform: rotate(4.5deg) translateY(0) !important;
+  /* Removed upward offset to shift downward */
   transform-origin: center top;
   transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.35s ease;
 }
@@ -2266,12 +2270,15 @@ button,
   color: #120A05 !important;
   /* Deepest black-brown ink for primary handwritten text */
 }
+
 #page-intro .intro-greeting {
   font-size: 2.8rem !important;
 }
+
 #page-intro .intro-body {
   font-size: 1.65rem !important;
 }
+
 #page-intro .pinned-note-text {
   font-size: 1.6rem !important;
 }
@@ -2287,6 +2294,7 @@ button,
   opacity: 0.35 !important;
   /* Slightly enhance vintage drawings visibility */
 }
+
 #page-intro .drawing-bridge-intro {
   opacity: 0.42 !important;
 }
@@ -3294,7 +3302,8 @@ button,
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 5; /* Drawn behind milestone-cards (z-index: 10) so chits are layered on top of the trails */
+  z-index: 5;
+  /* Drawn behind milestone-cards (z-index: 10) so chits are layered on top of the trails */
 }
 
 .flight-paths-svg {
@@ -3566,14 +3575,14 @@ button,
   top: 10px;
   left: 10px;
 }
- 
+
 .post-interfaces {
   width: 190px;
   height: 160px;
   top: 15px;
   left: 195px;
 }
- 
+
 .post-coffee {
   width: 170px;
   height: 160px;
@@ -3581,14 +3590,14 @@ button,
   left: 400px;
   z-index: 11;
 }
- 
+
 .post-consistency {
   width: 210px;
   height: 160px;
   top: 195px;
   left: 70px;
 }
- 
+
 .post-reading {
   width: 230px;
   height: 160px;
@@ -4954,8 +4963,8 @@ button,
 
 /* Scale up the title and content proportionally for full-screen */
 .cfs-content .main-title {
-  font-size: clamp(4rem, 9vw, 8rem);
-  line-height: 0.85;
+  font-size: clamp(3.2rem, 7.5vw, 6.5rem);
+  line-height: 0.9;
 }
 
 .cfs-content .personal-archive-header {
@@ -5180,6 +5189,7 @@ button,
    RESPONSIVE DESIGN FOR PORTABLES (TABLET & PHONE)
    ========================================================================== */
 @media (max-width: 1024px) {
+
   /* Disable expensive SVG filter effects on mobile/tablet viewports to prevent lagging */
   *:not(img) {
     filter: none !important;
@@ -5241,7 +5251,7 @@ button,
     justify-content: flex-start;
     align-items: center;
   }
-  
+
   .cfs-content {
     width: 100%;
     max-width: 600px;
@@ -5263,13 +5273,14 @@ button,
     gap: 30px !important;
   }
 
-  .cover-left, .cover-right {
+  .cover-left,
+  .cover-right {
     width: 100%;
     flex: none !important;
   }
 
   .cover-right .main-title {
-    font-size: 3.5rem !important;
+    font-size: 2.8rem !important;
     text-align: center;
   }
 
@@ -5454,10 +5465,21 @@ button,
     z-index: 10000;
   }
 
-  #book-fe.open, #book-be.open, #book-cd.open, #book-db.open, #book-tl.open, #book-cp.open {
+  #book-fe.open,
+  #book-be.open,
+  #book-cd.open,
+  #book-db.open,
+  #book-tl.open,
+  #book-cp.open {
     transform: scale(1.15) !important;
   }
-  #book-fe.open:hover, #book-be.open:hover, #book-cd.open:hover, #book-db.open:hover, #book-tl.open:hover, #book-cp.open:hover {
+
+  #book-fe.open:hover,
+  #book-be.open:hover,
+  #book-cd.open:hover,
+  #book-db.open:hover,
+  #book-tl.open:hover,
+  #book-cp.open:hover {
     transform: scale(1.15) !important;
   }
 
@@ -5569,32 +5591,38 @@ button,
 }
 
 @media (max-width: 480px) {
+
   /* Remove outer wooden desk padding and leather frames to let paper fill screen width */
   .desk {
     padding: 0 !important;
   }
+
   .notebook-wrapper {
     margin: 0 !important;
     padding: 0 !important;
     width: 100% !important;
   }
+
   .notebook {
     border: none !important;
     border-radius: 0 !important;
     box-shadow: none !important;
     background: none !important;
   }
+
   .notebook::after {
     display: none !important;
   }
+
   .notebook-inner-pages {
     padding: 0 !important;
     background: none !important;
   }
+
   .sheet-paper {
     padding: 15px 10px 30px 10px !important;
   }
-  
+
   /* Hide the red vertical margin line on mobile since we are centering all text */
   .sheet-paper::before,
   .grid-paper::before,
@@ -5606,6 +5634,7 @@ button,
   .notebook-header-line {
     justify-content: center !important;
   }
+
   .skills-header-block,
   .projects-title-container,
   .journey-header-block,
@@ -5616,6 +5645,7 @@ button,
     margin-left: auto;
     margin-right: auto;
   }
+
   .skills-main-title,
   .projects-main-title,
   .journey-main-title,
@@ -5624,11 +5654,13 @@ button,
     text-align: center !important;
     font-size: 2.6rem !important;
   }
+
   .skills-main-title,
   .contact-main-title {
     margin-top: 0 !important;
     margin-bottom: 5px !important;
   }
+
   .skills-sub,
   .projects-sub,
   .journey-sub,
@@ -5636,10 +5668,12 @@ button,
     text-align: center !important;
     width: 100%;
   }
+
   .skills-sub,
   .contact-sub {
     margin: 0 auto 0 auto !important;
   }
+
   .skills-header-block,
   .contact-title-block {
     margin-bottom: 0px !important;
@@ -5658,6 +5692,7 @@ button,
     float: none !important;
     display: block !important;
   }
+
   .sticky-learning-note {
     margin: 0px auto 10px auto !important;
   }
@@ -5665,6 +5700,7 @@ button,
   .sticky-collage {
     gap: 8px !important;
   }
+
   .sticky-collage .postit,
   .sticky-collage .postit-wrapper {
     margin: 4px auto !important;
@@ -5675,19 +5711,32 @@ button,
     grid-template-columns: 1fr !important;
     justify-items: center !important;
   }
+
   .vintage-book {
     margin: 10px auto !important;
     max-width: 280px;
   }
+
   .book-shelf-row {
     justify-content: center !important;
   }
 
-  #book-fe.open, #book-be.open, #book-cd.open, #book-db.open, #book-tl.open, #book-cp.open {
+  #book-fe.open,
+  #book-be.open,
+  #book-cd.open,
+  #book-db.open,
+  #book-tl.open,
+  #book-cp.open {
     transform: scale(1.05) !important;
     margin: 15px auto !important;
   }
-  #book-fe.open:hover, #book-be.open:hover, #book-cd.open:hover, #book-db.open:hover, #book-tl.open:hover, #book-cp.open:hover {
+
+  #book-fe.open:hover,
+  #book-be.open:hover,
+  #book-cd.open:hover,
+  #book-db.open:hover,
+  #book-tl.open:hover,
+  #book-cp.open:hover {
     transform: scale(1.05) !important;
   }
 
@@ -5695,31 +5744,38 @@ button,
   .projects-list-side {
     align-items: center !important;
   }
+
   .project-container-wrapper {
     width: 100%;
     align-items: center !important;
     justify-content: center !important;
   }
+
   .project-paper-card {
     width: 100%;
     max-width: 320px;
     margin: 0 auto !important;
     text-align: center !important;
   }
+
   .project-header {
     justify-content: center !important;
   }
+
   .project-tags {
     justify-content: center !important;
   }
+
   .project-actions {
     justify-content: center !important;
   }
+
   .project-desc {
     border-left: none !important;
     padding-left: 0 !important;
     text-align: center !important;
   }
+
   .tech-stack-row {
     justify-content: center !important;
   }
@@ -5728,11 +5784,13 @@ button,
   .milestones-wrapper {
     align-items: center !important;
   }
+
   .milestone-card {
     max-width: 300px;
     margin: 10px auto !important;
     text-align: center !important;
   }
+
   .milestone-sketch-icon {
     margin: 5px auto !important;
   }
@@ -5744,6 +5802,7 @@ button,
     right: auto !important;
     margin: 0px auto 10px auto !important;
   }
+
   .envelope-outer-container {
     width: 100% !important;
     max-width: 320px !important;
@@ -5752,23 +5811,28 @@ button,
     position: relative !important;
     transition: height 0.5s ease-in-out !important;
   }
+
   .envelope-outer-container:has(.envelope-open) {
     height: 280px !important;
   }
+
   .envelope {
     width: 280px !important;
     height: 180px !important;
     margin: 10px auto 0 auto !important;
     transition: margin-top 0.5s ease-in-out, transform 0.5s ease-in-out !important;
   }
+
   .envelope.envelope-open {
     margin-top: 80px !important;
   }
+
   .coffee-cup-container {
     width: 85px !important;
     height: 85px !important;
     margin: 25px auto 0 auto !important;
   }
+
   .contact-sketch-container {
     display: flex !important;
     justify-content: center !important;
@@ -5776,12 +5840,14 @@ button,
     margin: 0 auto !important;
     height: 40px !important;
   }
+
   .doodle-contact-svg {
     display: block !important;
     margin: 0 auto !important;
     width: 80px !important;
     height: 40px !important;
   }
+
   .gear-doodle-container {
     display: block !important;
     margin: 0 auto !important;
@@ -5789,10 +5855,12 @@ button,
     height: 60px !important;
     margin-bottom: 5px !important;
   }
+
   .doodle-gear-1 {
     width: 40px !important;
     height: 40px !important;
   }
+
   .doodle-gear-2 {
     top: 25px !important;
     left: 30px !important;
@@ -5804,32 +5872,38 @@ button,
     left: 32px !important;
     right: 38px !important;
   }
+
   .cfs-content .cover-exterior {
     padding: 2vh 6vw 2vh 1vw !important;
   }
+
   .cover-content {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     width: 100% !important;
   }
+
   .cover-right {
     display: contents !important;
   }
+
   .personal-archive-header {
     order: 1 !important;
     text-align: center !important;
     width: 100% !important;
     margin-bottom: 2px !important;
   }
+
   .cover-right .main-title {
     order: 2 !important;
-    font-size: 2.8rem !important;
+    font-size: 2.2rem !important;
     text-align: center !important;
     width: 100% !important;
     margin-top: 0 !important;
     margin-bottom: 5px !important;
   }
+
   .sub-title-badge {
     order: 3 !important;
     text-align: center !important;
@@ -5838,6 +5912,7 @@ button,
     width: max-content !important;
     max-width: 100% !important;
   }
+
   .cover-left {
     order: 4 !important;
     display: flex !important;
@@ -5845,25 +5920,31 @@ button,
     margin-bottom: 10px !important;
     width: 100% !important;
   }
+
   .polaroid {
     padding: 10px !important;
   }
+
   .polaroid .photo-container {
     width: 200px !important;
     height: calc(200px - 5mm) !important;
   }
+
   .taped-cover .photo-container {
     width: 180px !important;
     height: calc(180px - 5mm) !important;
   }
+
   .interests-section {
     order: 5 !important;
     width: 100% !important;
     text-align: center !important;
   }
+
   .interests-section .section-label {
     margin-bottom: 5px !important;
   }
+
   .interests-grid {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
@@ -5873,12 +5954,14 @@ button,
     padding: 10px 0 !important;
     margin-bottom: 10px !important;
   }
+
   .stamp-choice {
     order: 6 !important;
     margin: 10px auto 0 auto !important;
     width: 100% !important;
     text-align: center !important;
   }
+
   .volume-text {
     order: 7 !important;
     text-align: center !important;

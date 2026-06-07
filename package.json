@@ -4,7 +4,7 @@
   "description": "Handcrafted Vintage Scrapbook & Engineering Notebook Portfolio for Yash Zope",
   "main": "index.html",
   "scripts": {
-    "dev": "npx -y http-server -p 3000 -c-1 -o"
+    "dev": "npx -y http-server -p 3001 -c-1 -o"
   },
   "keywords": [
     "portfolio",

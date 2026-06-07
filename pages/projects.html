@@ -455,20 +455,20 @@
           <div class="project-paperclip"></div>
           <div class="project-header">
             <span class="project-number font-mono">02</span>
-            <h3 class="project-title font-stamp">CLOUD FILE MANAGER</h3>
+            <h3 class="project-title font-stamp">TIMETABLE MANAGEMENT SYSTEM</h3>
           </div>
 
-          <p class="project-tagline font-book">Secure, scalable and fast file storage and sharing system.</p>
+          <p class="project-tagline font-book">Premium role-based schedule planning and coordination for institutions.</p>
 
           <!-- Attached Tags -->
           <div class="project-tags">
-            <span class="project-tag-snippet font-mono">SECURE</span>
-            <span class="project-tag-snippet font-mono">SCALABLE</span>
-            <span class="project-tag-snippet font-mono">FAST</span>
+            <span class="project-tag-snippet font-mono">ROLE-BASED</span>
+            <span class="project-tag-snippet font-mono">REAL-TIME</span>
+            <span class="project-tag-snippet font-mono">IMAGE EXPORT</span>
           </div>
 
           <div class="project-actions">
-            <a href="https://github.com/YASH-ZOPE" target="_blank" class="project-action-btn btn-demo">
+            <a href="http://localhost:3000/view" target="_blank" class="project-action-btn btn-demo">
               <span class="font-mono">LIVE DEMO</span>
               <svg viewBox="0 0 24 24" class="btn-arrow">
                 <path
@@ -484,16 +484,15 @@
             </a>
           </div>
 
-          <p class="project-desc font-mono">A modern file manager with authentication, cloud storage, sharing and
-            role-based access.</p>
+          <p class="project-desc font-mono">Institution timetable coordinator featuring secure Administrator/Teacher portals, real-time grid editing, and dynamic PNG exports.</p>
 
           <div class="tech-stack-row">
             <span class="tech-label font-mono">TECH STACK:</span>
             <div class="tech-icons-list">
               <span class="mini-tech-icon font-mono">React</span>
-              <span class="mini-tech-icon font-mono">Node</span>
+              <span class="mini-tech-icon font-mono">Cognito</span>
               <span class="mini-tech-icon font-mono">Firebase</span>
-              <span class="mini-tech-icon font-mono">AWS</span>
+              <span class="mini-tech-icon font-mono">CSS3</span>
             </div>
           </div>
         </div>
@@ -505,29 +504,36 @@
           </div>
           <div class="slider-blueprint-content" onclick="openLightbox(event)">
             <div class="blueprint-inner blueprint-grid">
-              <h4 class="blueprint-title font-mono">CLOUD FILE ARCHITECTURE</h4>
+              <h4 class="blueprint-title font-mono">TIMETABLE SYSTEM ARCHITECTURE</h4>
               <!-- Sketch architecture diagram SVG -->
               <svg viewBox="0 0 150 120" class="arch-sketch-svg">
-                <rect x="5" y="45" width="22" height="28" rx="1" fill="none" stroke="currentColor" stroke-width="0.8" />
-                <text x="8" y="60" font-size="5" font-family="monospace" fill="currentColor">Client</text>
+                <!-- React Client -->
+                <rect x="5" y="45" width="28" height="28" rx="1" fill="none" stroke="currentColor" stroke-width="0.8" />
+                <text x="9" y="58" font-size="4.5" font-family="monospace" fill="currentColor">React</text>
+                <text x="9" y="66" font-size="4.5" font-family="monospace" fill="currentColor">Client</text>
 
-                <path d="M27 59h20" fill="none" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2 2" />
+                <!-- Arrows/Lines -->
+                <!-- Client to Auth -->
+                <path d="M 20 45 Q 30 30 46 30" fill="none" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2 2" />
+                <!-- Client to Firebase -->
+                <path d="M 33 59 H 94" fill="none" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2 2" />
+                <!-- Client to Export -->
+                <path d="M 20 73 Q 30 88 46 88" fill="none" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2 2" />
 
-                <rect x="47" y="30" width="32" height="58" rx="1" fill="none" stroke="currentColor"
-                  stroke-width="0.8" />
-                <text x="50" y="44" font-size="5" font-family="monospace" fill="currentColor">API</text>
-                <text x="50" y="54" font-size="5" font-family="monospace" fill="currentColor">Gateway</text>
+                <!-- AWS Cognito Auth -->
+                <rect x="46" y="15" width="36" height="22" rx="1" fill="none" stroke="currentColor" stroke-width="0.8" />
+                <text x="50" y="25" font-size="4.5" font-family="monospace" fill="currentColor">AWS</text>
+                <text x="50" y="32" font-size="4.5" font-family="monospace" fill="currentColor">Cognito</text>
 
-                <path d="M79 48h20M79 68h20" fill="none" stroke="currentColor" stroke-width="0.8"
-                  stroke-dasharray="2 2" />
+                <!-- html2canvas / Export -->
+                <rect x="46" y="80" width="36" height="22" rx="1" fill="none" stroke="currentColor" stroke-width="0.8" />
+                <text x="50" y="90" font-size="4.5" font-family="monospace" fill="currentColor">Image</text>
+                <text x="50" y="97" font-size="4.5" font-family="monospace" fill="currentColor">Exporter</text>
 
-                <path d="M100 40c0-5 5-8 10-8s8 4 9 7c1.5-1.5 4-1.5 5 0s1.5 4 0 5h-24z" fill="none"
-                  stroke="currentColor" stroke-width="0.8" />
-                <text x="105" y="46" font-size="4.5" font-family="monospace" fill="currentColor">AWS S3</text>
-
-                <rect x="99" y="65" width="30" height="22" rx="1" fill="none" stroke="currentColor"
-                  stroke-width="0.8" />
-                <text x="104" y="77" font-size="5" font-family="monospace" fill="currentColor">Database</text>
+                <!-- Firebase Realtime DB -->
+                <rect x="94" y="45" width="38" height="28" rx="1" fill="none" stroke="currentColor" stroke-width="0.8" />
+                <text x="98" y="58" font-size="4.5" font-family="monospace" fill="currentColor">Firebase</text>
+                <text x="98" y="66" font-size="4.5" font-family="monospace" fill="currentColor">Realtime DB</text>
               </svg>
               <span class="zoom-label font-hand">Click to enlarge blueprint</span>
             </div>

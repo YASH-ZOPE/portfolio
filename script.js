@@ -163,21 +163,28 @@ const Portfolio = {
   async init() {
     this.adjustScale();
     this.setupEventListeners();
-    await this.loadPages();
-    initCoffeeCupSpin(); // Start fluid, zero-snap coffee cup 3D spinning loop
-    initLighthouseBeam(); // Start smooth, cursor-tracking watchtower lighthouse beam loop
+    
+    // 1. Initialize the cover overlay immediately (statically embedded in HTML)
     this.initFullscreenCover();
     this.initResumeBtn();
+    
+    // 2. Load the pages in parallel in the background
+    this.loadOtherPages().then(() => {
+      // Start interactive loops once components are loaded in background
+      initCoffeeCupSpin(); // Start fluid, zero-snap coffee cup 3D spinning loop
+      initLighthouseBeam(); // Start smooth, cursor-tracking watchtower lighthouse beam loop
+    });
+    
     console.log("Tactile Scrapbook Portfolio Shell Running.");
   },
 
-  // Dynamically load pages from separate standalone pages/ folder files
-  async loadPages() {
-    const pages = ['cover', 'intro', 'skills', 'projects', 'journey', 'about', 'contact'];
-
-    for (const page of pages) {
+  // Dynamically load the pages in parallel in the background
+  async loadOtherPages() {
+    const pages = ['intro', 'skills', 'projects', 'journey', 'about', 'contact'];
+    
+    const promises = pages.map(async (page) => {
       const container = document.getElementById(`page-${page}`);
-      if (!container) continue;
+      if (!container) return;
 
       try {
         const response = await fetch(`pages/${page}.html?v=11.11.2`);
@@ -198,7 +205,9 @@ const Portfolio = {
           </div>
         `;
       }
-    }
+    });
+
+    await Promise.all(promises);
   },
 
   /**
@@ -209,27 +218,9 @@ const Portfolio = {
    */
   initFullscreenCover() {
     const overlay = document.getElementById('cover-fullscreen');
-    const cfsContent = document.getElementById('cfs-content');
-    const coverPage = document.getElementById('page-cover');
     const desk = document.getElementById('desk-wrapper');
 
     if (!overlay) return;
-
-    // --- Inject cover content into full-screen overlay ---
-    if (cfsContent && coverPage) {
-      // Move the loaded .cover-exterior HTML into the overlay content area
-      const coverExterior = coverPage.querySelector('.cover-exterior');
-      if (coverExterior) {
-        // Clone so the original stays (hidden) inside the notebook
-        cfsContent.appendChild(coverExterior.cloneNode(true));
-      }
-    }
-
-    // Hide the notebook-page cover (it's now shown full-screen instead)
-    if (coverPage) {
-      coverPage.classList.remove('active');
-      coverPage.style.display = 'none';
-    }
 
     // Ensure notebook is invisible until cover opens
     if (desk) {
