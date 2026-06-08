@@ -2772,6 +2772,13 @@ button,
   overflow-y: auto;
   z-index: 2;
   box-shadow: inset 5px 0 10px rgba(0, 0, 0, 0.08);
+  pointer-events: none;
+}
+
+/* When book is open, raise inner sheet above the rotating container (z:5) */
+.vintage-book.open .book-inner-sheet {
+  z-index: 6;
+  pointer-events: auto;
 }
 
 .sheet-title {
@@ -2791,7 +2798,7 @@ button,
 }
 
 .tech-snippet {
-  font-size: 1.35rem;
+  font-size: 0.72rem;
   line-height: 1.1;
   padding: 4px 8px;
   border-radius: 2px;
