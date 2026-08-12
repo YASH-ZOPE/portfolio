@@ -7,7 +7,16 @@
   <title>Yash Zope | Handcrafted Vintage Engineering Notebook & Scrapbook Portfolio</title>
   <meta name="description"
     content="The personal interactive archive of Yash Zope - Cloud & Full Stack Developer. Explore skills, projects, and journey in a realistic vintage engineering notebook.">
-  <link rel="stylesheet" href="style.css?v=11.11.3">
+  
+  <!-- Preconnect to font servers for instant font resolution -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Caveat:wght@400;700&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Special+Elite&family=Inter:wght@300;400;500;600;700&display=swap">
+  
+  <!-- Preload key visual asset for instant paint -->
+  <link rel="preload" as="image" href="assets/desk_bg.jpg">
+  
+  <link rel="stylesheet" href="style.css?v=11.11.4">
   <style>
     /* Critical inline style to prevent FOUC / visual pop-in */
     body, html {
@@ -414,26 +423,16 @@
        ============================================================ -->
   <svg style="position: absolute; width: 0; height: 0; pointer-events: none;" width="0" height="0">
     <defs>
-      <!-- Stamp Ink Erosion & Bleed distress filter -->
-      <filter id="stamp-distress" x="-10%" y="-10%" width="120%" height="120%">
-        <!-- Coarse turbulence to erode letter margins slightly -->
-        <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="3" result="coarseNoise" />
-        <feDisplacementMap in="SourceGraphic" in2="coarseNoise" scale="1.6" xChannelSelector="R" yChannelSelector="G" result="erodedText" />
-        
-        <!-- High-frequency fine micro-erosion for ink grain -->
-        <feTurbulence type="turbulence" baseFrequency="0.22" numOctaves="2" result="fineNoise" />
-        <feDisplacementMap in="erodedText" in2="fineNoise" scale="0.8" xChannelSelector="R" yChannelSelector="G" result="grainyText" />
-
-        <!-- Soft ink bleed and absorption into paper fibers (extremely subtle) -->
-        <feGaussianBlur in="SourceGraphic" stdDeviation="0.18" result="inkBleed" />
-        
+      <!-- Stamp Ink Erosion & Bleed distress filter (Optimized) -->
+      <filter id="stamp-distress" x="-5%" y="-5%" width="110%" height="110%">
+        <!-- Optimized single-pass turbulence for lightweight stamp edge erosion -->
+        <feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves="1" result="coarseNoise" />
+        <feDisplacementMap in="SourceGraphic" in2="coarseNoise" scale="1.2" xChannelSelector="R" yChannelSelector="G" result="erodedText" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="0.15" result="inkBleed" />
         <feMerge>
-          <!-- Layer bleed below and displacement on top -->
           <feMergeNode in="inkBleed" />
-          <feMergeNode in="grainyText" />
+          <feMergeNode in="erodedText" />
         </feMerge>
-        
-        <!-- Slightly mute opacity to simulate natural dry stamp ink variation -->
         <feColorMatrix type="matrix" values="
           1 0 0 0 0
           0 1 0 0 0
@@ -444,37 +443,24 @@
       
       <!-- Faint paper fiber overlay specifically for stamp bleed merging -->
       <filter id="fiber-bleed" x="0%" y="0%" width="100%" height="100%">
-        <feTurbulence type="fractalNoise" baseFrequency="0.45" numOctaves="4" result="noise" />
+        <feTurbulence type="fractalNoise" baseFrequency="0.45" numOctaves="1" result="noise" />
         <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.28 0" result="coloredNoise" />
         <feBlend mode="multiply" in="SourceGraphic" in2="coloredNoise" />
       </filter>
 
-      <!-- Soft, fibrous, pressure-worn paper edge distress displacement filter -->
-      <filter id="paper-edge-distress" x="-2%" y="-2%" width="104%" height="104%">
-        <!-- Pass 1: Low-frequency turbulence for organic page edge warping, rounded bumps, and thumb-worn dents -->
-        <feTurbulence type="fractalNoise" baseFrequency="0.025" numOctaves="3" seed="19" result="waveNoise" />
-        <feDisplacementMap in="SourceGraphic" in2="waveNoise" scale="5" xChannelSelector="R" yChannelSelector="G" result="softWarp" />
-        
-        <!-- Pass 2: High-frequency turbulence for paper fiber fraying and microscopic wood/cotton cellulose protrusions -->
-        <feTurbulence type="fractalNoise" baseFrequency="0.42" numOctaves="4" seed="42" result="fiberNoise" />
-        <feDisplacementMap in="softWarp" in2="fiberNoise" scale="1.4" xChannelSelector="R" yChannelSelector="G" result="erodedEdge" />
+      <!-- Soft, fibrous paper edge distress filter (Optimized) -->
+      <filter id="paper-edge-distress" x="-1%" y="-1%" width="102%" height="102%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="1" seed="19" result="waveNoise" />
+        <feDisplacementMap in="SourceGraphic" in2="waveNoise" scale="3" xChannelSelector="R" yChannelSelector="G" result="softWarp" />
       </filter>
 
-      <!-- Premium Pebbled Leather Texture Filter -->
+      <!-- Pebbled Leather Texture Filter (Optimized) -->
       <filter id="pebbled-leather" x="0%" y="0%" width="100%" height="100%">
-        <!-- Coarse turbulence to generate leather cell boundaries -->
-        <feTurbulence type="fractalNoise" baseFrequency="0.32" numOctaves="3" result="roughNoise" />
-        <!-- Emboss the cells to create a realistic 3D grain texture catching lights and shadows -->
-        <feDiffuseLighting in="roughNoise" lighting-color="#ffffff" surfaceScale="1.4" diffuseConstant="1.2" result="pebbleLight">
+        <feTurbulence type="fractalNoise" baseFrequency="0.32" numOctaves="1" result="roughNoise" />
+        <feDiffuseLighting in="roughNoise" lighting-color="#ffffff" surfaceScale="1.0" diffuseConstant="1.1" result="pebbleLight">
           <feDistantLight azimuth="135" elevation="55" />
         </feDiffuseLighting>
-        <!-- Blend it cleanly -->
-        <feBlend mode="multiply" in="SourceGraphic" in2="pebbleLight" result="blend1" />
-        
-        <!-- Faint high-frequency noise for microscopic pore details -->
-        <feTurbulence type="turbulence" baseFrequency="0.8" numOctaves="2" result="microNoise" />
-        <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.12 0" result="coloredMicro" />
-        <feBlend mode="multiply" in="blend1" in2="coloredMicro" />
+        <feBlend mode="multiply" in="SourceGraphic" in2="pebbleLight" />
       </filter>
     </defs>
   </svg>

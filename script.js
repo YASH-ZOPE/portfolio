@@ -178,16 +178,14 @@ const Portfolio = {
     console.log("Tactile Scrapbook Portfolio Shell Running.");
   },
 
-  // Dynamically load the pages in parallel in the background
+  // Dynamically load pages with intro prioritized first for immediate interactive readiness
   async loadOtherPages() {
-    const pages = ['intro', 'skills', 'projects', 'journey', 'about', 'contact'];
-    
-    const promises = pages.map(async (page) => {
+    const loadPage = async (page) => {
       const container = document.getElementById(`page-${page}`);
       if (!container) return;
 
       try {
-        const response = await fetch(`pages/${page}.html?v=11.11.2`);
+        const response = await fetch(`pages/${page}.html?v=11.11.4`);
         if (response.ok) {
           const html = await response.text();
           container.innerHTML = html;
@@ -205,9 +203,11 @@ const Portfolio = {
           </div>
         `;
       }
-    });
+    };
 
-    await Promise.all(promises);
+    // Fire network fetch requests for ALL subpages simultaneously in true parallel
+    const pages = ['intro', 'skills', 'projects', 'journey', 'about', 'contact'];
+    await Promise.all(pages.map(page => loadPage(page)));
   },
 
   /**
