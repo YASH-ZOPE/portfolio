@@ -160,54 +160,19 @@ const Portfolio = {
   activeBook: null,
   activeSliders: new Set(),
 
-  async init() {
+  init() {
     this.adjustScale();
     this.setupEventListeners();
     
-    // 1. Initialize the cover overlay immediately (statically embedded in HTML)
+    // 1. Initialize cover overlay and resume handler
     this.initFullscreenCover();
     this.initResumeBtn();
     
-    // 2. Load the pages in parallel in the background
-    this.loadOtherPages().then(() => {
-      // Start interactive loops once components are loaded in background
-      initCoffeeCupSpin(); // Start fluid, zero-snap coffee cup 3D spinning loop
-      initLighthouseBeam(); // Start smooth, cursor-tracking watchtower lighthouse beam loop
-    });
+    // 2. Start interactive loops instantly (all page sheets embedded statically in DOM)
+    initCoffeeCupSpin(); // Start fluid coffee cup 3D spinning loop
+    initLighthouseBeam(); // Start smooth watchtower lighthouse beam tracking loop
     
-    console.log("Tactile Scrapbook Portfolio Shell Running.");
-  },
-
-  // Dynamically load pages with intro prioritized first for immediate interactive readiness
-  async loadOtherPages() {
-    const loadPage = async (page) => {
-      const container = document.getElementById(`page-${page}`);
-      if (!container) return;
-
-      try {
-        const response = await fetch(`pages/${page}.html?v=11.11.4`);
-        if (response.ok) {
-          const html = await response.text();
-          container.innerHTML = html;
-        } else {
-          console.error(`Failed to load: pages/${page}.html (Status: ${response.status})`);
-          container.innerHTML = `<div class="error-sheet font-mono">Error: Standalone page pages/${page}.html not found.</div>`;
-        }
-      } catch (err) {
-        console.error(`Fetch exception for pages/${page}.html. Ensure you are running 'npm run dev'!`, err);
-        container.innerHTML = `
-          <div class="error-sheet font-mono" style="padding: 30px; text-align: center;">
-            <h4 style="color: #a43e37; margin-bottom: 10px;">⚠️ MODULAR LOAD BARRIER</h4>
-            <p>Stand-alone page <code>pages/${page}.html</code> could not be fetched due to filesystem CORS restrictions.</p>
-            <p style="margin-top: 10px; font-size: 0.75rem; color: #706359;">Please run the local web server by running <strong>npm run dev</strong> in the terminal!</p>
-          </div>
-        `;
-      }
-    };
-
-    // Fire network fetch requests for ALL subpages simultaneously in true parallel
-    const pages = ['intro', 'skills', 'projects', 'journey', 'about', 'contact'];
-    await Promise.all(pages.map(page => loadPage(page)));
+    console.log("Tactile Scrapbook Portfolio Shell Running (100% Embedded Single-File Mode).");
   },
 
   /**
