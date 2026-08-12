@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yash-zope.github.io/portfolio/sitemap.xml
+Sitemap: https://main.d25jn6r1sw2ut.amplifyapp.com/sitemap.xml
