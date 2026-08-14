@@ -319,6 +319,13 @@ const Portfolio = {
     const previousPageId = this.currentPage;
     this.currentPage = targetId;
 
+    // Update browser URL hash for SEO deep-linking
+    if (history.replaceState) {
+      history.replaceState(null, '', `#${targetId}`);
+    } else {
+      window.location.hash = targetId;
+    }
+
     // Update active tab highlight
     const tabs = document.querySelectorAll('.nav-tab');
     tabs.forEach(tab => {
